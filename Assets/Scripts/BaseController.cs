@@ -11,6 +11,7 @@ public abstract class BaseController : MonoBehaviour
 
     protected Vector2 lookDirection = Vector2.zero;
     public Vector2 LookDirection { get { return lookDirection; } }
+    [SerializeField] protected Transform weapon; 
 
     protected virtual void Awake()
     {
@@ -46,9 +47,15 @@ public abstract class BaseController : MonoBehaviour
 
     protected virtual void Rotate(Vector2 LookDirection)
     {
-        bool isLeft = Mathf.Abs(Mathf.Atan2(LookDirection.y, LookDirection.x)) > (Mathf.PI / 2);
+        float degree = Mathf.Atan2(LookDirection.y, LookDirection.x) * Mathf.Rad2Deg;
+        bool isLeft = Mathf.Abs(degree) > 90f;
         
         characterSprite.flipX = isLeft;
+
+        if(weapon != null)
+        {
+            weapon.rotation = Quaternion.Euler(0, 0, degree);
+        }
     }
 
 }
