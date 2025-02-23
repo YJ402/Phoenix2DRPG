@@ -6,6 +6,9 @@ public abstract class BaseController : MonoBehaviour
 {
     [SerializeField] protected Rigidbody2D characterRigidbody;
     [SerializeField] protected SpriteRenderer characterSprite;
+    AnimationHandler animationHandler;
+    StateHandler stateHandler;
+
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
 
@@ -13,11 +16,14 @@ public abstract class BaseController : MonoBehaviour
     public Vector2 LookDirection { get { return lookDirection; } }
     [SerializeField] protected Transform weapon; 
 
+
+    
     protected virtual void Awake()
     {
         characterRigidbody = GetComponent<Rigidbody2D>();
         characterSprite =GetComponentInChildren<SpriteRenderer>();
-
+        stateHandler = GetComponent<StateHandler>();
+        animationHandler = GetComponentInChildren<AnimationHandler>();
     }
     protected virtual void Start()
     {
@@ -40,7 +46,7 @@ public abstract class BaseController : MonoBehaviour
     }
     protected virtual void MoveCharacter(Vector2 MovementDirection)
     {
-        movementDirection = MovementDirection * 5/*player speed State*/;
+        movementDirection = MovementDirection * stateHandler.Speed;
 
         characterRigidbody.velocity = movementDirection;
     }

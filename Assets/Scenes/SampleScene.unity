@@ -1207,6 +1207,8 @@ GameObject:
   - component: {fileID: 1475303316}
   - component: {fileID: 1475303315}
   - component: {fileID: 1475303317}
+  - component: {fileID: 1475303318}
+  - component: {fileID: 1475303319}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1310,6 +1312,33 @@ MonoBehaviour:
   weapon: {fileID: 343420335}
   enemys: {fileID: 359509016}
   targetTransform: {fileID: 0}
+--- !u!114 &1475303318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475303313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e312b4442cc84478dc3abb521c4854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 1000
+  speed: 0
+--- !u!114 &1475303319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475303313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0533922709585142a3f926afec0995e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1767793073
 GameObject:
   m_ObjectHideFlags: 0
