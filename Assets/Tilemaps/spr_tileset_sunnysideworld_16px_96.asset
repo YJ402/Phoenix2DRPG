@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: spr_tileset_sunnysideworld_16px_96
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 11922586, guid: b62d162ae7b84ee4b8ea271336cda54d, type: 3}
+  m_Sprite: {fileID: 186456457, guid: b62d162ae7b84ee4b8ea271336cda54d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
