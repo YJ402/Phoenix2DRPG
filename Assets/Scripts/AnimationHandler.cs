@@ -24,7 +24,7 @@ public class AnimationHandler : MonoBehaviour
 
     public void ChangeMovingSpeed(float speed)
     {
-            animator.SetFloat(AttackSpeed, speed);
+            animator.SetFloat(MovingSpeed, speed);
     }
 
     public void Damage()

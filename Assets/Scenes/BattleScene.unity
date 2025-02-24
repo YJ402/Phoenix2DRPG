@@ -1634,6 +1634,7 @@ MonoBehaviour:
   characterRigidbody: {fileID: 0}
   characterSprite: {fileID: 0}
   weapon: {fileID: 763948139}
+  rangeCircle: {fileID: 923577550}
   enemys: {fileID: 106488733}
   targetTransform: {fileID: 0}
 --- !u!58 &1700061302

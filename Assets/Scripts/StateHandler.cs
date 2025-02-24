@@ -96,6 +96,8 @@ public class StateHandler : MonoBehaviour
             AttackSpeed = 1;
         if (MaxHealth == 0)
             MaxHealth = 1000;
+        if (AttackRange == 0)
+            AttackRange = 5;
         
     }
 }
