@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -147,7 +147,217 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: base_attack_strip10_0
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 25
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e8e3ba2d16490d4086546a4bcbab88e
+      internalID: 908306017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_attack_strip10_1
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 25
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c4534c3339e9474daa21ebb4d5bac87
+      internalID: 1009488175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_attack_strip10_2
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 25
+        width: 16
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5625, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee9b5360a20f33846a32bbbb34eca1d3
+      internalID: -5111327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_attack_strip10_3
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 25
+        width: 16
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5625, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feba1a35d197f594096b3e956c6e7421
+      internalID: -335266440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_attack_strip10_4
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 25
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.28125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da1783b4b57578f44a81c71945316bc1
+      internalID: 1929268898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_attack_strip10_5
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 25
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.20833333, y: 0.28125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ac298d38c048cd4b8d690588d9d08a3
+      internalID: -1445005319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_attack_strip10_6
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 25
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.14583333, y: 0.28125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb90926d5b558fd47abcb25e7b0617be
+      internalID: 1662930530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_attack_strip10_7
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 25
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.104166664, y: 0.28125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1d566c8d9111f44dbb0cd6d72fd1b7a
+      internalID: -1832813796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_attack_strip10_8
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 25
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c362876afdb0a64dae2098f7c587939
+      internalID: -1046155769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_attack_strip10_9
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 25
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55a395ad40fdd0e4898e7b05b5173a11
+      internalID: 300620526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -158,7 +368,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      base_attack_strip10_0: 908306017
+      base_attack_strip10_1: 1009488175
+      base_attack_strip10_2: -5111327
+      base_attack_strip10_3: -335266440
+      base_attack_strip10_4: 1929268898
+      base_attack_strip10_5: -1445005319
+      base_attack_strip10_6: 1662930530
+      base_attack_strip10_7: -1832813796
+      base_attack_strip10_8: -1046155769
+      base_attack_strip10_9: 300620526
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
