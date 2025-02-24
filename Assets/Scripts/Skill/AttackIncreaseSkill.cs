@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
-public class AttackIncreaseSkill : BaseSkill
+public class AttackIncreaseSkill : ActiveSkill
 {
     public float baseAttackMultiplier = 2f;
     public float attackMultiplierPerLevel = 0.5f;

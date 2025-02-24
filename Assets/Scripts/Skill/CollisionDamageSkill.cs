@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionDamageSkill : BaseSkill
+public class CollisionDamageSkill : ActiveSkill
 {
     public float damageMultiplier = 1.0f;
 

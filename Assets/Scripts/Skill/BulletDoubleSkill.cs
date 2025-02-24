@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletDoubleSkill : BaseSkill
+public class BulletDoubleSkill : ActiveSkill
 {
     public float bulletMultiplier = 2f;
 

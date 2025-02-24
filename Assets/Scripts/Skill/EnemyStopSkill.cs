@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStopSkill : BaseSkill
+public class EnemyStopSkill : ActiveSkill
 {
     public override void Activate(GameObject user)
     {
