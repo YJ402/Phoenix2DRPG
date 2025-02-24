@@ -49,12 +49,14 @@ public class StatHandler : MonoBehaviour
             animationHandler.ChangeMovingSpeed(Speed/5);
         }
     }
-    [SerializeField] private int attack;
-    public int Attack
+
+    [SerializeField] private int attackPower;
+    public int AttackPower
     {
-        get { return attack; }
-        set { attack = value; }
+        get { return attackPower; }
+        set { attackPower = value; }
     }
+
     [SerializeField] private float attackSpeed;   //공격속도  기본 1.0f    (2.0f = 속도 2배)
     public float AttackSpeed
     {
@@ -65,6 +67,7 @@ public class StatHandler : MonoBehaviour
             animationHandler.ChangeAttackSpeed(AttackSpeed);
         }
     }
+
     [SerializeField] private float attackDistance;  //사정거리  이 범위내에 있어야 인식하고 공격함
     public float AttackRange
     {
@@ -72,38 +75,19 @@ public class StatHandler : MonoBehaviour
         set { attackDistance = value; }
     }
 
-    [SerializeField] private int bulletIndex;
-    public int BulletIndex
-    {
-        get { return bulletIndex; }
-        set { bulletIndex = value; }
-    }
-    [SerializeField] private float bulletSpeed;
-    public float BulletSpeed
-    {
-        get { return bulletSpeed; }
-        set { bulletSpeed = value; }
-    }
-    [SerializeField] private int bulletCount;
-    public int BulletCount
-    {
-        get { return bulletCount; }
-        set { bulletCount = value; }
-    }
-    
-
     private void Awake()
     {
         animationHandler = GetComponent<AnimationHandler>();
-        if (Speed == 0f)
-            Speed = 5;
-        if(AttackSpeed == 0f)
-            AttackSpeed = 1;
-        if (MaxHealth == 0)
-            MaxHealth = 1000;
-        if (AttackRange == 0)
-            AttackRange = 5;
-        if (BulletCount == 0)
-            BulletCount = 1;
+        //if (Speed == 0f)
+        //    Speed = 5;
+        //if(AttackSpeed == 0f)
+        //    AttackSpeed = 1;
+        //if (MaxHealth == 0)
+        //    MaxHealth = 1000;
+        //if (AttackRange == 0)
+        //    AttackRange = 5;
+        //if (BulletCount == 0)
+        //    BulletCount = 1; 
+        // ===> 인스펙터로 조절하시면 될듯
     }
 }
