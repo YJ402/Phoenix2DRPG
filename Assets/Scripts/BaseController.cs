@@ -47,7 +47,7 @@ public class BaseController : MonoBehaviour
     {
         HandleAction();
         Rotate(lookDirection);
-        HandleAttackDelay();
+        HandleAttackDelay(); // 
     }
 
     protected virtual void FixedUpdate()
@@ -117,8 +117,8 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        if (lookDirection != Vector2.zero)
-            weaponHandler?.Attack();
+        if (lookDirection != Vector2.zero) 
+            weaponHandler?.Attack(); // 그냥 애니메이션만 트리거하고 애니메이션에서 attack 판정 검사 메서드.
     }
 
     public virtual void Death()
