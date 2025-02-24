@@ -53,8 +53,7 @@ public class EnemyController : BaseController
 
         if (AttackAvailable(distance, direction))
         {
-            Attack();
-            //공격 시행( 적 공격 모션 시행, 적 무기 공격 모션 시행, 
+            Attack(); // 애니메이션 실행 메서드로 변경하고, 실제 공격판정은 애니메이션에서 이벤트로 트리거
         }
         else
         {
