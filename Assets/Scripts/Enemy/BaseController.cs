@@ -89,7 +89,7 @@ public class BaseController : MonoBehaviour
             weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
         }
 
-        weaponHandler?.Rotate(isLeft);
+        //weaponHandler?.Rotate(isLeft);
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
@@ -102,23 +102,24 @@ public class BaseController : MonoBehaviour
     {
         if (weaponHandler == null)
             return;
+         // 몬스터 웨폰 없음 > 자체 스텟 가져야할듯.
+        //if (timeSinceLastAttack <= weaponHandler.Delay)
+        //{
+        //    timeSinceLastAttack += Time.deltaTime;
+        //}
 
-        if (timeSinceLastAttack <= weaponHandler.Delay)
-        {
-            timeSinceLastAttack += Time.deltaTime;
-        }
-
-        if (isAttacking && timeSinceLastAttack > weaponHandler.Delay)
-        {
-            timeSinceLastAttack = 0;
-            Attack();
-        }
+        //if (isAttacking && timeSinceLastAttack > weaponHandler.Delay)
+        //{
+        //    timeSinceLastAttack = 0;
+        //    Attack();
+        //}
     }
 
     protected virtual void Attack()
     {
-        if (lookDirection != Vector2.zero) 
-            weaponHandler?.Attack(); // 그냥 애니메이션만 트리거하고 애니메이션에서 attack 판정 검사 메서드.
+        Debug.Log("공격하기");
+        //if (lookDirection != Vector2.zero) 
+            //weaponHandler?.Attack(); // 그냥 애니메이션만 트리거하고 애니메이션에서 attack 판정 검사 메서드.
     }
 
     public virtual void Death()
