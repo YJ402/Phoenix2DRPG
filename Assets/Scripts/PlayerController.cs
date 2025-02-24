@@ -6,13 +6,15 @@ using UnityEngine.Experimental.AI;
 public class PlayerController : MonoBehaviour
 {
     public Transform rangeCircle;//임시 사정거리 가시원
-
+    \
     Rigidbody2D _rigidbody;
     [SerializeField]SpriteRenderer characterRenderer;
-    [SerializeField]Transform projectileSpawnPosition;
+    [SerializeField]Transform targetPointer;
     [SerializeField] Transform enemys;
     [SerializeField] Transform targetTransform;
-    PlayerWeaponHandler playerWeaponHandler;
+    AnimationHandler animationHandler;
+    StatHandler statHandler;
+
     float targetDistance;
 
     Vector2 movementDirection = Vector2.zero;
@@ -22,21 +24,19 @@ public class PlayerController : MonoBehaviour
     private Vector2 knockback = Vector2.zero;
     private float knockbackDuration = 0.0f;
 
-    protected AnimationHandler animationHandler;
-
-    protected StatHandler statHandler;
+    
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
         statHandler = GetComponent<StatHandler>();
-
+        characterRenderer = GetComponentInChildren<SpriteRenderer>(true);
     }
 
     private void Start()
     {
-        rangeCircle.transform.localScale = new Vector3(2*statHandler.AttackRange, statHandler.AttackRange); // 임시로 생성한 사정거리 원 크기
+        rangeCircle.transform.localScale = new Vector3(2*statHandler.AttackRange, 2*statHandler.AttackRange); // 임시로 생성한 사정거리 원 크기
     }
 
     private void Update()
@@ -68,6 +68,10 @@ public class PlayerController : MonoBehaviour
     {
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
+        if (targetPointer != null)
+        {
+            targetPointer.rotation = Quaternion.Euler(0, 0, rotZ);
+        }
 
         characterRenderer.flipX = isLeft;
     }
@@ -98,7 +102,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Fire()
     {
-        playerWeaponHandler.Attack();
+        Debug.Log("Fired!!");
     }
 
 

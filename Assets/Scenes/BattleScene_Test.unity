@@ -684,7 +684,7 @@ GameObject:
   - component: {fileID: 763948139}
   - component: {fileID: 763948140}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: TargetPointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1699,11 +1699,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83349e95377f824f8677cc62e0c80d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterRenderer: {fileID: 0}
-  weaponPivot: {fileID: 0}
-  WeaponPrefab: {fileID: 0}
   rangeCircle: {fileID: 923577550}
-  projectileSpawnPosition: {fileID: 0}
+  characterRenderer: {fileID: 0}
+  targetPointer: {fileID: 763948139}
   enemys: {fileID: 106488733}
   targetTransform: {fileID: 0}
 --- !u!58 &1700061302
