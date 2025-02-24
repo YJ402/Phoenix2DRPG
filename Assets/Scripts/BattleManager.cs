@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    EnenmyManager enenmyManager;
+    EnemyManager enenmyManager;
     PlayerController playerController;
 
 }
