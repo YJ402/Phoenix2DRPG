@@ -46,7 +46,7 @@ public class StateHandler : MonoBehaviour
         set 
         { 
             speed = value;
-            animationHandler.ChangeMovingSpeed(Speed);
+            animationHandler.ChangeMovingSpeed(Speed/5);
         }
     }
     [SerializeField] private int attack;
@@ -91,7 +91,7 @@ public class StateHandler : MonoBehaviour
     {
         animationHandler = GetComponent<AnimationHandler>();
         if (Speed == 0f)
-            Speed = 1;
+            Speed = 5;
         if(AttackSpeed == 0f)
             AttackSpeed = 1;
         if (MaxHealth == 0)

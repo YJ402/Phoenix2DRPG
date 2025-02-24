@@ -5,13 +5,13 @@ using UnityEngine;
 public class WeaponHandler : MonoBehaviour
 {
     Transform parent;
-    Animator animator;
+    AnimationHandler animationHandler;
     PlayerController playerController;
     
     private void Awake()
     {
         parent = transform.parent;
         playerController = GetComponentInParent<PlayerController>();
-        animator = parent.GetComponentInChildren<Animator>();
+        animationHandler = GetComponentInParent<AnimationHandler>();
     }
 }
