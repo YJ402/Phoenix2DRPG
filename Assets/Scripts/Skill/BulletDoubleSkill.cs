@@ -8,19 +8,19 @@ public class BulletDoubleSkill : ActiveSkill
 
     public override void Activate(GameObject user)
     {
-        StateHandler stateHandler = user.GetComponent<StateHandler>();
-        if (stateHandler != null)
+        StatHandler statHandler = user.GetComponent<StatHandler>();
+        if (statHandler != null)
         {
-            StartCoroutine(ApplyBulletDouble(stateHandler));
+            StartCoroutine(ApplyBulletDouble(statHandler));
         }
     }
-    private IEnumerator ApplyBulletDouble(StateHandler statehandler)
+    private IEnumerator ApplyBulletDouble(StatHandler statehandler)
     {
-        int originalBulletCount = statehandler.BulletCount;
-        statehandler.BulletCount = Mathf.RoundToInt(originalBulletCount * bulletMultiplier);
+        int originalBulletCount = stathandler.BulletCount;
+        stathandler.BulletCount = Mathf.RoundToInt(originalBulletCount * bulletMultiplier);
         yield return new WaitForSeconds(duration);
 
-        statehandler.BulletCount = originalBulletCount;
+        stathandler.BulletCount = originalBulletCount;
     }
 }
 

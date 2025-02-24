@@ -6,7 +6,7 @@ using UnityEngine.Experimental.AI;
 public class PlayerController : MonoBehaviour
 {
     public Transform rangeCircle;//임시 사정거리 가시원
-    \
+    
     Rigidbody2D _rigidbody;
     [SerializeField]SpriteRenderer characterRenderer;
     [SerializeField]Transform targetPointer;
