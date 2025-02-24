@@ -225,7 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 736940481}
   m_Layer: 0
-  m_Name: StartUIManager
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
