@@ -6,8 +6,8 @@ public abstract class BaseController : MonoBehaviour
 {
     [SerializeField] protected Rigidbody2D characterRigidbody;
     [SerializeField] protected SpriteRenderer characterSprite;
-    AnimationHandler animationHandler;
-    StateHandler stateHandler;
+    protected AnimationHandler animationHandler;
+    protected StateHandler stateHandler;
 
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
@@ -49,6 +49,8 @@ public abstract class BaseController : MonoBehaviour
         movementDirection = MovementDirection * stateHandler.Speed;
 
         characterRigidbody.velocity = movementDirection;
+
+        animationHandler.Move(movementDirection);
     }
 
     protected virtual void Rotate(Vector2 LookDirection)

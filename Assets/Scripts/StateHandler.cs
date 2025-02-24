@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class StateHandler : MonoBehaviour
 {
+    AnimationHandler animationHandler;
+    
+
+    //속성들  체력,최대체력,이동속도,공격력,공격속도,사정거리,투사체종류,투사체속도
+
     [SerializeField] private int health = 1000;
     public int Health
     {
@@ -34,16 +39,63 @@ public class StateHandler : MonoBehaviour
                 maxHealth = 9999;
         }
     }
-
     [SerializeField] private float speed;
     public float Speed
     {
         get { return speed; }
-        set { speed = value; }
+        set 
+        { 
+            speed = value;
+            animationHandler.ChangeMovingSpeed(Speed);
+        }
     }
-    private void Awake()
+    [SerializeField] private int attack;
+    public int Attack
     {
-        Speed = 5;
+        get { return attack; }
+        set { attack = value; }
+    }
+    [SerializeField] private float attackSpeed;
+    public float AttackSpeed
+    {
+        get { return attackSpeed; }
+        set
+        {
+            attackSpeed = value;
+            animationHandler.ChangeAttackSpeed(AttackSpeed);
+        }
+    }
+    [SerializeField] private float attackDistance;
+    public float AttackRange
+    {
+        get { return attackDistance; }
+        set { attackDistance = value; }
     }
 
+    [SerializeField] private int bulletIndex;
+    public int BulletIndex
+    {
+        get { return bulletIndex; }
+        set { bulletIndex = value; }
+    }
+    [SerializeField] private float bulletSpeed;
+    public float BulletSpeed
+    {
+        get { return bulletSpeed; }
+        set { bulletSpeed = value; }
+    }
+    
+    
+
+    private void Awake()
+    {
+        animationHandler = GetComponent<AnimationHandler>();
+        if (Speed == 0f)
+            Speed = 1;
+        if(AttackSpeed == 0f)
+            AttackSpeed = 1;
+        if (MaxHealth == 0)
+            MaxHealth = 1000;
+        
+    }
 }

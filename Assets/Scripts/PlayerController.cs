@@ -5,15 +5,16 @@ using UnityEngine.Experimental.AI;
 
 public class PlayerController : BaseController
 {
-    Camera camera;
     [SerializeField] Transform enemys;
     [SerializeField] Transform targetTransform;
-    float targetDistance = float.MaxValue;
+    float targetDistance;
+
+    
 
     protected override void Awake()
     {
         base.Awake();
-        camera = Camera.main;
+        targetDistance = float.MaxValue;
     }
     protected override void HandleAction()
     {
@@ -34,6 +35,11 @@ public class PlayerController : BaseController
             targetDistance = Vector3.Distance(transform.position, targetTransform.position);
 
         lookDirection = (targetTransform.position - transform.position).normalized;
+
+        animationHandler.Attack(targetDistance < stateHandler.AttackRange);
+    }
+    public void Fire()
+    {
 
     }
 }

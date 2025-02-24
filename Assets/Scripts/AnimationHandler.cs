@@ -8,28 +8,42 @@ public class AnimationHandler : MonoBehaviour
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
     private static readonly int IsDamaged = Animator.StringToHash("IsDamaged");
+    private static readonly int MovingSpeed = Animator.StringToHash("MovingSpeed");
+    private static readonly int AttackSpeed = Animator.StringToHash("AttackSpeed");
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>(true);
     }
 
+    
     public void Move(Vector2 obj)
     {
         animator.SetBool(IsMoving, obj.magnitude > .5f);
     }
 
+    public void ChangeMovingSpeed(float speed)
+    {
+            animator.SetFloat(AttackSpeed, speed);
+    }
+
     public void Damage()
     {
-        animator.SetBool(IsDamaged, true);
+        animator.SetTrigger(IsDamaged);
     }
 
     public void InvincibilityEnd()
     {
         animator.SetBool(IsDamaged, false);
     }
-    public void Attack()
+    public void Attack(bool isattack)
     {
-        animator.SetBool(IsAttack, true);
+        animator.SetBool(IsAttack, isattack);
+    }
+
+   
+    public void ChangeAttackSpeed(float speed)
+    {
+        animator.SetFloat(AttackSpeed,speed);
     }
 }
