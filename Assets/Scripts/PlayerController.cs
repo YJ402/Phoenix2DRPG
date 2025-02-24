@@ -5,6 +5,8 @@ using UnityEngine.Experimental.AI;
 
 public class PlayerController : BaseController
 {
+    public Transform rangeCircle;
+
     [SerializeField] Transform enemys;
     [SerializeField] Transform targetTransform;
     float targetDistance;
@@ -13,8 +15,13 @@ public class PlayerController : BaseController
 
     protected override void Awake()
     {
+        
         base.Awake();
         targetDistance = float.MaxValue;
+    }
+    private void Start()
+    {
+        rangeCircle.transform.localScale = new Vector3(2*stateHandler.AttackRange, 2*stateHandler.AttackRange);
     }
     protected override void HandleAction()
     {

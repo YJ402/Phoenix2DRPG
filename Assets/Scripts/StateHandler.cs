@@ -46,7 +46,7 @@ public class StateHandler : MonoBehaviour
         set 
         { 
             speed = value;
-            animationHandler.ChangeMovingSpeed(Speed);
+            animationHandler.ChangeMovingSpeed(Speed/5);
         }
     }
     [SerializeField] private int attack;
@@ -84,18 +84,26 @@ public class StateHandler : MonoBehaviour
         get { return bulletSpeed; }
         set { bulletSpeed = value; }
     }
-    
+    [SerializeField] private int bulletCount;
+    public int BulletCount
+    {
+        get { return bulletCount; }
+        set { bulletCount = value; }
+    }
     
 
     private void Awake()
     {
         animationHandler = GetComponent<AnimationHandler>();
         if (Speed == 0f)
-            Speed = 1;
+            Speed = 5;
         if(AttackSpeed == 0f)
             AttackSpeed = 1;
         if (MaxHealth == 0)
             MaxHealth = 1000;
-        
+        if (AttackRange == 0)
+            AttackRange = 5;
+        if (BulletCount == 0)
+            BulletCount = 1;
     }
 }

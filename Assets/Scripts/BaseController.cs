@@ -14,10 +14,11 @@ public abstract class BaseController : MonoBehaviour
 
     protected Vector2 lookDirection = Vector2.zero;
     public Vector2 LookDirection { get { return lookDirection; } }
-    [SerializeField] protected Transform weapon; 
+    [SerializeField] protected Transform weapon;
 
+    private Vector2 knockback = Vector2.zero;
+    private float knockbackDuration = 0.0f;
 
-    
     protected virtual void Awake()
     {
         characterRigidbody = GetComponent<Rigidbody2D>();
@@ -32,12 +33,17 @@ public abstract class BaseController : MonoBehaviour
     protected virtual void Update()
     {
         HandleAction();
+
         Rotate(LookDirection);
     }
 
     protected virtual void FixedUpdate()
     {
         MoveCharacter(movementDirection);
+        if (knockbackDuration > 0.0f)
+        {
+            knockbackDuration -= Time.fixedDeltaTime;
+        }
     }
 
     protected virtual void HandleAction()
@@ -47,6 +53,11 @@ public abstract class BaseController : MonoBehaviour
     protected virtual void MoveCharacter(Vector2 MovementDirection)
     {
         movementDirection = MovementDirection * stateHandler.Speed;
+        if (knockbackDuration > 0.0f)
+        {
+            movementDirection *= 0.2f;
+            movementDirection += knockback;
+        }
 
         characterRigidbody.velocity = movementDirection;
 
@@ -64,6 +75,11 @@ public abstract class BaseController : MonoBehaviour
         {
             weapon.rotation = Quaternion.Euler(0, 0, degree);
         }
+    }
+    public void ApplyKnockback(Transform other, float power, float duration)
+    {
+        knockbackDuration = duration;
+        knockback = -(other.position - transform.position).normalized * power;
     }
 
 }
