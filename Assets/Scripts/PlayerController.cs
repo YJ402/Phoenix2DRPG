@@ -17,6 +17,7 @@ public class PlayerController : BaseController
     }
     protected override void HandleAction()
     {
+
         base.HandleAction();
         movementDirection= new Vector2 (Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized;
 

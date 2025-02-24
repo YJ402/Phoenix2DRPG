@@ -35,11 +35,15 @@ public class StateHandler : MonoBehaviour
         }
     }
 
-    [SerializeField] private float speed = 5;
+    [SerializeField] private float speed;
     public float Speed
     {
         get { return speed; }
         set { speed = value; }
+    }
+    private void Awake()
+    {
+        Speed = 5;
     }
 
 }
