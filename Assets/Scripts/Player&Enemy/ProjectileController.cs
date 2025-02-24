@@ -6,7 +6,7 @@ public class ProjectileController : MonoBehaviour
 {
     [SerializeField] private LayerMask levelCollisionLayer;
 
-    private PlayerWeaponHandler PlayerWeaponHandler;
+    private RangeStatHandler rangeStatHandler;
 
     private float currentDuration;
     private Vector2 direction;
@@ -34,12 +34,12 @@ public class ProjectileController : MonoBehaviour
 
         currentDuration += Time.deltaTime;
 
-        if (currentDuration > PlayerWeaponHandler.Duration)
-        {
-            DestroyProjectile(transform.position, false);
-        }
+        //if (currentDuration > rangeStatHandler.Duration)  // Duration 변수 지우셨길레 일단 주석화
+        //{
+        //    DestroyProjectile(transform.position, false);
+        //}
 
-        _rigidbody.velocity = direction * PlayerWeaponHandler.Speed;
+        _rigidbody.velocity = direction * rangeStatHandler.Speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -48,21 +48,21 @@ public class ProjectileController : MonoBehaviour
         {
             DestroyProjectile(collision.ClosestPoint(transform.position) - direction * .2f, fxOnDestory);
         }
-        else if (PlayerWeaponHandler.target.value == (PlayerWeaponHandler.target.value | (1 << collision.gameObject.layer)))
-        {
-            DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestory);
-        }
+        //else if (rangeStatHandler.target.value == (rangeStatHandler.target.value | (1 << collision.gameObject.layer))) // target정보 받아와야함. 
+        //{
+        //    DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestory);
+        //}
     }
 
 
-    public void Init(Vector2 direction, PlayerWeaponHandler weaponHandler)
+    public void Init(Vector2 direction, RangeStatHandler _rangeStatHandler)
     {
-        PlayerWeaponHandler = weaponHandler;
+        rangeStatHandler = _rangeStatHandler;
 
         this.direction = direction;
         currentDuration = 0;
-        transform.localScale = Vector3.one * weaponHandler.BulletSize;
-        spriteRenderer.color = weaponHandler.ProjectileColor;
+        //transform.localScale = Vector3.one * rangeStatHandler.BulletSize;  // BulletSize 변수 지우셨길레 일단 주석화
+        //spriteRenderer.color = rangeStatHandler.ProjectileColor; //  변수 지우셨길레 일단 주석화
 
         transform.right = this.direction;
 

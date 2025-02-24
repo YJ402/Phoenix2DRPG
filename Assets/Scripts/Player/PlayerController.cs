@@ -6,7 +6,7 @@ using UnityEngine.Experimental.AI;
 public class PlayerController : MonoBehaviour
 {
     public Transform rangeCircle;//임시 사정거리 가시원
-    \
+    
     Rigidbody2D _rigidbody;
     [SerializeField]SpriteRenderer characterRenderer;
     [SerializeField]Transform targetPointer;
@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform targetTransform;
     AnimationHandler animationHandler;
     StatHandler statHandler;
+    RangeStatHandler rangeStatHandler;
 
     float targetDistance;
 
@@ -31,12 +32,13 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
         statHandler = GetComponent<StatHandler>();
+        rangeStatHandler = GetComponent<RangeStatHandler>();
         characterRenderer = GetComponentInChildren<SpriteRenderer>(true);
     }
 
     private void Start()
     {
-        rangeCircle.transform.localScale = new Vector3(2*statHandler.AttackRange, 2*statHandler.AttackRange); // 임시로 생성한 사정거리 원 크기
+        rangeCircle.transform.localScale = new Vector3(2* rangeStatHandler.AttackRange, 2* rangeStatHandler.AttackRange); // 임시로 생성한 사정거리 원 크기
     }
 
     private void Update()
@@ -98,8 +100,9 @@ public class PlayerController : MonoBehaviour
 
         lookDirection = (targetTransform.position - transform.position).normalized;
 
-        animationHandler.Attack(targetDistance < statHandler.AttackRange);
+        animationHandler.Attack(targetDistance < rangeStatHandler.AttackRange);
     }
+
     public void Fire()
     {
         Debug.Log("Fired!!");

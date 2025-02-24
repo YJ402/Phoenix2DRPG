@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class EnemyController : BaseController
 {
-    [SerializeField] WeaponHandler weaponHandler; // 무기 따로 할건지 정해야함.
-
     AnimationHandler animationHandler;
     EnemyManager enemyManager;
     Transform target;
@@ -21,7 +19,6 @@ public class EnemyController : BaseController
 
     List<Vector2> obstaclePosition;
 
-    Graph graph;
     public void Init(EnemyManager enemyManager, Transform target, Graph graph)
     {
         this.enemyManager = enemyManager;
