@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AllEnemyAttack : BaseSkill
+public class AllEnemyAttack : ActiveSkill
 {
     public float damage = 50f;
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class EnenmyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour
 {
     public void Init()
     {
