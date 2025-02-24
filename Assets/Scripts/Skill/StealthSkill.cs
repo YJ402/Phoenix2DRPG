@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StealthSkill : BaseSkill
+public class StealthSkill : ActiveSkill
 {
     public string stealthLayer="Stealth";
 
