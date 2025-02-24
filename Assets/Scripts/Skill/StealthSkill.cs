@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StealthSkill : MonoBehaviour
+public class StealthSkill : BaseSkill
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string stealthLayer="Stealth";
 
-    // Update is called once per frame
-    void Update()
+    private int originalLayer;
+    private GameObject player;
+    public override void Activate(GameObject user)
     {
-        
+        player = user;
+        originalLayer = player.layer;
+        StartCoroutine(DoStealth());
+    }
+    private IEnumerator DoStealth()
+    {
+        int stealthLayerIndex = LayerMask.NameToLayer(stealthLayer);
+        player.layer = stealthLayerIndex;
+
+        yield return new WaitForSeconds(duration);
+
+        player.layer=originalLayer;
     }
 }
