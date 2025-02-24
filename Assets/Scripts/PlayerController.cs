@@ -5,8 +5,8 @@ using UnityEngine.Experimental.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    public Transform rangeCircle;//ÀÓ½Ã »çÁ¤°Å¸® °¡½Ã¿ø
-    \
+    public Transform rangeCircle;//ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½
+    
     Rigidbody2D _rigidbody;
     [SerializeField]SpriteRenderer characterRenderer;
     [SerializeField]Transform targetPointer;
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        rangeCircle.transform.localScale = new Vector3(2*statHandler.AttackRange, 2*statHandler.AttackRange); // ÀÓ½Ã·Î »ý¼ºÇÑ »çÁ¤°Å¸® ¿ø Å©±â
+        rangeCircle.transform.localScale = new Vector3(2*statHandler.AttackRange, 2*statHandler.AttackRange); // ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ Å©ï¿½ï¿½
     }
 
     private void Update()
