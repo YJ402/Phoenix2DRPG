@@ -84,7 +84,12 @@ public class StateHandler : MonoBehaviour
         get { return bulletSpeed; }
         set { bulletSpeed = value; }
     }
-    
+    [SerializeField] private int bulletCount;
+    public int BulletCount
+    {
+        get { return bulletCount; }
+        set { bulletCount = value; }
+    }
     
 
     private void Awake()
@@ -98,6 +103,7 @@ public class StateHandler : MonoBehaviour
             MaxHealth = 1000;
         if (AttackRange == 0)
             AttackRange = 5;
-        
+        if (BulletCount == 0)
+            BulletCount = 1;
     }
 }
