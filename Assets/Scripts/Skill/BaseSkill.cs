@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class BaseSkill : MonoBehaviour
 {
     public string skillName;    // 스킬 이름
-    public float coolDown;      // 쿨다운 시간
-    public float duration;      // 스킬 효과 지속 시간
+    public float coolDown = 60;      // 쿨다운 시간
+    public float duration = 10;      // 스킬 효과 지속 시간
     public int level = 1;       // 스킬 레벨 (기본 1)
 
     // 스킬 발동 시 호출되는 함수 (플레이어 오브젝트를 인자로 받음)
