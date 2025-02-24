@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class StateHandler : MonoBehaviour
+public class StatHandler : MonoBehaviour
 {
     AnimationHandler animationHandler;
     
@@ -39,7 +39,7 @@ public class StateHandler : MonoBehaviour
                 maxHealth = 9999;
         }
     }
-    [SerializeField] private float speed;
+    [SerializeField] private float speed;    //플레이어 이동속도   기본 5,   (10 = 2배)
     public float Speed
     {
         get { return speed; }
@@ -55,7 +55,7 @@ public class StateHandler : MonoBehaviour
         get { return attack; }
         set { attack = value; }
     }
-    [SerializeField] private float attackSpeed;
+    [SerializeField] private float attackSpeed;   //공격속도  기본 1.0f    (2.0f = 속도 2배)
     public float AttackSpeed
     {
         get { return attackSpeed; }
@@ -65,7 +65,7 @@ public class StateHandler : MonoBehaviour
             animationHandler.ChangeAttackSpeed(AttackSpeed);
         }
     }
-    [SerializeField] private float attackDistance;
+    [SerializeField] private float attackDistance;  //사정거리  이 범위내에 있어야 인식하고 공격함
     public float AttackRange
     {
         get { return attackDistance; }

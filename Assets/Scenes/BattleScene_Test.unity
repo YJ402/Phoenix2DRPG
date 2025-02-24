@@ -246,6 +246,51 @@ Transform:
   - {fileID: 1138488745}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &121487837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 121487839}
+  - component: {fileID: 121487838}
+  m_Layer: 0
+  m_Name: PorjectileManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &121487838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121487837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c1356a8cd6624e408992115ccee8c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefabs: []
+--- !u!4 &121487839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121487837}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &144908703
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +718,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911c7c8d24d089f46b0ccc9ee1ecd34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 1
+  weaponSize: 1
+  power: 1
+  speed: 1
+  attackRange: 10
+  target:
+    serializedVersion: 2
+    m_Bits: 0
+  isOnKnockback: 0
+  knockbackPower: 0.1
+  knockbackTime: 0.5
 --- !u!1 &857702996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +1066,7 @@ GameObject:
   - component: {fileID: 1194605790}
   - component: {fileID: 1194605791}
   m_Layer: 0
-  m_Name: AimPoint
+  m_Name: ProjectileSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1599,6 +1655,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911c7c8d24d089f46b0ccc9ee1ecd34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 1
+  weaponSize: 1
+  power: 1
+  speed: 1
+  attackRange: 10
+  target:
+    serializedVersion: 2
+    m_Bits: 0
+  isOnKnockback: 0
+  knockbackPower: 0.1
+  knockbackTime: 0.5
 --- !u!114 &1700061300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,6 +1686,7 @@ MonoBehaviour:
   attackDistance: 0
   bulletIndex: 0
   bulletSpeed: 0
+  bulletCount: 0
 --- !u!114 &1700061301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1631,10 +1699,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83349e95377f824f8677cc62e0c80d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterRigidbody: {fileID: 0}
-  characterSprite: {fileID: 0}
-  weapon: {fileID: 763948139}
+  characterRenderer: {fileID: 0}
+  weaponPivot: {fileID: 0}
+  WeaponPrefab: {fileID: 0}
   rangeCircle: {fileID: 923577550}
+  projectileSpawnPosition: {fileID: 0}
   enemys: {fileID: 106488733}
   targetTransform: {fileID: 0}
 --- !u!58 &1700061302
@@ -2000,3 +2069,4 @@ SceneRoots:
   - {fileID: 1700061297}
   - {fileID: 2024527831}
   - {fileID: 106488733}
+  - {fileID: 121487839}

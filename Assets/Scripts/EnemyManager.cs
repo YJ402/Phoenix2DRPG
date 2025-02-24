@@ -12,8 +12,8 @@ public class EnenmyManager : MonoBehaviour
 
     }
 
-    public void RemoveEnemyOnDeath(EnemyController enemy)
-    {
+    //public void RemoveEnemyOnDeath(EnemyController enemy)
+    //{
 
-    }
+    //}
 }
