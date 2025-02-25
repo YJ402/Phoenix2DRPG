@@ -8,7 +8,7 @@ public class ResourceController : MonoBehaviour
     private BaseController baseController;
     private StatHandler statHandler;
     private AnimationHandler animationHandler;
-
+    PlayerController playerController;
     private float timeSinceLastChange = float.MaxValue;
 
     public float CurrentHealth { get; private set; }
@@ -20,6 +20,7 @@ public class ResourceController : MonoBehaviour
 
     private void Awake()
     {
+        playerController = GetComponent<PlayerController>();
         statHandler = GetComponent<StatHandler>();
         animationHandler = GetComponent<AnimationHandler>();
         baseController = GetComponent<BaseController>();
@@ -40,6 +41,7 @@ public class ResourceController : MonoBehaviour
                 animationHandler.InvincibilityEnd();
             }
         }
+        playerController.UpdateHpSlider(CurrentHealth/MaxHealth);
     }
 
     public bool ChangeHealth(float change)

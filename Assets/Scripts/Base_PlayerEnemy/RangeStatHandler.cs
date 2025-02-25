@@ -9,9 +9,6 @@ public class RangeStatHandler : StatHandler
     ProjectileManager projectileManager;
 
     //속성들  체력,최대체력,이동속도,공격력,공격속도,사정거리,투사체종류,투사체속도
-
-
-
     [SerializeField] private int bulletIndex;
     public int BulletIndex
     {

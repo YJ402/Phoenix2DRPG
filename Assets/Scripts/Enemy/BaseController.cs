@@ -16,8 +16,8 @@ public class BaseController : MonoBehaviour
     private Vector2 knockback = Vector2.zero;
     private float knockbackDuration = 0.0f;
 
-    protected AnimationHandler animationHandler;
 
+    protected AnimationHandler animationHandler;
     protected StatHandler statHandler;
 
     protected bool isAttacking;

@@ -26,7 +26,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 knockback = Vector2.zero;
     private float knockbackDuration = 0.0f;
 
-    
+    [SerializeField] public Slider hpSlider;
+    private Image barImage;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
         animationHandler = GetComponent<AnimationHandler>();
         rangeStatHandler = GetComponent<RangeStatHandler>();
         characterRenderer = GetComponentInChildren<SpriteRenderer>(true);
+        barImage = hpSlider.fillRect.GetComponent<Image>();
     }
 
     private void Start()
@@ -122,11 +124,17 @@ public class PlayerController : MonoBehaviour
     //=================================================================
     // 캐릭터 체력바 UI관련
 
-    [SerializeField] public Slider hpSlider;
-
     public void UpdateHpSlider(float percentage)
     {
         hpSlider.value = percentage;
+        if (percentage == 0)
+            barImage.color = Color.clear;
+        else if (percentage < 0.2)
+            barImage.color = Color.red;
+        else if (percentage < 0.5)
+            barImage.color = Color.yellow;
+        else
+            barImage.color = Color.green;
     }
 
 }
