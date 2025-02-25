@@ -11,22 +11,22 @@ public class CollisionDamageSkill : ActiveSkill
         CollisionDamageEffect effect = user.AddComponent<CollisionDamageEffect>();
         effect.damageMultiplier = damageMultiplier;
 
-        StateHandler stateHandler = user.GetComponent<StateHandler>();
-        if (stateHandler != null)
+        StatHandler statHandler = user.GetComponent<StatHandler>();
+        if (statHandler != null)
         {
-            effect.baseDamage = stateHandler.Attack;
+            effect.baseDamage = statHandler.AttackPower;
         }
         else
         {
             effect.baseDamage = 10;
         }
-        StartCoroutine(RemoveCollisionDamageEffect(user));
+        StartCoroutine(RemoveCollsionDamageEffect(user));
     }
 
     private IEnumerator RemoveCollsionDamageEffect(GameObject user)
     {
         yield return new WaitForSeconds(duration);
-        CollsionDamageEffect effect = user.GetComponent<CollisionDamageEffect>();
+        CollisionDamageEffect effect = user.GetComponent<CollisionDamageEffect>();
         if (effect != null)
         {
             Destroy(effect);

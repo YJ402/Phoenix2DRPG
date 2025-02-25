@@ -5,7 +5,7 @@ using UnityEngine.Experimental.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    public Transform rangeCircle;//ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½
+    public Transform rangeCircle;//ÀÓ½Ã »çÁ¤°Å¸® °¡½Ã¿ø
     
     Rigidbody2D _rigidbody;
     [SerializeField]SpriteRenderer characterRenderer;
@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform targetTransform;
     AnimationHandler animationHandler;
     StatHandler statHandler;
+    RangeStatHandler rangeStatHandler;
 
     float targetDistance;
 
@@ -31,12 +32,13 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
         statHandler = GetComponent<StatHandler>();
+        rangeStatHandler = GetComponent<RangeStatHandler>();
         characterRenderer = GetComponentInChildren<SpriteRenderer>(true);
     }
 
     private void Start()
     {
-        rangeCircle.transform.localScale = new Vector3(2*statHandler.AttackRange, 2*statHandler.AttackRange); // ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ Å©ï¿½ï¿½
+        rangeCircle.transform.localScale = new Vector3(2* rangeStatHandler.AttackRange, 2* rangeStatHandler.AttackRange); // ÀÓ½Ã·Î »ý¼ºÇÑ »çÁ¤°Å¸® ¿ø Å©±â
     }
 
     private void Update()
@@ -98,8 +100,9 @@ public class PlayerController : MonoBehaviour
 
         lookDirection = (targetTransform.position - transform.position).normalized;
 
-        animationHandler.Attack(targetDistance < statHandler.AttackRange);
+        animationHandler.Attack(targetDistance < rangeStatHandler.AttackRange);
     }
+
     public void Fire()
     {
         Debug.Log("Fired!!");

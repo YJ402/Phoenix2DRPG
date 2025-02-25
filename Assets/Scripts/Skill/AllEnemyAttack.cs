@@ -8,18 +8,18 @@ public class AllEnemyAttack : ActiveSkill
 
     public override void Activate(GameObject user)
     {
-        AreaAttack();
+        //AreaAttack();
     }
 
-    public void AreaAttack()
-    {
-        foreach (EnemyHealth enemy in EnemyHealth.allenemies)
-        {
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-            }
+    //public void AreaAttack()
+    //{
+    //    foreach (EnemyHealth enemy in EnemyHealth.allenemies)
+    //    {
+    //        if (enemy != null)
+    //        {
+    //            enemy.TakeDamage(damage);
+    //        }
 
-        }
-    }
+    //    }
+    //}
 }
