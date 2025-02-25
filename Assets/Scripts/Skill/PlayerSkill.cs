@@ -17,4 +17,16 @@ public class PlayerSkill : MonoBehaviour
             lastSkillTime = Time.time;
         }
     }
+    public void SetActiveSkill(ActiveSkill newSkill)
+    {
+        if (activeSkill != null)
+        {
+            Destroy(activeSkill);
+        }
+        activeSkill = gameObject.AddComponent(newSkill.GetType()) as ActiveSkill;
+
+        activeSkill.skillName = newSkill.skillName;
+        activeSkill.coolDown = newSkill.coolDown;
+        activeSkill.duration = newSkill.duration;
+    }
 }
