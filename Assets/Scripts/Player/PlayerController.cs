@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     public Transform rangeCircle;//임시 사정거리 가시원
     
     Rigidbody2D _rigidbody;
-    [SerializeField]SpriteRenderer characterRenderer;
-    [SerializeField]Transform targetPointer;
+    [SerializeField] SpriteRenderer characterRenderer;
+    [SerializeField] Transform targetPointer;
     [SerializeField] Transform enemys;
     [SerializeField] Transform targetTransform;
     AnimationHandler animationHandler;
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        rangeCircle.transform.localScale = new Vector3(2* rangeStatHandler.AttackRange, 2* rangeStatHandler.AttackRange); // 임시로 생성한 사정거리 원 크기
+        rangeCircle.transform.localScale = new Vector3(2* statHandler.AttackRange, 2* statHandler.AttackRange); // 임시로 생성한 사정거리 원 크기
     }
 
     private void Update()
@@ -100,12 +100,13 @@ public class PlayerController : MonoBehaviour
 
         lookDirection = (targetTransform.position - transform.position).normalized;
 
-        animationHandler.Attack(targetDistance < rangeStatHandler.AttackRange);
+        animationHandler.Attack(targetDistance < statHandler.AttackRange);
     }
 
     public void Fire()
     {
         Debug.Log("Fired!!");
+
     }
 
 

@@ -255,7 +255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 121487839}
-  - component: {fileID: 121487838}
+  - component: {fileID: 121487840}
   m_Layer: 0
   m_Name: PorjectileManager
   m_TagString: Untagged
@@ -263,19 +263,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &121487838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121487837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c1356a8cd6624e408992115ccee8c27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefabs: []
 --- !u!4 &121487839
 Transform:
   m_ObjectHideFlags: 0
@@ -291,6 +278,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &121487840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121487837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e008efc203ea24ea9d63f2defd2bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefabs:
+  - {fileID: 9203263990237462121, guid: f90f084f29ada3c4db9c987c7d39aee0, type: 3}
 --- !u!1 &144908703
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +683,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 763948139}
-  - component: {fileID: 763948140}
   m_Layer: 0
   m_Name: TargetPointer
   m_TagString: Untagged
@@ -706,29 +706,6 @@ Transform:
   - {fileID: 1194605790}
   m_Father: {fileID: 1700061297}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &763948140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763948138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 911c7c8d24d089f46b0ccc9ee1ecd34f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 1
-  weaponSize: 1
-  power: 1
-  speed: 1
-  attackRange: 10
-  target:
-    serializedVersion: 2
-    m_Bits: 0
-  isOnKnockback: 0
-  knockbackPower: 0.1
-  knockbackTime: 0.5
 --- !u!1 &857702996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1600,10 +1577,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1700061297}
-  - component: {fileID: 1700061301}
   - component: {fileID: 1700061300}
   - component: {fileID: 1700061299}
   - component: {fileID: 1700061298}
+  - component: {fileID: 1700061304}
   - component: {fileID: 1700061303}
   - component: {fileID: 1700061302}
   m_Layer: 0
@@ -1640,9 +1617,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1700061296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0533922709585142a3f926afec0995e, type: 3}
+  m_Script: {fileID: 11500000, guid: 86d33d48cb16ed1458b855e75cd3996d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5
+  damageClip: {fileID: 0}
 --- !u!114 &1700061299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,20 +1631,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1700061296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 911c7c8d24d089f46b0ccc9ee1ecd34f, type: 3}
+  m_Script: {fileID: 11500000, guid: c4a0de7545299794784a5c5f5857f312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 1
-  weaponSize: 1
-  power: 1
-  speed: 1
-  attackRange: 10
-  target:
-    serializedVersion: 2
-    m_Bits: 0
-  isOnKnockback: 0
-  knockbackPower: 0.1
-  knockbackTime: 0.5
+  rangeCircle: {fileID: 923577550}
+  characterRenderer: {fileID: 0}
+  targetPointer: {fileID: 763948139}
+  enemys: {fileID: 106488733}
+  targetTransform: {fileID: 0}
 --- !u!114 &1700061300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1678,32 +1651,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e312b4442cc84478dc3abb521c4854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
   maxHealth: 1000
-  speed: 0
-  attack: 0
-  attackSpeed: 0
-  attackDistance: 0
-  bulletIndex: 0
-  bulletSpeed: 0
-  bulletCount: 0
---- !u!114 &1700061301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700061296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d83349e95377f824f8677cc62e0c80d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rangeCircle: {fileID: 923577550}
-  characterRenderer: {fileID: 0}
-  targetPointer: {fileID: 763948139}
-  enemys: {fileID: 106488733}
-  targetTransform: {fileID: 0}
+  speed: 5
+  attackPower: 500
+  attackSpeed: 1
+  attackDistance: 5
 --- !u!58 &1700061302
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1766,6 +1718,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1700061304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700061296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dccd7164c6366c5418671c5b2a40529e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1738535974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,7 +1846,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1738535974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ab2df6cbd29c3b40833e1209fef623a, type: 3}
+  m_Script: {fileID: 11500000, guid: ceb17e28dc4edf14faf7e534881574b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1795111815
@@ -1926,7 +1890,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1795111815}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49d67dc95512bee41a9b740fe74c91c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 139f79c410222c44b83a05b94f2d24a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1964935772
