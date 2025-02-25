@@ -44,7 +44,7 @@ public class BaseController : MonoBehaviour
     {
         HandleAction();
         Rotate(lookDirection);
-        HandleAttackDelay(); 
+        HandleAttackDelay();
     }
 
     protected virtual void FixedUpdate()
@@ -143,5 +143,10 @@ public class BaseController : MonoBehaviour
         }
 
         Destroy(gameObject, 2f);
+    }
+
+    public virtual void Fire()
+    {
+        //statHandler.shoot();
     }
 }

@@ -6,14 +6,11 @@ using UnityEngine;
 
 public class EnemyController : BaseController
 {
-    AnimationHandler animationHandler;
     EnemyManager enemyManager;
     [SerializeField] Transform target; // 디버깅용 시리얼필드
 
     [SerializeField] LayerMask targetLayerMask; // basecontroller로 옮겨도 될듯.
 
-    [SerializeField] private float attackRange;
-    public float AttackRange { get { return attackRange; } }
     [SerializeField] private float followRange;
     public float FollowRange { get { return followRange; } }
 
@@ -79,11 +76,11 @@ public class EnemyController : BaseController
 
     private bool AttackAvailable(float distance, Vector2 direction)
     {
-        if(attackRange < distance)
+        if(statHandler.AttackRange < distance)
             return false; // 거리가 공격범위보다 멀면 false
         else
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, attackRange * 1.3f, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, statHandler.AttackRange * 1.3f, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
             if(hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer))
             {
                 return true; // 공격 범위 내에서 enemy 앞에 있는 것이 level이 아니라 플레이어면 true;
