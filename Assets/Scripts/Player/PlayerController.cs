@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform enemys;
     [SerializeField] Transform targetTransform;
     AnimationHandler animationHandler;
-    StatHandler statHandler;
+    StateHandler statHandler;
     RangeStatHandler rangeStatHandler;
 
     float targetDistance;
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
-        statHandler = GetComponent<StatHandler>();
+        statHandler = GetComponent<StateHandler>();
         rangeStatHandler = GetComponent<RangeStatHandler>();
         characterRenderer = GetComponentInChildren<SpriteRenderer>(true);
     }

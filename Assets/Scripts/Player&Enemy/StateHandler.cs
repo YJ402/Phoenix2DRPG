@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class StatHandler : MonoBehaviour
+public class StateHandler : MonoBehaviour
 {
     AnimationHandler animationHandler;
-    
+    ResourceController resourceController;
 
-    //속성들  체력,최대체력,이동속도,공격력,공격속도,사정거리,투사체종류,투사체속도
+    //속성들  최대체력,이동속도,공격력,공격속도,사정거리,투사체종류,투사체속도
 
-    [SerializeField] private int health = 1000;
-    public int Health
-    {
-        get { return health; }
-        set
-        {
-            if(value > maxHealth)
-            {
-                health = maxHealth;
-            }
-        }
-    }
+    //[SerializeField] private int health = 1000;       ResourceController로 이관됨
+    //public int Health
+    //{
+    //    get { return health; }
+    //    set
+    //    {
+    //        if(value > maxHealth)
+    //        {
+    //            health = maxHealth;
+    //        }
+    //    }
+    //}
     [SerializeField] private int maxHealth = 1000;
     public int MaxHealth
     {
@@ -29,9 +29,12 @@ public class StatHandler : MonoBehaviour
         set
         {
             int delta = value - maxHealth;
+            //if (delta > 0)                                Health를 ResourceController 로 이관하여 변경
+            //    Health += delta;
+            //else Health = Health;
             if (delta > 0)
-                Health += delta;
-            else Health = Health;
+                resourceController.ChangeHealth(delta);
+            else resourceController.ChangeHealth(0);
 
             if (value <= 0)
                 maxHealth = 1;
@@ -78,6 +81,7 @@ public class StatHandler : MonoBehaviour
     private void Awake()
     {
         animationHandler = GetComponent<AnimationHandler>();
+        resourceController = GetComponent<ResourceController>();     
         //if (Speed == 0f)
         //    Speed = 5;
         //if(AttackSpeed == 0f)
