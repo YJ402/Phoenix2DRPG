@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class BaseSkill : MonoBehaviour
@@ -19,6 +20,12 @@ public abstract class ActiveSkill : BaseSkill
 {
     public float coolDown = 60f;
     public float duration = 10f;
+
+    public override void UpgradeSkill()
+    {
+        base.UpgradeSkill();
+        duration += 3f;
+    }
 
 }
 public abstract class PassiveSkill : BaseSkill
