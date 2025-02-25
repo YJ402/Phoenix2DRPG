@@ -60,7 +60,7 @@ public class ResourceController : MonoBehaviour
         {
             animationHandler.Damage();
 
-            if (damageClip) ;
+            //if (damageClip) ;
                 //SoundManager.PlayClip(damageClip); // 나중에 추가
         }
 

@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Transform rangeCircle;//임시 사정거리 가시원
     
     Rigidbody2D _rigidbody;
-    [SerializeField]SpriteRenderer characterRenderer;
-    [SerializeField]Transform targetPointer;
+    [SerializeField] SpriteRenderer characterRenderer;
+    [SerializeField] Transform targetPointer;
     [SerializeField] Transform enemys;
     [SerializeField] Transform targetTransform;
     AnimationHandler animationHandler;
-    StatHandler statHandler;
     RangeStatHandler rangeStatHandler;
+    
 
     float targetDistance;
 
@@ -31,7 +32,6 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
-        statHandler = GetComponent<StatHandler>();
         rangeStatHandler = GetComponent<RangeStatHandler>();
         characterRenderer = GetComponentInChildren<SpriteRenderer>(true);
     }
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Movment(Vector2 direction)
     {
-        direction = direction * statHandler.Speed;
+        direction = direction * rangeStatHandler.Speed;
         if (knockbackDuration > 0.0f)
         {
             direction *= 0.2f;
@@ -105,24 +105,8 @@ public class PlayerController : MonoBehaviour
 
     public void Fire()
     {
-        Debug.Log("Fired!!");
+        rangeStatHandler.Shoot(LookDirection);
     }
-
-
-    //=================================================================
-
-    
-    
-
-    
-
-    
-   
-
-
-
-    
-
 
     public virtual void Death()
     {
@@ -135,4 +119,14 @@ public class PlayerController : MonoBehaviour
 
         Destroy(gameObject, 2f);
     }
+    //=================================================================
+    // 캐릭터 체력바 UI관련
+
+    [SerializeField] public Slider hpSlider;
+
+    public void UpdateHpSlider(float percentage)
+    {
+        hpSlider.value = percentage;
+    }
+
 }

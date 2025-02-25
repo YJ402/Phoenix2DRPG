@@ -49,7 +49,7 @@ public class StatHandler : MonoBehaviour
         set 
         { 
             speed = value;
-            animationHandler.ChangeMovingSpeed(Speed/5);
+            //animationHandler.ChangeMovingSpeed(Speed);    인스펙터 창에서 변경하면 효과없음
         }
     }
 
@@ -67,7 +67,7 @@ public class StatHandler : MonoBehaviour
         set
         {
             attackSpeed = value;
-            animationHandler.ChangeAttackSpeed(AttackSpeed);
+            //animationHandler.ChangeAttackSpeed(AttackSpeed);      인스펙터 창에서 변경하면 효과없음   
         }
     }
 
@@ -94,4 +94,10 @@ public class StatHandler : MonoBehaviour
         //    BulletCount = 1; 
         // ===> 인스펙터로 조절하시면 될듯
     }
-}
+    private void Update()                                  //애니메이션 속도조절용 임시 메서드
+    {                                                      //                                                           
+        animationHandler.ChangeMovingSpeed(Speed);         //                                                           
+        animationHandler.ChangeAttackSpeed(AttackSpeed);   //                                                           
+    }                                                      //                                                           
+}                                                          //                                                           
+                                                                                                                      

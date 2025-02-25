@@ -39,7 +39,7 @@ public class ProjectileController : MonoBehaviour
         //    DestroyProjectile(transform.position, false);
         //}
 
-        _rigidbody.velocity = direction * rangeStatHandler.Speed;
+        _rigidbody.velocity = direction * rangeStatHandler.BulletSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
