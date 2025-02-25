@@ -25,8 +25,8 @@ public class EnemyManager : MonoBehaviour
     {
         if (numOfEnemies == 0)
         {
-            return;
             Debug.Log("SpawnEnemies에 0 이상의 숫자를 입력 해야합니다.");
+            return;
         }
 
         int x = Random.Range(0, map.GetLength(0));

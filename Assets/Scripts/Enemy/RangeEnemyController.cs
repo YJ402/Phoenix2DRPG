@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class RanageEnemyController : EnemyController
 {
-    protected StatHandler rangeStatHandler; // StatHandler? RangeStatHandler? << 일단 통일성 있게 StatHandler로 설정.
+    //protected StatHandler statHandler; // StatHandler? RangeStatHandler? << 일단 통일성 있게 StatHandler로 설정.
 
-    private void Awake()
-    {
-        base.Awake();
-        rangeStatHandler = GetComponent<RangeStatHandler>();
-    }
+    //private void Awake()
+    //{
+    //    base.Awake();
+    //    statHandler = GetComponent<RangeStatHandler>();
+    //}
 
     //protected void Attack()
     //{

@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-//public class AllEnemyAttack : ActiveSkill
-//{
-//    public float damage = 50f;
+////public class AllEnemyAttack : ActiveSkill
+////{
+////    public float damage = 50f;
 
 //    public override void Activate(GameObject user)
 //    {
