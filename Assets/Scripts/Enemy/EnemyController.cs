@@ -43,7 +43,7 @@ public class EnemyController : BaseController
     {
         base.HandleAction();
 
-        if (weaponHandler == null || target == null)
+        if (target == null)
         {
             if (!movementDirection.Equals(Vector2.zero)) movementDirection = Vector2.zero;
             return;
