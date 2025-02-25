@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -104,25 +105,8 @@ public class PlayerController : MonoBehaviour
 
     public void Fire()
     {
-        Debug.Log("Fired!!");
         rangeStatHandler.Shoot(LookDirection);
     }
-
-
-    //=================================================================
-
-    
-    
-
-    
-
-    
-   
-
-
-
-    
-
 
     public virtual void Death()
     {
@@ -135,4 +119,14 @@ public class PlayerController : MonoBehaviour
 
         Destroy(gameObject, 2f);
     }
+    //=================================================================
+    // 캐릭터 체력바 UI관련
+
+    [SerializeField] public Slider hpSlider;
+
+    public void UpdateHpSlider(float percentage)
+    {
+        hpSlider.value = percentage;
+    }
+
 }
