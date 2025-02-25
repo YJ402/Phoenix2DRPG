@@ -59,6 +59,7 @@ public class EnemyController : BaseController
             if (AttackAvailable(distance, direction))
             {
                 isAttacking = true;
+                movementDirection = Vector2.zero;
             }
             else
             {

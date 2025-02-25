@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseController : MonoBehaviour
@@ -22,6 +23,9 @@ public class BaseController : MonoBehaviour
 
     protected bool isAttacking;
     private float timeSinceLastAttack = float.MaxValue;
+
+    bool currentisLeft;
+    bool previsLeft;
 
     protected virtual void Awake()
     {
@@ -77,9 +81,16 @@ public class BaseController : MonoBehaviour
     private void Rotate(Vector2 direction)
     {
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        bool isLeft = Mathf.Abs(rotZ) > 90f;
+        currentisLeft = Mathf.Abs(rotZ) > 90f;
 
-        characterRenderer.flipX = isLeft;
+        if (currentisLeft != previsLeft)
+        {
+            Vector2 scale = characterRenderer.transform.parent.localScale;
+            scale.x *= -1;
+            characterRenderer.transform.parent.localScale = scale;
+        }
+
+        previsLeft = currentisLeft;
 
         //if (weaponPivot != null)
         //{
@@ -147,6 +158,11 @@ public class BaseController : MonoBehaviour
 
     public virtual void Fire()
     {
-        //statHandler.shoot();
+        Debug.Log("น฿ป็");
+        statHandler.Shoot(lookDirection);
+
+        transform.Find("StartButton");
     }
+
+    
 }
