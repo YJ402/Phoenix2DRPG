@@ -7,7 +7,18 @@ public class StatHandler : MonoBehaviour
 {
     AnimationHandler animationHandler;
     ResourceController resourceController;
+    
+    //넉백 관련 속성
+    [SerializeField] private bool isOnKnockback = false;
+    public bool IsOnKnockback { get => isOnKnockback; set => isOnKnockback = value; }
 
+    [SerializeField] private float knockbackPower = 0.1f;
+    public float KnockbackPower { get => knockbackPower; set => knockbackPower = value; }
+
+    [SerializeField] private float knockbackTime = 0.5f;
+    public float KnockbackTime { get => knockbackTime; set => knockbackTime = value; }
+
+    
     //속성들  최대체력,이동속도,공격력,공격속도,사정거리,투사체종류,투사체속도
 
     //[SerializeField] private int health = 1000;       ResourceController로 이관됨
@@ -49,7 +60,7 @@ public class StatHandler : MonoBehaviour
         set 
         { 
             speed = value;
-            animationHandler.ChangeMovingSpeed(Speed/5);
+            //animationHandler.ChangeMovingSpeed(Speed);    인스펙터 창에서 변경하면 효과없어서 임시로 update에 옮겨둠
         }
     }
 
@@ -67,7 +78,7 @@ public class StatHandler : MonoBehaviour
         set
         {
             attackSpeed = value;
-            animationHandler.ChangeAttackSpeed(AttackSpeed);
+            //animationHandler.ChangeAttackSpeed(AttackSpeed);      인스펙터 창에서 변경하면 효과없어서 임시로 update에 옮겨둠   
         }
     }
 
@@ -77,6 +88,8 @@ public class StatHandler : MonoBehaviour
         get { return attackDistance; }
         set { attackDistance = value; }
     }
+
+    public LayerMask target;
 
     private void Awake()
     {
@@ -94,4 +107,10 @@ public class StatHandler : MonoBehaviour
         //    BulletCount = 1; 
         // ===> 인스펙터로 조절하시면 될듯
     }
-}
+    private void Update()                                  //애니메이션 속도조절용 임시 메서드
+    {                                                      //                                                           
+        animationHandler.ChangeMovingSpeed(Speed);         //                                                           
+        animationHandler.ChangeAttackSpeed(AttackSpeed);   //                                                           
+    }                                                      //                                                           
+}                                                          //                                                           
+                                                                                                                      
