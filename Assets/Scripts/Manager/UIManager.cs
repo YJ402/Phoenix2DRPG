@@ -9,6 +9,7 @@
 //     Battle,
 //     HealthBar,
 //     SelectSkill,
+//     EquipSkill,
 //     GameOver
 // }
 //
@@ -17,7 +18,8 @@
 //     LobbyUI lobbyUI;
 //     BattleUI battleUI;
 //     HealthBarUI healBarUI;
-//     SelectSkilllUI selectUI;
+//     SelectSkillUI selectSkillUI;
+//     EquipSkillUI equipSkillUI;
 //     GameOverUI gameOverUI;
 //     private UIState currentState;
 //
@@ -31,6 +33,8 @@
 //         HealthBarUI.Init(this);
 //         SelectSkillUI = GetComponentInChildren<GameUI>(true);
 //         SelectSkillUI.Init(this);
+//         EquipSkillUI = GetComponentInChildren<GameUI>(true);
+//         EquipSkillUI.Init(this);
 //         gameOverUI = GetComponentInChildren<GameOverUI>(true);
 //         gameOverUI.Init(this);
 //         
