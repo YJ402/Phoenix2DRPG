@@ -69,10 +69,6 @@ public class SkillManager : MonoBehaviour
         {
             HandlePassiveSkill(selectedSkill as PassiveSkill);
         }
-        else
-        {
-            Debug.LogError("알 수 없는 스킬 타입입니다.");
-        }
     }
 
     private void HandleActiveSkill(ActiveSkill newSkill)
@@ -90,7 +86,6 @@ public class SkillManager : MonoBehaviour
         {
             PassiveSkill existingSkill = passiveSkills[skillType];
             existingSkill.UpgradeSkill();
-            Debug.Log("패시브 스킬 업그레이드: " + existingSkill.skillName + " 레벨 " + existingSkill.level);
         }
         else
         {
@@ -98,7 +93,6 @@ public class SkillManager : MonoBehaviour
             addedSkill.skillName = newSkill.skillName;
             addedSkill.level = newSkill.level;
             passiveSkills.Add(skillType, addedSkill);
-            Debug.Log("패시브 스킬 추가: " + addedSkill.skillName);
         }
     }
 
