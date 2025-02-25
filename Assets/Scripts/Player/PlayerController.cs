@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform enemys;
     [SerializeField] Transform targetTransform;
     AnimationHandler animationHandler;
-    StatHandler statHandler;
     RangeStatHandler rangeStatHandler;
+    
 
     float targetDistance;
 
@@ -31,14 +31,13 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
-        statHandler = GetComponent<StatHandler>();
         rangeStatHandler = GetComponent<RangeStatHandler>();
         characterRenderer = GetComponentInChildren<SpriteRenderer>(true);
     }
 
     private void Start()
     {
-        rangeCircle.transform.localScale = new Vector3(2* statHandler.AttackRange, 2* statHandler.AttackRange); // 임시로 생성한 사정거리 원 크기
+        rangeCircle.transform.localScale = new Vector3(2* rangeStatHandler.AttackRange, 2* rangeStatHandler.AttackRange); // 임시로 생성한 사정거리 원 크기
     }
 
     private void Update()
@@ -56,7 +55,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Movment(Vector2 direction)
     {
-        direction = direction * statHandler.Speed;
+        direction = direction * rangeStatHandler.Speed;
         if (knockbackDuration > 0.0f)
         {
             direction *= 0.2f;
@@ -100,13 +99,13 @@ public class PlayerController : MonoBehaviour
 
         lookDirection = (targetTransform.position - transform.position).normalized;
 
-        animationHandler.Attack(targetDistance < statHandler.AttackRange);
+        animationHandler.Attack(targetDistance < rangeStatHandler.AttackRange);
     }
 
     public void Fire()
     {
         Debug.Log("Fired!!");
-
+        rangeStatHandler.Shoot(LookDirection);
     }
 
 

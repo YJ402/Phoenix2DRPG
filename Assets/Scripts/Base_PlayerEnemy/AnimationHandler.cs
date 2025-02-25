@@ -24,12 +24,12 @@ public class AnimationHandler : MonoBehaviour
 
     public void ChangeMovingSpeed(float speed)
     {
-            animator.SetFloat(MovingSpeed, speed);
+            animator.SetFloat(MovingSpeed, speed/5);
     }
 
     public void Damage()
     {
-        animator.SetTrigger(IsDamaged);
+        animator.SetBool(IsDamaged,true);
     }
 
     public void InvincibilityEnd()
