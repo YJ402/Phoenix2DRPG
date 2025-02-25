@@ -8,7 +8,7 @@ public class EnemyController : BaseController
 {
     AnimationHandler animationHandler;
     EnemyManager enemyManager;
-    Transform target;
+    [SerializeField] Transform target; // 디버깅용 시리얼필드
 
     [SerializeField] LayerMask targetLayerMask; // basecontroller로 옮겨도 될듯.
 
@@ -19,10 +19,10 @@ public class EnemyController : BaseController
 
     List<Vector2> obstaclePosition;
 
-    public void Init(EnemyManager enemyManager, Transform target, Graph graph)
+    public void Init(EnemyManager enemyManager)
     {
         this.enemyManager = enemyManager;
-        this.target = target;
+        this.target = BattleManager.PlayerTransform;
     }
 
     public Vector2 DirectionToTarget()
@@ -43,6 +43,8 @@ public class EnemyController : BaseController
     {
         base.HandleAction();
 
+        isAttacking = false;
+
         if (target == null)
         {
             if (!movementDirection.Equals(Vector2.zero)) movementDirection = Vector2.zero;
@@ -52,24 +54,27 @@ public class EnemyController : BaseController
         Vector2 direction = DirectionToTarget();
         float distance = DistanceToTarget();
 
-        if(followRange > distance)
-        lookDirection = direction;
+        if (followRange > distance)
+        {
+            lookDirection = direction;
 
-        //룩디렉션, 무브디렉션, 이즈어태킹.
-        if (AttackAvailable(distance, direction))
-        {
-            Attack(); // 애니메이션 실행 메서드로 변경하고, 실제 공격판정은 애니메이션에서 이벤트로 트리거
-        }
-        else
-        {
-            //직선상에 장애물 플레이어가 있는지 체크.             
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance+0.3f, targetLayerMask | LayerMask.NameToLayer("level"));
-            if (hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer))
+            //룩디렉션, 무브디렉션, 이즈어태킹 설정 로직
+            if (AttackAvailable(distance, direction))
             {
-                movementDirection = direction;
+                isAttacking = true;
             }
-            else Debug.Log("길이 막혔습니다. 경로 찾기 로직을 실행합니다.");//movementDirection = FindWayToTarget(); //경로 찾아서 이동 방향으로 대입.
+            else
+            {
+                //직선상에 장애물/플레이어가 있는지 체크.             
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance + 0.3f, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
+                if (hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer))
+                {
+                    movementDirection = direction;
+                }
+                else Debug.Log("길이 막혔습니다. 경로 찾기 로직을 실행합니다.");//movementDirection = FindWayToTarget(); //경로 찾아서 이동 방향으로 대입.
+            }
         }
+            Attack(isAttacking); // 애니메이션 실행 메서드로 변경하고, 실제 공격판정은 애니메이션에서 이벤트로 트리거
     }
 
     private bool AttackAvailable(float distance, Vector2 direction)
@@ -78,20 +83,16 @@ public class EnemyController : BaseController
             return false; // 거리가 공격범위보다 멀면 false
         else
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, attackRange * 1.3f, targetLayerMask | LayerMask.NameToLayer("level"));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, attackRange * 1.3f, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
             if(hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer))
             {
-                return true; // 바로 앞에 있는게 플레이어면 true;
+                return true; // 공격 범위 내에서 enemy 앞에 있는 것이 level이 아니라 플레이어면 true;
             }
-            return false; // 플레이어가 아니면 false;
+            return false; // 플레이어가 아니라 level이면 false;
         }
     }
 
-    private void CheckAttackSuccess() // 유니티 애니메이션에 이벤트로 추가.
-    {
-        //RaycastHit2D hit = Physics2D.BoxCast(transform.position.)
-            //공격 성공 => 플레이어의 피격 판정 
-    }
+
 
     //public Vector2 FindWayToTarget()
     //{

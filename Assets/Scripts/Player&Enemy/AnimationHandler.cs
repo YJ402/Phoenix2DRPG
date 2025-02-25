@@ -43,7 +43,7 @@ public class AnimationHandler : MonoBehaviour
         animator.SetBool(IsAttack, isattack);
     }
 
-   
+
     public void ChangeAttackSpeed(float speed)
     {
         animator.SetFloat(AttackSpeed,speed);

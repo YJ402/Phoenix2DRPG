@@ -3,9 +3,17 @@ using UnityEngine;
 
 public class MeleeEnemyController : EnemyController
 {
-    protected void Attack()
-    {
-        base.Attack();
+    protected StatHandler statHandler;
 
+    private void Awake()
+    {
+        base.Awake();
+        statHandler = GetComponent<StatHandler>();
     }
+
+    //protected void Attack()
+    //{
+    //    base.Attack();
+
+    //}
 }
