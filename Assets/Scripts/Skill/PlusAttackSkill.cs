@@ -10,7 +10,7 @@ public class PlusAttackSkill : PassiveSkill
     public int attackIncrease = 1;
 
     private bool bonusApplied = false;
-    private StateHandler stateHandler;
+    private StatHandler statHandler;
 
     public override void Activate(GameObject user)
     {
@@ -18,27 +18,27 @@ public class PlusAttackSkill : PassiveSkill
     }
     private void OnEnable()
     {
-        stateHandler = GetComponent<StateHandler>();
-        if (stateHandler != null && !bonusApplied)
+        statHandler = GetComponent<StatHandler>();
+        if (statHandler != null && !bonusApplied)
         {
-            stateHandler.Attack += attackIncrease;
+            statHandler.AttackPower += attackIncrease;
             bonusApplied = true;
         }
     }
     private void OnDestroy()
     {
-        if (stateHandler != null && bonusApplied)
+        if (statHandler != null && bonusApplied)
         {
-            stateHandler.Attack -= attackIncrease;
+            statHandler.AttackPower -= attackIncrease;
             bonusApplied = false;
         }
     }
     public override void UpgradeSkill()
     {
         base.UpgradeSkill();
-        if (stateHandler != null)
+        if (statHandler != null)
         {
-            stateHandler.Attack += attackIncrease;
+            statHandler.AttackPower += attackIncrease;
         }
     }
 }

@@ -5,7 +5,7 @@ public class BaseController : MonoBehaviour
     protected Rigidbody2D _rigidbody;
 
     [SerializeField] private SpriteRenderer characterRenderer;
-    [SerializeField] private Transform weaponPivot;
+    //[SerializeField] private Transform weaponPivot;
 
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
@@ -20,9 +20,6 @@ public class BaseController : MonoBehaviour
 
     protected StatHandler statHandler;
 
-    [SerializeField] public WeaponHandler WeaponPrefab;
-    protected WeaponHandler weaponHandler;
-
     protected bool isAttacking;
     private float timeSinceLastAttack = float.MaxValue;
 
@@ -32,10 +29,10 @@ public class BaseController : MonoBehaviour
         animationHandler = GetComponent<AnimationHandler>();
         statHandler = GetComponent<StatHandler>();
 
-        if (WeaponPrefab != null)
-            weaponHandler = Instantiate(WeaponPrefab, weaponPivot);
-        else
-            weaponHandler = GetComponentInChildren<WeaponHandler>();
+        //if(!TryGetComponent<RangeStatHandler>(out rangeStatHandler))
+        //{
+        //    Debug.Log("이 유닛은 근거리 유닛입니다.");
+        //}
     }
 
     protected virtual void Start()
@@ -47,7 +44,7 @@ public class BaseController : MonoBehaviour
     {
         HandleAction();
         Rotate(lookDirection);
-        HandleAttackDelay(); // 
+        HandleAttackDelay();
     }
 
     protected virtual void FixedUpdate()
@@ -84,10 +81,10 @@ public class BaseController : MonoBehaviour
 
         characterRenderer.flipX = isLeft;
 
-        if (weaponPivot != null)
-        {
-            weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
-        }
+        //if (weaponPivot != null)
+        //{
+        //    weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
+        //}
 
         //weaponHandler?.Rotate(isLeft);
     }
@@ -100,9 +97,10 @@ public class BaseController : MonoBehaviour
 
     private void HandleAttackDelay()
     {
-        if (weaponHandler == null)
-            return;
-         // 몬스터 웨폰 없음 > 자체 스텟 가져야할듯.
+        //몬스터 웨폰 없음 > 자체 스텟 가져야할듯.
+        //if (weaponHandler == null)
+        //    return;
+
         //if (timeSinceLastAttack <= weaponHandler.Delay)
         //{
         //    timeSinceLastAttack += Time.deltaTime;
@@ -115,11 +113,17 @@ public class BaseController : MonoBehaviour
         //}
     }
 
-    protected virtual void Attack()
+    protected virtual void Attack(bool isAttack)
     {
-        Debug.Log("공격하기");
-        //if (lookDirection != Vector2.zero) 
-            //weaponHandler?.Attack(); // 그냥 애니메이션만 트리거하고 애니메이션에서 attack 판정 검사 메서드.
+        if (lookDirection != Vector2.zero)
+            animationHandler.Attack(isAttacking); // 그냥 애니메이션만 트리거하고 애니메이션에서 attack 판정 검사 메서드.
+
+        //하위 클래스(플레이어, 근접적, 원거리적)에서 구현)
+    }
+    private void CheckAttackSuccess() // 유니티 애니메이션에 이벤트로 추가.
+    {
+        //RaycastHit2D hit = Physics2D.BoxCast(transform.position.)
+        //공격 성공 => 플레이어의 피격 판정 
     }
 
     public virtual void Death()
@@ -139,5 +143,10 @@ public class BaseController : MonoBehaviour
         }
 
         Destroy(gameObject, 2f);
+    }
+
+    public virtual void Fire()
+    {
+        //statHandler.shoot();
     }
 }

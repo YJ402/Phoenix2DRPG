@@ -41,7 +41,7 @@
 //        queue.Enqueue(((int)GridTarget.x, (int)GridOrigin.y));
 //        while (queue.Count > 0)
 //        {
-            
+
 //            if (BFSInit(queue.Dequeue()))
 //            {
 //                break;
@@ -50,7 +50,7 @@
 //        //return 경로를 반환해야하는데 어떻게 하지?
 //    }
 
-//    public bool BFSInit((int x, int y) position) 
+//    public bool BFSInit((int x, int y) position)
 //    {
 //        int x = position.x;
 //        int y = position.y;
