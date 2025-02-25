@@ -1299,7 +1299,7 @@ GameObject:
   - component: {fileID: 1040982613}
   - component: {fileID: 1040982614}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: PlayerHpSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2085,6 +2085,7 @@ MonoBehaviour:
   targetPointer: {fileID: 763948139}
   enemys: {fileID: 106488733}
   targetTransform: {fileID: 0}
+  hpSlider: {fileID: 1040982614}
 --- !u!58 &1700061302
 CircleCollider2D:
   m_ObjectHideFlags: 0
