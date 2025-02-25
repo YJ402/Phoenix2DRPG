@@ -622,7 +622,6 @@ GameObject:
   - component: {fileID: 4821124565363073835}
   - component: {fileID: 7586936300518823198}
   - component: {fileID: 4000121658853248468}
-  - component: {fileID: 906987274440463754}
   m_Layer: 5
   m_Name: BattleUI
   m_TagString: Untagged
@@ -715,18 +714,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &906987274440463754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6893083399371233803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e20367ecc22e42d78c6ab12d43afec6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7007369431625086787
 GameObject:
   m_ObjectHideFlags: 0

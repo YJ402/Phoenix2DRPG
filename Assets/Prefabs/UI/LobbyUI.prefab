@@ -685,7 +685,6 @@ GameObject:
   - component: {fileID: 2298447308923054665}
   - component: {fileID: 6424763939309671743}
   - component: {fileID: 7084300860907818488}
-  - component: {fileID: 7469678983991645192}
   m_Layer: 5
   m_Name: LobbyUI
   m_TagString: Untagged
@@ -779,18 +778,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7469678983991645192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3325993948865231585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e20367ecc22e42d78c6ab12d43afec6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3771885467526211811
 GameObject:
   m_ObjectHideFlags: 0
