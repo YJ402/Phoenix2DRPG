@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class RangeStatHandler : StateHandler
+public class RangeStatHandler : StatHandler
 {
     AnimationHandler animationHandler;
 

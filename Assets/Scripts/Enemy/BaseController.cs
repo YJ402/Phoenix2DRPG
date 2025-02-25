@@ -18,7 +18,7 @@ public class BaseController : MonoBehaviour
 
     protected AnimationHandler animationHandler;
 
-    protected StateHandler statHandler;
+    protected StatHandler statHandler;
     protected RangeStatHandler rangeStatHandler;
 
     protected bool isAttacking;
@@ -28,7 +28,7 @@ public class BaseController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
-        statHandler = GetComponent<StateHandler>();
+        statHandler = GetComponent<StatHandler>();
 
         if(!TryGetComponent<RangeStatHandler>(out rangeStatHandler))
         {

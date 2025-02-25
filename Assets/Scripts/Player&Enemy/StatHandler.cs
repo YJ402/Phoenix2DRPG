@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class StateHandler : MonoBehaviour
+public class StatHandler : MonoBehaviour
 {
     AnimationHandler animationHandler;
     ResourceController resourceController;

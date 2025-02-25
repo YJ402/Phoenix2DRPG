@@ -6,7 +6,7 @@ public class ResourceController : MonoBehaviour
     [SerializeField] private float healthChangeDelay = .5f;
 
     private BaseController baseController;
-    private StateHandler statHandler;
+    private StatHandler statHandler;
     private AnimationHandler animationHandler;
 
     private float timeSinceLastChange = float.MaxValue;
@@ -20,7 +20,7 @@ public class ResourceController : MonoBehaviour
 
     private void Awake()
     {
-        statHandler = GetComponent<StateHandler>();
+        statHandler = GetComponent<StatHandler>();
         animationHandler = GetComponent<AnimationHandler>();
         baseController = GetComponent<BaseController>();
     }
