@@ -10,25 +10,25 @@ public class AttackIncreaseSkill : ActiveSkill
 
     public override void Activate(GameObject user)
     {
-        StateHandler stateHandler = user.GetComponent<StateHandler>();
-        if (stateHandler != null)
+        StatHandler statHandler = user.GetComponent<StatHandler>();
+        if (statHandler != null)
         {
-            stateHandler.StartCoroutine(ApplyAttackIncrease(stateHandler));
+            statHandler.StartCoroutine(ApplyAttackIncrease(statHandler));
         }
     }
 
-    private IEnumerator ApplyAttackIncrease(StateHandler stateHandler)
+    private IEnumerator ApplyAttackIncrease(StatHandler statHandler)
     {
         float effectiveMultiplier = baseAttackMultiplier + (level - 1) * attackMultiplierPerLevel;
 
         // 원래 공격력 저장 후 증가된 공격력 적용
-        int originalAttack = stateHandler.Attack;
-        stateHandler.Attack = Mathf.RoundToInt(originalAttack * effectiveMultiplier);
+        int originalAttack = statHandler.AttackPower;
+        statHandler.AttackPower = Mathf.RoundToInt(originalAttack * effectiveMultiplier);
 
         // 효과 지속 시간 대기
         yield return new WaitForSeconds(duration);
 
         // 효과 종료 후 공격력 복원
-        stateHandler.Attack = originalAttack;
+        statHandler.AttackPower = originalAttack;
     }
 }

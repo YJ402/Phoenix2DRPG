@@ -11,7 +11,7 @@ public class CollisionDamageEffect : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            StateHandler enemyState = collision.gameObject.GetComponent<StateHandler>();
+            StatHandler enemyState = collision.gameObject.GetComponent<StatHandler>();
             if (enemyState != null)
             {
                 int damageToApply = Mathf.RoundToInt(baseDamage * damageMultiplier);
