@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    [SerializeField] private LayerMask levelCollisionLayer;
+    [SerializeField] protected LayerMask levelCollisionLayer;
 
-    private RangeStatHandler rangeStatHandler;
+    protected RangeStatHandler rangeStatHandler;
 
     private float currentDuration;
-    private Vector2 direction;
+    protected Vector2 direction;
     private bool isReady;
     private Transform pivot;
 
-    private Rigidbody2D _rigidbody;
-    private SpriteRenderer spriteRenderer;
+    protected Rigidbody2D _rigidbody;
+    protected SpriteRenderer spriteRenderer;
 
     public bool fxOnDestory = true;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -39,10 +39,10 @@ public class ProjectileController : MonoBehaviour
         //    DestroyProjectile(transform.position, false);
         //}
 
-        _rigidbody.velocity = direction * rangeStatHandler.BulletSpeed;
+        
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (levelCollisionLayer.value == (levelCollisionLayer.value | (1 << collision.gameObject.layer)))
         {
@@ -66,6 +66,7 @@ public class ProjectileController : MonoBehaviour
             }
             DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestory);
         }
+        
     }
 
 
@@ -86,9 +87,10 @@ public class ProjectileController : MonoBehaviour
             pivot.localRotation = Quaternion.Euler(0, 0, 0);
 
         isReady = true;
+        _rigidbody.velocity = direction * rangeStatHandler.BulletSpeed;
     }
 
-    private void DestroyProjectile(Vector3 position, bool createFx)
+    protected virtual void DestroyProjectile(Vector3 position, bool createFx)
     {
         Destroy(this.gameObject);
     }
