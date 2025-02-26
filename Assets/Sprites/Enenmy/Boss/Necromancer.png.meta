@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -156,8 +156,8 @@ TextureImporter:
         y: 768
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -177,8 +177,8 @@ TextureImporter:
         y: 768
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -198,8 +198,8 @@ TextureImporter:
         y: 768
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -219,8 +219,8 @@ TextureImporter:
         y: 768
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -240,8 +240,8 @@ TextureImporter:
         y: 768
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -261,8 +261,8 @@ TextureImporter:
         y: 768
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -282,8 +282,8 @@ TextureImporter:
         y: 768
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -303,8 +303,8 @@ TextureImporter:
         y: 768
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -320,12 +320,12 @@ TextureImporter:
       name: Necromancer_8
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 768
+        x: 0
+        y: 640
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -341,12 +341,12 @@ TextureImporter:
       name: Necromancer_9
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 768
+        x: 160
+        y: 640
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -362,12 +362,12 @@ TextureImporter:
       name: Necromancer_10
       rect:
         serializedVersion: 2
-        x: 1600
-        y: 768
+        x: 320
+        y: 640
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -383,12 +383,12 @@ TextureImporter:
       name: Necromancer_11
       rect:
         serializedVersion: 2
-        x: 1760
-        y: 768
+        x: 480
+        y: 640
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -404,12 +404,12 @@ TextureImporter:
       name: Necromancer_12
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 768
+        x: 640
+        y: 640
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -425,12 +425,12 @@ TextureImporter:
       name: Necromancer_13
       rect:
         serializedVersion: 2
-        x: 2080
-        y: 768
+        x: 800
+        y: 640
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -446,12 +446,12 @@ TextureImporter:
       name: Necromancer_14
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 768
+        x: 960
+        y: 640
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -467,12 +467,12 @@ TextureImporter:
       name: Necromancer_15
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 768
+        x: 1120
+        y: 640
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -488,12 +488,12 @@ TextureImporter:
       name: Necromancer_16
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 768
+        x: 0
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -509,12 +509,12 @@ TextureImporter:
       name: Necromancer_17
       rect:
         serializedVersion: 2
-        x: 0
-        y: 640
+        x: 160
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -530,12 +530,12 @@ TextureImporter:
       name: Necromancer_18
       rect:
         serializedVersion: 2
-        x: 160
-        y: 640
+        x: 320
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -551,12 +551,12 @@ TextureImporter:
       name: Necromancer_19
       rect:
         serializedVersion: 2
-        x: 320
-        y: 640
+        x: 480
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -572,12 +572,12 @@ TextureImporter:
       name: Necromancer_20
       rect:
         serializedVersion: 2
-        x: 480
-        y: 640
+        x: 640
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -593,12 +593,12 @@ TextureImporter:
       name: Necromancer_21
       rect:
         serializedVersion: 2
-        x: 640
-        y: 640
+        x: 800
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -614,12 +614,12 @@ TextureImporter:
       name: Necromancer_22
       rect:
         serializedVersion: 2
-        x: 800
-        y: 640
+        x: 960
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -635,12 +635,12 @@ TextureImporter:
       name: Necromancer_23
       rect:
         serializedVersion: 2
-        x: 960
-        y: 640
+        x: 1120
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -656,12 +656,12 @@ TextureImporter:
       name: Necromancer_24
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 640
+        x: 1280
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -677,12 +677,12 @@ TextureImporter:
       name: Necromancer_25
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 640
+        x: 1440
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -698,12 +698,12 @@ TextureImporter:
       name: Necromancer_26
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 640
+        x: 1600
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -719,12 +719,12 @@ TextureImporter:
       name: Necromancer_27
       rect:
         serializedVersion: 2
-        x: 1600
-        y: 640
+        x: 1760
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -740,12 +740,12 @@ TextureImporter:
       name: Necromancer_28
       rect:
         serializedVersion: 2
-        x: 1760
-        y: 640
+        x: 1920
+        y: 512
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -761,12 +761,12 @@ TextureImporter:
       name: Necromancer_29
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 640
+        x: 0
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -782,12 +782,12 @@ TextureImporter:
       name: Necromancer_30
       rect:
         serializedVersion: 2
-        x: 2080
-        y: 640
+        x: 160
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -803,12 +803,12 @@ TextureImporter:
       name: Necromancer_31
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 640
+        x: 320
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -824,12 +824,12 @@ TextureImporter:
       name: Necromancer_32
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 640
+        x: 480
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -845,12 +845,12 @@ TextureImporter:
       name: Necromancer_33
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 640
+        x: 640
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -866,12 +866,12 @@ TextureImporter:
       name: Necromancer_34
       rect:
         serializedVersion: 2
-        x: 0
-        y: 512
+        x: 800
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -887,12 +887,12 @@ TextureImporter:
       name: Necromancer_35
       rect:
         serializedVersion: 2
-        x: 160
-        y: 512
+        x: 960
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -908,12 +908,12 @@ TextureImporter:
       name: Necromancer_36
       rect:
         serializedVersion: 2
-        x: 320
-        y: 512
+        x: 1120
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -929,12 +929,12 @@ TextureImporter:
       name: Necromancer_37
       rect:
         serializedVersion: 2
-        x: 480
-        y: 512
+        x: 1280
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -950,12 +950,12 @@ TextureImporter:
       name: Necromancer_38
       rect:
         serializedVersion: 2
-        x: 640
-        y: 512
+        x: 1440
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -971,12 +971,12 @@ TextureImporter:
       name: Necromancer_39
       rect:
         serializedVersion: 2
-        x: 800
-        y: 512
+        x: 1600
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -992,12 +992,12 @@ TextureImporter:
       name: Necromancer_40
       rect:
         serializedVersion: 2
-        x: 960
-        y: 512
+        x: 1760
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1013,12 +1013,12 @@ TextureImporter:
       name: Necromancer_41
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 512
+        x: 1920
+        y: 384
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1034,12 +1034,12 @@ TextureImporter:
       name: Necromancer_42
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 512
+        x: 0
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1055,12 +1055,12 @@ TextureImporter:
       name: Necromancer_43
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 512
+        x: 160
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1076,12 +1076,12 @@ TextureImporter:
       name: Necromancer_44
       rect:
         serializedVersion: 2
-        x: 1600
-        y: 512
+        x: 320
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1097,12 +1097,12 @@ TextureImporter:
       name: Necromancer_45
       rect:
         serializedVersion: 2
-        x: 1760
-        y: 512
+        x: 480
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1118,12 +1118,12 @@ TextureImporter:
       name: Necromancer_46
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 512
+        x: 640
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1139,12 +1139,12 @@ TextureImporter:
       name: Necromancer_47
       rect:
         serializedVersion: 2
-        x: 2080
-        y: 512
+        x: 800
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1160,12 +1160,12 @@ TextureImporter:
       name: Necromancer_48
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 512
+        x: 960
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1181,12 +1181,12 @@ TextureImporter:
       name: Necromancer_49
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 512
+        x: 1120
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1202,12 +1202,12 @@ TextureImporter:
       name: Necromancer_50
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 512
+        x: 1280
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1223,12 +1223,12 @@ TextureImporter:
       name: Necromancer_51
       rect:
         serializedVersion: 2
-        x: 0
-        y: 384
+        x: 1440
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1244,12 +1244,12 @@ TextureImporter:
       name: Necromancer_52
       rect:
         serializedVersion: 2
-        x: 160
-        y: 384
+        x: 1600
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1265,12 +1265,12 @@ TextureImporter:
       name: Necromancer_53
       rect:
         serializedVersion: 2
-        x: 320
-        y: 384
+        x: 1760
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1286,12 +1286,12 @@ TextureImporter:
       name: Necromancer_54
       rect:
         serializedVersion: 2
-        x: 480
-        y: 384
+        x: 1920
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1307,12 +1307,12 @@ TextureImporter:
       name: Necromancer_55
       rect:
         serializedVersion: 2
-        x: 640
-        y: 384
+        x: 2080
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1328,12 +1328,12 @@ TextureImporter:
       name: Necromancer_56
       rect:
         serializedVersion: 2
-        x: 800
-        y: 384
+        x: 2240
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1349,12 +1349,12 @@ TextureImporter:
       name: Necromancer_57
       rect:
         serializedVersion: 2
-        x: 960
-        y: 384
+        x: 2400
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1370,12 +1370,12 @@ TextureImporter:
       name: Necromancer_58
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 384
+        x: 2560
+        y: 256
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1391,12 +1391,12 @@ TextureImporter:
       name: Necromancer_59
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 384
+        x: 0
+        y: 128
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1412,12 +1412,12 @@ TextureImporter:
       name: Necromancer_60
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 384
+        x: 160
+        y: 128
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1433,12 +1433,12 @@ TextureImporter:
       name: Necromancer_61
       rect:
         serializedVersion: 2
-        x: 1600
-        y: 384
+        x: 320
+        y: 128
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1454,12 +1454,12 @@ TextureImporter:
       name: Necromancer_62
       rect:
         serializedVersion: 2
-        x: 1760
-        y: 384
+        x: 480
+        y: 128
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1475,12 +1475,12 @@ TextureImporter:
       name: Necromancer_63
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 384
+        x: 640
+        y: 128
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1496,12 +1496,12 @@ TextureImporter:
       name: Necromancer_64
       rect:
         serializedVersion: 2
-        x: 2080
-        y: 384
+        x: 0
+        y: 0
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1517,12 +1517,12 @@ TextureImporter:
       name: Necromancer_65
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 384
+        x: 160
+        y: 0
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1538,12 +1538,12 @@ TextureImporter:
       name: Necromancer_66
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 384
+        x: 320
+        y: 0
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1559,12 +1559,12 @@ TextureImporter:
       name: Necromancer_67
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 384
+        x: 480
+        y: 0
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1580,12 +1580,12 @@ TextureImporter:
       name: Necromancer_68
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 640
+        y: 0
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1601,12 +1601,12 @@ TextureImporter:
       name: Necromancer_69
       rect:
         serializedVersion: 2
-        x: 160
-        y: 256
+        x: 800
+        y: 0
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1622,12 +1622,12 @@ TextureImporter:
       name: Necromancer_70
       rect:
         serializedVersion: 2
-        x: 320
-        y: 256
+        x: 960
+        y: 0
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1643,12 +1643,12 @@ TextureImporter:
       name: Necromancer_71
       rect:
         serializedVersion: 2
-        x: 480
-        y: 256
+        x: 1120
+        y: 0
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1664,12 +1664,12 @@ TextureImporter:
       name: Necromancer_72
       rect:
         serializedVersion: 2
-        x: 640
-        y: 256
+        x: 1280
+        y: 0
         width: 160
         height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1677,972 +1677,6 @@ TextureImporter:
       bones: []
       spriteID: b7ee45834839f014cbbed69305f97973
       internalID: 487209015
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_73
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 256
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f80121a5afb85664ebf159e3e44724a2
-      internalID: -720032559
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_74
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 256
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f5e7ef9be86dc04b8aa060c7a74102d
-      internalID: 54602403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_75
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 256
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f5047a0237b6be4184b964070ac6788
-      internalID: 1026492051
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_76
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 256
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 285471d18ca154a4596a81d88124b283
-      internalID: 1957330731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_77
-      rect:
-        serializedVersion: 2
-        x: 1440
-        y: 256
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b79f2a1426c9e1f4cb5b83eaaec1fa5b
-      internalID: -638464213
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_78
-      rect:
-        serializedVersion: 2
-        x: 1600
-        y: 256
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f06035dcf972e04f8a4e8ffe5f11ec1
-      internalID: 1277712132
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_79
-      rect:
-        serializedVersion: 2
-        x: 1760
-        y: 256
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3f0e0a40180569c47ac5152057afd578
-      internalID: -188971696
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_80
-      rect:
-        serializedVersion: 2
-        x: 1920
-        y: 256
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 084b962f237a7664da85cbf27675d591
-      internalID: 862205084
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_81
-      rect:
-        serializedVersion: 2
-        x: 2080
-        y: 256
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f7fe733c1f703d44785aef4550ccb577
-      internalID: 481250684
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_82
-      rect:
-        serializedVersion: 2
-        x: 2240
-        y: 256
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8f34fbb03634054fa9fbadc02b94d74
-      internalID: -1348615732
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_83
-      rect:
-        serializedVersion: 2
-        x: 2400
-        y: 256
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8e506d1e7d7960142b58aec6e7d192d3
-      internalID: -1829651757
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_84
-      rect:
-        serializedVersion: 2
-        x: 2560
-        y: 256
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98c817988081a0240bd0e214f87e2a9f
-      internalID: 199078234
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_85
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 727ad17c335cb2c4d83618a1e84d2f70
-      internalID: -718561297
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_86
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62145ef86b587fe4abcf018af2c844eb
-      internalID: -1958674699
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_87
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75133f362b510cb409a509af284314be
-      internalID: -1915714157
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_88
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9508784891d9250469a2aa8d0512722c
-      internalID: -1659441438
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_89
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce6b0041f83237541b4fa56a768267ce
-      internalID: 890163913
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_90
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0c6dbb940d36c114bb899ec276016b99
-      internalID: -372778616
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_91
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 49915e4708d6e4443a74fa324accd6bf
-      internalID: 1245926543
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_92
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a873e15fb12ab504c97d28ef45404c3f
-      internalID: 1837586513
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_93
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 990e58e7443fbdb4faa2a2504de06792
-      internalID: -90778770
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_94
-      rect:
-        serializedVersion: 2
-        x: 1440
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 639fa41838c86064ab43c6a8a2195815
-      internalID: 1464870253
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_95
-      rect:
-        serializedVersion: 2
-        x: 1600
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e8efce8b76a6aa4d8dfbf611e1f8635
-      internalID: -1373593929
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_96
-      rect:
-        serializedVersion: 2
-        x: 1760
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c5c39ddba6afb8a4497a35eb86204a1c
-      internalID: 1515458746
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_97
-      rect:
-        serializedVersion: 2
-        x: 1920
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4d198c59e23e62940bdeee077bc6dd86
-      internalID: 1194392733
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_98
-      rect:
-        serializedVersion: 2
-        x: 2080
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f46ff46017cde9f4c833e279c2d9cd0e
-      internalID: 683988514
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_99
-      rect:
-        serializedVersion: 2
-        x: 2240
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6ef3d302d251f914fa569cc7475fbc2e
-      internalID: -1167743076
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_100
-      rect:
-        serializedVersion: 2
-        x: 2400
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6bb34f21366701c4f9149c37d1023011
-      internalID: -34542733
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_101
-      rect:
-        serializedVersion: 2
-        x: 2560
-        y: 128
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 129219cf50a73f145894cc624e45df0c
-      internalID: 859583309
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_102
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: efc250321fa819c478738153a6be5bd9
-      internalID: -464532906
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_103
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eccc31e5b0f56b5419e7d3d548bef8fb
-      internalID: 172610860
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_104
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c7bd6cb02857f754a9f5fdd0750af5aa
-      internalID: -173395029
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_105
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b688f840bef1af34794357e8bc9e3c04
-      internalID: 1390057740
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_106
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df5f2a050b3071347afbda0bbdf12b8b
-      internalID: 958551185
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_107
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db138e3c0a65dd340847d2d5f2a1e7bc
-      internalID: 2090434702
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_108
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e42fb8102b5ea0c4abc6abcfbf3fc5f4
-      internalID: -1886202739
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_109
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 949bb417ba31e7a499d1f3e9217e2f02
-      internalID: -900496767
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_110
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ea08ceabfe8784408e4e693bee26469
-      internalID: -3768521
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_111
-      rect:
-        serializedVersion: 2
-        x: 1440
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 256b4b2aa1fe75c449a8368cd0396406
-      internalID: 596694169
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_112
-      rect:
-        serializedVersion: 2
-        x: 1600
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd1060d130e8b5f41802bebeaa924392
-      internalID: 1085117943
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_113
-      rect:
-        serializedVersion: 2
-        x: 1760
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a72c28c74bf7aff4597964d53e3a9312
-      internalID: 1730293500
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_114
-      rect:
-        serializedVersion: 2
-        x: 1920
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4ffa9559da32d564aaede6e627a05478
-      internalID: -1658675871
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_115
-      rect:
-        serializedVersion: 2
-        x: 2080
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 685a992b62d915c488b071f9a9a144a3
-      internalID: -2126251814
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_116
-      rect:
-        serializedVersion: 2
-        x: 2240
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 72176a71f9c3be444a29c27bdc051db2
-      internalID: -28104003
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_117
-      rect:
-        serializedVersion: 2
-        x: 2400
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 894a45eebcfdeed4e85e2040f3dea33e
-      internalID: -1237207366
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Necromancer_118
-      rect:
-        serializedVersion: 2
-        x: 2560
-        y: 0
-        width: 160
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f5b41b1a5b70867438e5adbeffb9140a
-      internalID: 485195574
       vertices: []
       indices: 
       edges: []
@@ -2661,26 +1695,7 @@ TextureImporter:
       Necromancer_0: 1495842397
       Necromancer_1: 1593300876
       Necromancer_10: 532727741
-      Necromancer_100: -34542733
-      Necromancer_101: 859583309
-      Necromancer_102: -464532906
-      Necromancer_103: 172610860
-      Necromancer_104: -173395029
-      Necromancer_105: 1390057740
-      Necromancer_106: 958551185
-      Necromancer_107: 2090434702
-      Necromancer_108: -1886202739
-      Necromancer_109: -900496767
       Necromancer_11: -469831603
-      Necromancer_110: -3768521
-      Necromancer_111: 596694169
-      Necromancer_112: 1085117943
-      Necromancer_113: 1730293500
-      Necromancer_114: -1658675871
-      Necromancer_115: -2126251814
-      Necromancer_116: -28104003
-      Necromancer_117: -1237207366
-      Necromancer_118: 485195574
       Necromancer_12: -852466431
       Necromancer_13: 217402022
       Necromancer_14: 1857124028
@@ -2748,35 +1763,8 @@ TextureImporter:
       Necromancer_70: -17541537
       Necromancer_71: -123626814
       Necromancer_72: 487209015
-      Necromancer_73: -720032559
-      Necromancer_74: 54602403
-      Necromancer_75: 1026492051
-      Necromancer_76: 1957330731
-      Necromancer_77: -638464213
-      Necromancer_78: 1277712132
-      Necromancer_79: -188971696
       Necromancer_8: 949752865
-      Necromancer_80: 862205084
-      Necromancer_81: 481250684
-      Necromancer_82: -1348615732
-      Necromancer_83: -1829651757
-      Necromancer_84: 199078234
-      Necromancer_85: -718561297
-      Necromancer_86: -1958674699
-      Necromancer_87: -1915714157
-      Necromancer_88: -1659441438
-      Necromancer_89: 890163913
       Necromancer_9: -1975064739
-      Necromancer_90: -372778616
-      Necromancer_91: 1245926543
-      Necromancer_92: 1837586513
-      Necromancer_93: -90778770
-      Necromancer_94: 1464870253
-      Necromancer_95: -1373593929
-      Necromancer_96: 1515458746
-      Necromancer_97: 1194392733
-      Necromancer_98: 683988514
-      Necromancer_99: -1167743076
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
