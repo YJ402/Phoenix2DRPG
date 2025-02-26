@@ -30,9 +30,7 @@ public class EnemyController : BaseController
 
         if (currentisLeft != previsLeft)
         {
-            Vector2 scale = characterRenderer.transform.parent.localScale;
-            scale.x *= -1;
-            characterRenderer.transform.parent.localScale = scale;
+            characterRenderer.transform.parent.rotation *= Quaternion.Euler(0, 180, 0);
         }
 
         previsLeft = currentisLeft;
