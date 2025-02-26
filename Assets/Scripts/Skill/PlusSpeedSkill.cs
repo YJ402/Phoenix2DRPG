@@ -4,30 +4,25 @@ using UnityEngine;
 
 public class PlusSpeedSkill : PassiveSkill
 {
-    public new string name = "PlusSpeedSkill";
     public float speedIncrease = 1f;
     private bool bonusApplied = false;
     private StatHandler statHandler;
 
+    private void Awake()
+    {
+        skillName = "PlusSpeedSkill";
+    }
     public override void Activate(GameObject user)
     {
         
     }
-    private void OnEnable()
+    public override void ApplySkill()
     {
         statHandler = GetComponent<StatHandler>();
         if (statHandler != null && bonusApplied)
         {
-            statHandler.Speed += speedIncrease;
+            statHandler.Speed += speedIncrease*level;
             bonusApplied &= true;
-        }
-    }
-    private void OnDestroy()
-    {
-        if (statHandler != null && bonusApplied)
-        {
-            statHandler.Speed -= speedIncrease;
-            bonusApplied = false ;
         }
     }
     public override void UpgradeSkill()

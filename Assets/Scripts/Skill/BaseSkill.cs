@@ -29,7 +29,7 @@ public abstract class ActiveSkill : BaseSkill
 
 }
 public abstract class PassiveSkill : BaseSkill
-{     
-
+{
+    public abstract void ApplySkill();
 }
 

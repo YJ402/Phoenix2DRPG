@@ -4,33 +4,27 @@ using UnityEngine;
 
 public class PlusBulletSkill : PassiveSkill
 {
-    public new string name = "PlusBulletSkill";
     public int bulletincrease = 1;
     private bool bonusApplied = false;
     private RangeStatHandler rangeStatHandler;
 
+    private void Awake()
+    {
+        skillName = "PlusBulletSkill";
+    }
     public override void Activate(GameObject user)
     {
         
     }
-    private void OnEnable()
+    public override void ApplySkill()
     {
         rangeStatHandler = GetComponent<RangeStatHandler>();
         if (rangeStatHandler != null && bonusApplied)
         {
-            rangeStatHandler.BulletCount += bulletincrease;
+            rangeStatHandler.BulletCount += bulletincrease * level;
             bonusApplied = true;
         }
     }
-    private void OnDestroy()
-    {
-        if (rangeStatHandler != null && bonusApplied)
-        {
-            rangeStatHandler.BulletCount -= bulletincrease;
-            bonusApplied = false;
-        }
-    }
-
     public override void UpgradeSkill()
     {
         base.UpgradeSkill();

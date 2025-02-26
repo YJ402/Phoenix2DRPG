@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     AnimationHandler animationHandler;
     RangeStatHandler rangeStatHandler;
     
+    
 
     float targetDistance;
 
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rangeCircle.transform.localScale = new Vector3(2* rangeStatHandler.AttackRange, 2* rangeStatHandler.AttackRange); // 임시로 생성한 사정거리 원 크기
+        PlayerData.Instance.ApplyPassiveSkill();
     }
 
     private void Update()

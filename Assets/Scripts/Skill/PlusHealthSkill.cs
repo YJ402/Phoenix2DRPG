@@ -4,33 +4,28 @@ using UnityEngine;
 
 public class PlusHealthSkill : PassiveSkill
 {
-    public new string name = "PlusHealthSkill";
     public int healthIncrease = 100;
     private bool bonusApplied = false;
-
     private StatHandler statHandler;
 
+    private void Awake()
+    {
+        skillName = "PlusHealthSkill";
+    }
     public override void Activate(GameObject user)
     {
         
     }
-    private void OnEnable()
+    public override void ApplySkill()
     {
         statHandler = GetComponent<StatHandler>();
         if (statHandler != null && bonusApplied)
         {
-            statHandler.MaxHealth += healthIncrease;
+            statHandler.MaxHealth += healthIncrease *level;
             bonusApplied = true;
         }
     }
-    private void OnDestroy()
-    {
-        if (statHandler != null && bonusApplied)
-        {
-            statHandler.MaxHealth -= healthIncrease;
-            bonusApplied = false;
-        }
-    }
+
     public override void UpgradeSkill()
     {
         base.UpgradeSkill();
