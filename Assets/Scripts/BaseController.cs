@@ -1,11 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
 
-    [SerializeField] private SpriteRenderer characterRenderer;
-    [SerializeField] private Transform weaponPivot;
+    [SerializeField] protected SpriteRenderer characterRenderer;
+    //[SerializeField] private Transform weaponPivot;
 
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
@@ -16,46 +17,54 @@ public class BaseController : MonoBehaviour
     private Vector2 knockback = Vector2.zero;
     private float knockbackDuration = 0.0f;
 
-    protected AnimationHandler animationHandler;
 
+    protected AnimationHandler animationHandler;
     protected StatHandler statHandler;
 
-    [SerializeField] public WeaponHandler WeaponPrefab;
-    protected WeaponHandler weaponHandler;
-
-    protected bool isAttacking;
+    [HideInInspector] public bool isAttacking;
+    private bool isPlayer;
     private float timeSinceLastAttack = float.MaxValue;
 
+    protected bool currentisLeft;
+    protected bool previsLeft;
+    private bool isDead = false;
+    public bool IsDead { get { return isDead; } private set { isDead = value; } }
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
         statHandler = GetComponent<StatHandler>();
 
-        if (WeaponPrefab != null)
-            weaponHandler = Instantiate(WeaponPrefab, weaponPivot);
-        else
-            weaponHandler = GetComponentInChildren<WeaponHandler>();
+        //if(!TryGetComponent<RangeStatHandler>(out rangeStatHandler))
+        //{
+        //    Debug.Log("이 유닛은 근거리 유닛입니다.");
+        //}
     }
 
     protected virtual void Start()
     {
-
+        isPlayer = (transform.gameObject.layer == 6) ? true : false;
     }
 
     protected virtual void Update()
     {
-        HandleAction();
-        Rotate(lookDirection);
-        HandleAttackDelay(); // 
+        if (isPlayer | !isAttacking) // 공격시 잠깐 경직
+        {
+            HandleAction();
+            Rotate(lookDirection);
+            HandleAttackDelay();
+        }
     }
 
     protected virtual void FixedUpdate()
     {
-        Movment(movementDirection);
-        if (knockbackDuration > 0.0f)
+        if (isPlayer | !isAttacking)
         {
-            knockbackDuration -= Time.fixedDeltaTime;
+            Movment(movementDirection);
+            if (knockbackDuration > 0.0f)
+            {
+                knockbackDuration -= Time.fixedDeltaTime;
+            }
         }
     }
 
@@ -64,7 +73,7 @@ public class BaseController : MonoBehaviour
 
     }
 
-    private void Movment(Vector2 direction)
+    protected virtual void Movment(Vector2 direction)
     {
         direction = direction * statHandler.Speed;
         if (knockbackDuration > 0.0f)
@@ -77,19 +86,9 @@ public class BaseController : MonoBehaviour
         animationHandler.Move(direction);
     }
 
-    private void Rotate(Vector2 direction)
+    protected virtual void Rotate(Vector2 direction)
     {
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        bool isLeft = Mathf.Abs(rotZ) > 90f;
 
-        characterRenderer.flipX = isLeft;
-
-        if (weaponPivot != null)
-        {
-            weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
-        }
-
-        weaponHandler?.Rotate(isLeft);
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
@@ -100,29 +99,33 @@ public class BaseController : MonoBehaviour
 
     private void HandleAttackDelay()
     {
-        if (weaponHandler == null)
-            return;
+        //몬스터 웨폰 없음 > 자체 스텟 가져야할듯.
+        //if (weaponHandler == null)
+        //    return;
 
-        if (timeSinceLastAttack <= weaponHandler.Delay)
-        {
-            timeSinceLastAttack += Time.deltaTime;
-        }
+        //if (timeSinceLastAttack <= weaponHandler.Delay)
+        //{
+        //    timeSinceLastAttack += Time.deltaTime;
+        //}
 
-        if (isAttacking && timeSinceLastAttack > weaponHandler.Delay)
-        {
-            timeSinceLastAttack = 0;
-            Attack();
-        }
+        //if (isAttacking && timeSinceLastAttack > weaponHandler.Delay)
+        //{
+        //    timeSinceLastAttack = 0;
+        //    Attack();
+        //}
     }
 
-    protected virtual void Attack()
+    protected virtual void Attack(bool isAttack)
     {
-        if (lookDirection != Vector2.zero) 
-            weaponHandler?.Attack(); // 그냥 애니메이션만 트리거하고 애니메이션에서 attack 판정 검사 메서드.
+        if (lookDirection != Vector2.zero)
+            animationHandler.Attack(isAttacking); // 그냥 애니메이션만 트리거하고 애니메이션에서 attack 판정 검사 메서드.
+
+        //하위 클래스(플레이어, 근접적, 원거리적)에서 구현)
     }
 
     public virtual void Death()
     {
+        IsDead = true;
         _rigidbody.velocity = Vector3.zero;
 
         foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
@@ -138,5 +141,15 @@ public class BaseController : MonoBehaviour
         }
 
         Destroy(gameObject, 2f);
+    }
+
+    public void Fire()
+    {
+        Debug.Log("발사");
+        statHandler.Shoot(lookDirection);
+    }
+
+    public virtual void CheckHit()
+    {
     }
 }
