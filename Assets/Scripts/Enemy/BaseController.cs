@@ -21,7 +21,8 @@ public class BaseController : MonoBehaviour
     protected AnimationHandler animationHandler;
     protected StatHandler statHandler;
 
-    protected bool isAttacking;
+    [HideInInspector] public bool isAttacking;
+    private bool isPlayer;
     private float timeSinceLastAttack = float.MaxValue;
 
     protected bool currentisLeft;
@@ -42,22 +43,28 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Start()
     {
-
+        isPlayer = (transform.gameObject.layer == 6) ? true : false;
     }
 
     protected virtual void Update()
     {
-        HandleAction();
-        Rotate(lookDirection);
-        HandleAttackDelay();
+        if (isPlayer | !isAttacking) // 공격시 잠깐 경직
+        {
+            HandleAction();
+            Rotate(lookDirection);
+            HandleAttackDelay();
+        }
     }
 
     protected virtual void FixedUpdate()
     {
-        Movment(movementDirection);
-        if (knockbackDuration > 0.0f)
+        if (isPlayer | !isAttacking)
         {
-            knockbackDuration -= Time.fixedDeltaTime;
+            Movment(movementDirection);
+            if (knockbackDuration > 0.0f)
+            {
+                knockbackDuration -= Time.fixedDeltaTime;
+            }
         }
     }
 
