@@ -9,6 +9,8 @@ public class BattleManager : MonoBehaviour
     ObstacleManager obstacleManager;
     //UI매니저의 커렌트 state 받아오기.
 
+    public GameObject player;
+
     int[,] map;
     int stage;
     int round;
@@ -24,6 +26,7 @@ public class BattleManager : MonoBehaviour
         LoadPlayerData();
 
         enenmyManager.Init(map, stage);
+
     }
 
     private void LoadPlayerData()
@@ -38,5 +41,23 @@ public class BattleManager : MonoBehaviour
         //필요하다면 플레이어 소환 or 조정
 
         //몬스터에게 플레이어를 target으로 입력해주기.
+
+        PlayerSkill playerskill = player.GetComponent<PlayerSkill>();
+        if (playerskill != null && playerskill.activeSkill != null)
+        {
+            ActiveSkill activeSkill = playerskill.activeSkill;
+        }
+        PassiveSkill[] passiveSkills = player.GetComponents<PassiveSkill>();
+        if (passiveSkills.Length > 0)
+        {
+            foreach (PassiveSkill passiveSkill in passiveSkills)
+            {
+                Debug.Log("패시브 스킬: " + passiveSkill.skillName + ", 레벨: " + passiveSkill.level);
+            }
+        }
+        else
+        {
+            Debug.Log("패시브 스킬이 선택되지 않았습니다.");
+        }
     }
 }
