@@ -8,16 +8,16 @@ public class StatHandler : MonoBehaviour
     AnimationHandler animationHandler;
     ResourceController resourceController;
     
-    //넉백 관련 속성
+    //========================================================================================  넉백 관련 속성
     [SerializeField] private bool isOnKnockback = false;
     public bool IsOnKnockback { get => isOnKnockback; set => isOnKnockback = value; }
 
-    [SerializeField] private float knockbackPower = 0.1f;
+    [SerializeField] private float knockbackPower = 0f;
     public float KnockbackPower { get => knockbackPower; set => knockbackPower = value; }
 
-    [SerializeField] private float knockbackTime = 0.5f;
+    [SerializeField] private float knockbackTime = 0f;
     public float KnockbackTime { get => knockbackTime; set => knockbackTime = value; }
-
+    //=========================================================================================
     
     //속성들  최대체력,이동속도,공격력,공격속도,사정거리,투사체종류,투사체속도
 

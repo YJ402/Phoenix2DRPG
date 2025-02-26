@@ -19,8 +19,23 @@ public class SkillManager : MonoBehaviour
     // 이미 적용된 패시브 스킬들을 관리하는 딕셔너리 (키: 스킬 타입, 값: 해당 패시브 스킬 컴포넌트)
     private Dictionary<System.Type, PassiveSkill> passiveSkills = new Dictionary<System.Type, PassiveSkill>();
 
+    public static SkillManager Instance { get; private set; }
 
-    public void MakeSkillOptions()
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void MakeSkillOptions()                   //스킬선택 UI가 호출될때 같이 호출되는 메서드 (스킬 선택지 생성)
     {
         randomSkill.Clear();
 
@@ -51,7 +66,7 @@ public class SkillManager : MonoBehaviour
         return randomSkill;
     }
 
-    public void SelectSkillOption(int index)
+    public void SelectSkillOption(int index)                    //스킬선택했을때 호출할 메서드
     {
         if (index < 0 || index >= randomSkill.Count)
         {
@@ -105,6 +120,14 @@ public class SkillManager : MonoBehaviour
             int randomIndex = Random.Range(i, list.Count);
             list[i] = list[randomIndex];
             list[randomIndex] = temp;
+        }
+    }
+
+    public void ClearSkillList()
+    {
+        foreach(Transform skill in transform)
+        {
+            Destroy(skill);
         }
     }
 }
