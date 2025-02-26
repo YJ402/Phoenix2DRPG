@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombArrowSkill : BaseSkill
+public class BombArrowSkill : ActiveSkill
 {
     public override void Activate(GameObject user)
     {
