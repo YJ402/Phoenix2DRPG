@@ -19,9 +19,4 @@ public class SpriteController : MonoBehaviour
     {
         baseController.CheckHit();
     }
-
-    private void ExitAttack()
-    {
-        baseController.isAttacking = false;
-    }
 }
