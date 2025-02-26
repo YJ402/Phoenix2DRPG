@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
         lobbyUI = GetComponentInChildren<LobbyUI>(true);
         lobbyUI?.Init(this);
         battleUI = GetComponentInChildren<BattleUI>(true);
-        battleUI?.Init(this);
+        battleUI?.Init(this); 
         // skillPointUI = GetComponentInChildren<SkillPointUI>(true);
         // skillPointUI?.Init(this);
         // HealthBarUI = GetComponentInChildren<HealthBarUI>(true);

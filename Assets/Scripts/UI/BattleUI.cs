@@ -29,10 +29,8 @@ public class BattleUI : BaseUI
         base.Init(uiManager);
 
         // 처음엔 오버레이 패널들 비활성화
-        if (startStageUI != null)
-            startStageUI.SetActive(false);
-        if (clearRewardUI != null)
-            clearRewardUI.SetActive(false);
+        startStageUI.SetActive(true);
+        clearRewardUI.SetActive(false);
 
         // 배틀 정보 초기화 (예: 스테이지1, 라운드1, 적0)
         UpdateBattleInfo(1, 1, 0);
