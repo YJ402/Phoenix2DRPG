@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseController : MonoBehaviour
@@ -22,6 +23,9 @@ public class BaseController : MonoBehaviour
 
     protected bool isAttacking;
     private float timeSinceLastAttack = float.MaxValue;
+
+    bool currentisLeft;
+    bool previsLeft;
 
     protected virtual void Awake()
     {
@@ -77,9 +81,16 @@ public class BaseController : MonoBehaviour
     private void Rotate(Vector2 direction)
     {
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        bool isLeft = Mathf.Abs(rotZ) > 90f;
+        currentisLeft = Mathf.Abs(rotZ) > 90f;
 
-        characterRenderer.flipX = isLeft;
+        if (currentisLeft != previsLeft)
+        {
+            Vector2 scale = characterRenderer.transform.parent.localScale;
+            scale.x *= -1;
+            characterRenderer.transform.parent.localScale = scale;
+        }
+
+        previsLeft = currentisLeft;
 
         //if (weaponPivot != null)
         //{
@@ -120,11 +131,6 @@ public class BaseController : MonoBehaviour
 
         //하위 클래스(플레이어, 근접적, 원거리적)에서 구현)
     }
-    private void CheckAttackSuccess() // 유니티 애니메이션에 이벤트로 추가.
-    {
-        //RaycastHit2D hit = Physics2D.BoxCast(transform.position.)
-        //공격 성공 => 플레이어의 피격 판정 
-    }
 
     public virtual void Death()
     {
@@ -145,8 +151,13 @@ public class BaseController : MonoBehaviour
         Destroy(gameObject, 2f);
     }
 
-    public virtual void Fire()
+    public void Fire()
     {
-        //statHandler.shoot();
+        Debug.Log("발사");
+        statHandler.Shoot(lookDirection);
+    }
+
+    public virtual void CheckHit()
+    {
     }
 }

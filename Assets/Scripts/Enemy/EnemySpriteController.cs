@@ -14,4 +14,9 @@ public class SpriteController : MonoBehaviour
     {
         baseController.Fire();
     }
+
+    private void CheckMeleeAttackSuccess()
+    {
+        baseController.CheckHit();
+    }
 }

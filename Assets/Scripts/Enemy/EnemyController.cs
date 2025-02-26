@@ -7,9 +7,9 @@ using UnityEngine;
 public class EnemyController : BaseController
 {
     EnemyManager enemyManager;
-    [SerializeField] Transform target; // 디버깅용 시리얼필드
+    [SerializeField] Transform target; // 디버깅용으로 시리얼필드로 만듦. 나중에 배틀매니저에서 enemyController.Init하면 자동으로 할당됨.
 
-    [SerializeField] LayerMask targetLayerMask; // basecontroller로 옮겨도 될듯.
+    [SerializeField] protected LayerMask targetLayerMask; // 디버깅용으로 시리얼필드로 만듦. 나중에 배틀매니저에서 enemyController.Init하면 자동으로 할당됨.
 
     [SerializeField] private float followRange;
     public float FollowRange { get { return followRange; } }
@@ -20,6 +20,7 @@ public class EnemyController : BaseController
     {
         this.enemyManager = enemyManager;
         this.target = BattleManager.PlayerTransform;
+        targetLayerMask = target.gameObject.layer; 
     }
 
     public Vector2 DirectionToTarget()
@@ -59,6 +60,7 @@ public class EnemyController : BaseController
             if (AttackAvailable(distance, direction))
             {
                 isAttacking = true;
+                movementDirection = Vector2.zero;
             }
             else
             {

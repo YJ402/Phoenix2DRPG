@@ -41,7 +41,7 @@ public class ResourceController : MonoBehaviour
                 animationHandler.InvincibilityEnd();
             }
         }
-        playerController.UpdateHpSlider(CurrentHealth/MaxHealth);
+        //playerController.UpdateHpSlider(CurrentHealth/MaxHealth);
     }
 
     public bool ChangeHealth(float change)
