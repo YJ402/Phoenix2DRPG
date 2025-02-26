@@ -243,7 +243,7 @@ MonoBehaviour:
   attackDistance: 1
   target:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!114 &5643107866525903077
 MonoBehaviour:
   m_ObjectHideFlags: 0

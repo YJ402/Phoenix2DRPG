@@ -13,7 +13,8 @@ public class MeleeEnemyController : EnemyController
         if (hit.transform.gameObject.layer == 6)
             Debug.Log("타격 성공");
 
-        ResourceController resourceController = hit.collider.GetComponent<ResourceController>();
+        if (!hit.collider.TryGetComponent<ResourceController>(out ResourceController resourceController))
+            Debug.Log("피격 오브젝트에 리소스 컨트롤러가 없습니다.");
         resourceController.ChangeHealth(-statHandler.AttackPower);
     }
 }
