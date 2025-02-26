@@ -6,7 +6,7 @@ using UnityEngine;
 public class ObstacleManager : MonoBehaviour
 {
     public GameObject obj1, obj2; //범위 지정 오브젝트
-    public GameObject rock, hole, water, wall; //생성할 오브젝트
+    public GameObject rock, spike, water, wall; //생성할 오브젝트
     private int[,] nodes; //좌표를 저장할 array
     int minX, maxX, minY, maxY; //장애물 생성 범위
     Vector2 pos1, pos2; //범위 지정 오브젝트의 좌표값
@@ -35,37 +35,49 @@ public class ObstacleManager : MonoBehaviour
         //Debug.Log($"{width}, {height}");
 
         ChooseLocation(rock, 3, 6, 2); //돌 3개, 사이즈는 1 x 1
-        ChooseLocation(hole, 3, 6, 2);
+        ChooseLocation(spike, 3, 6, 2);
         ChooseLocation(water, 2, 6, 2); //물 2개, 사이즈는 6 x 2
         ChooseLocation(wall, 2, 6, 2);
     }
 
     private void ChooseLocation(GameObject go, int count, int sizeX, int sizeY)
     {
-        int attempt = 10;
-        for (int i = 0; i < count; i++)
+        const int maxAttempts = 10;  // 최대 시도 횟수 상수로 정의
+        int placedCount = 0;         // 성공적으로 배치된 오브젝트 수
+        int attemptsMade = 0;        // 시도 횟수
+
+        while (placedCount < count && attemptsMade < maxAttempts)
         {
-            if (attempt <= 0) break; //시도 횟수가 0 또는 그 이하가 되면 중지
+            // 랜덤 위치 생성
+            int randomX = Random.Range(minX, maxX);
+            int randomY = Random.Range(minY, maxY);
 
-            x = Random.Range(minX, maxX); //x는 오브젝트1과 2의 x좌표 사이
-            y = Random.Range(minY, maxY); //y는 오브젝트1과 2의 y좌표 사이
+            // 로컬 좌표로 변환
+            int indexX = randomX - minX;
+            int indexY = randomY - minY;
 
-            int indexX = x - minX; //오브젝트의 x값에 음수를 포함하도록 함. 
-            int indexY = y - minY; //오브젝트의 y값에 음수를 포함하도록 함. 
-
+            // 해당 위치에 배치 가능한지 확인
             if (IsAreaAvailable(indexX, indexY, sizeX, sizeY))
             {
-                SetArea(indexX, indexY, sizeX, sizeY); //영역 설정
-                Vector2 goLocation = new Vector2(x, y); //오브젝트의 위치를 x, y로 설정
-                Instantiate(go, goLocation, Quaternion.identity, this.transform); //오브젝트 인스턴스화
-                //Debug.Log($"{width}, {height}에 {go.name} 오브젝트 인스턴스화 성공");
+                // 성공적으로 배치
+                SetArea(indexX, indexY, sizeX, sizeY);
+                Vector2 goLocation = new Vector2(randomX, randomY);
+                Instantiate(go, goLocation, Quaternion.identity, transform);
+
+                // 성공 카운터 증가
+                placedCount++;
             }
             else
             {
-                i--;
-                attempt--;
-                continue;
+                // 실패한 경우 시도 횟수만 증가
+                attemptsMade++;
             }
+        }
+
+        // 모든 오브젝트를 배치하지 못했을 경우 로그 출력 (선택사항)
+        if (placedCount < count)
+        {
+            Debug.LogWarning($"{go.name} 오브젝트 {count}개 중 {placedCount}개만 배치 성공 (최대 시도 횟수 도달)");
         }
     }
 
@@ -84,27 +96,35 @@ public class ObstacleManager : MonoBehaviour
         return true;
     }
 
-    private void SetArea(int startX, int startY, int sizeX, int sizeY)
+    private void SetArea(int objPosX, int objPosY, int objSizeX, int objSizeY)
     {
-        for (int i = startX; i < startX + sizeX; i++)
-        {
-            for (int j = startY; j < startY + sizeY; j++)
-            {
-                int realWidth = width - 2;
-                int realHeight = height - 2;
-                nodes[i, j] = 1; //nodes [i, j]의 값을 1으로 지정하여 다른 장애물이 배치되지 못하게 막음
-                if (i < realWidth) nodes[i + 1, j] = 2; //오른쪽
-                if (i < realWidth && j < realHeight) nodes[i + 1, j + 1] = 2; //우측 하단
-                if (j < realHeight) nodes[i, j + 1] = 2; //하단
-                if (i > 0 && j < realHeight) nodes[i - 1, j + 1] = 2; //좌측 하단
-                if (i > 0) nodes[i - 1, j] = 2; //왼쪽
-                if (i > 0 && j > 0) nodes[i - 1, j - 1] = 2; //왼쪽 상단
-                if (j > 0) nodes[i, j - 1] = 2; //위
-                if (i < realWidth && j > 0) nodes[i + 1, j - 1] = 2; //우측상단
+        int[] dx = { 1, 1, 0, -1, -1, -1, 0, 1 }; //
+        int[] dy = { 0, 1, 1, 1, 0, -1, -1, -1 };
 
-                //Debug.Log($"{nodes}의 {i}, {j} 좌표에 생성됨"); //어느 좌표가 1로 지정되었는지 확인
+        int i = objPosX;
+        int j = objPosY;
+
+        while(i < objPosX + objSizeX)
+        {
+            j = objPosY;
+            while (j < objPosY + objSizeY)
+            {
+                nodes[i, j] = 1;
                 locations.Add((i, j));
+
+                for (int dir = 0; dir < 8; dir++)
+                {
+                    int newX = i + dx[dir];
+                    int newY = j + dy[dir];
+
+                    if (newX >= 0 && newX < width && newY >=0 && newY < height && nodes[newX, newY] == 0)
+                    {
+                        nodes[newX, newY] = 2;
+                    }
+                }
+                j++;
             }
+            i++;
         }
     }
 }

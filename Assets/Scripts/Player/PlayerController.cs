@@ -67,6 +67,8 @@ public class PlayerController : MonoBehaviour
 
         _rigidbody.velocity = direction;
         animationHandler.Move(direction);
+        
+        UpdateHpSliderPosition();
     }
     private void Rotate(Vector2 direction)
     {
@@ -136,5 +138,9 @@ public class PlayerController : MonoBehaviour
         else
             barImage.color = Color.green;
     }
-
+    public void UpdateHpSliderPosition()
+    {
+        Vector2 ScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
+        hpSlider.transform.position = new Vector3(ScreenPosition.x, ScreenPosition.y-32,hpSlider.transform.position.z);
+    }
 }
