@@ -26,7 +26,7 @@ public class BaseController : MonoBehaviour
     private float timeSinceLastAttack = float.MaxValue;
 
     protected bool currentisLeft;
-    bool previsLeft;
+    protected bool previsLeft;
     private bool isDead = false;
     public bool IsDead { get { return isDead; } private set { isDead = value; } }
     protected virtual void Awake()
