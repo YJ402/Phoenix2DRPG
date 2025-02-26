@@ -1,10 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
 
-    [SerializeField] private SpriteRenderer characterRenderer;
+    [SerializeField] protected SpriteRenderer characterRenderer;
     //[SerializeField] private Transform weaponPivot;
 
     protected Vector2 movementDirection = Vector2.zero;
@@ -20,9 +21,14 @@ public class BaseController : MonoBehaviour
     protected AnimationHandler animationHandler;
     protected StatHandler statHandler;
 
-    protected bool isAttacking;
+    [HideInInspector] public bool isAttacking;
+    private bool isPlayer;
     private float timeSinceLastAttack = float.MaxValue;
 
+    protected bool currentisLeft;
+    protected bool previsLeft;
+    private bool isDead = false;
+    public bool IsDead { get { return isDead; } private set { isDead = value; } }
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -37,22 +43,28 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Start()
     {
-
+        isPlayer = (transform.gameObject.layer == 6) ? true : false;
     }
 
     protected virtual void Update()
     {
-        HandleAction();
-        Rotate(lookDirection);
-        HandleAttackDelay();
+        if (isPlayer | !isAttacking) // 공격시 잠깐 경직
+        {
+            HandleAction();
+            Rotate(lookDirection);
+            HandleAttackDelay();
+        }
     }
 
     protected virtual void FixedUpdate()
     {
-        Movment(movementDirection);
-        if (knockbackDuration > 0.0f)
+        if (isPlayer | !isAttacking)
         {
-            knockbackDuration -= Time.fixedDeltaTime;
+            Movment(movementDirection);
+            if (knockbackDuration > 0.0f)
+            {
+                knockbackDuration -= Time.fixedDeltaTime;
+            }
         }
     }
 
@@ -61,7 +73,7 @@ public class BaseController : MonoBehaviour
 
     }
 
-    private void Movment(Vector2 direction)
+    protected virtual void Movment(Vector2 direction)
     {
         direction = direction * statHandler.Speed;
         if (knockbackDuration > 0.0f)
@@ -74,19 +86,9 @@ public class BaseController : MonoBehaviour
         animationHandler.Move(direction);
     }
 
-    private void Rotate(Vector2 direction)
+    protected virtual void Rotate(Vector2 direction)
     {
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        bool isLeft = Mathf.Abs(rotZ) > 90f;
 
-        characterRenderer.flipX = isLeft;
-
-        //if (weaponPivot != null)
-        //{
-        //    weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
-        //}
-
-        //weaponHandler?.Rotate(isLeft);
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
@@ -120,14 +122,10 @@ public class BaseController : MonoBehaviour
 
         //하위 클래스(플레이어, 근접적, 원거리적)에서 구현)
     }
-    private void CheckAttackSuccess() // 유니티 애니메이션에 이벤트로 추가.
-    {
-        //RaycastHit2D hit = Physics2D.BoxCast(transform.position.)
-        //공격 성공 => 플레이어의 피격 판정 
-    }
 
     public virtual void Death()
     {
+        IsDead = true;
         _rigidbody.velocity = Vector3.zero;
 
         foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
@@ -145,8 +143,13 @@ public class BaseController : MonoBehaviour
         Destroy(gameObject, 2f);
     }
 
-    public virtual void Fire()
+    public void Fire()
     {
-        //statHandler.shoot();
+        Debug.Log("발사");
+        statHandler.Shoot(lookDirection);
+    }
+
+    public virtual void CheckHit()
+    {
     }
 }

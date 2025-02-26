@@ -10395,7 +10395,7 @@ Transform:
   m_GameObject: {fileID: 151284091}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.51, y: 3.83, z: 0}
+  m_LocalPosition: {x: -11, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10686,12 +10686,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3b54705e37cab45b50d998fb795ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj1: {fileID: 151284091}
-  obj2: {fileID: 1757440976}
+  leftObj: {fileID: 151284091}
+  rightObj: {fileID: 1757440976}
   rock: {fileID: 8679844637300723683, guid: f3762a85b2f43294c921489940fc043e, type: 3}
-  hole: {fileID: 5189599678719239786, guid: 07d76d4dc51d32145bc3427170deec04, type: 3}
+  spike: {fileID: 5189599678719239786, guid: 07d76d4dc51d32145bc3427170deec04, type: 3}
   water: {fileID: 4265369658411455938, guid: 3210c0fa94878e54b80c1780c430e8b6, type: 3}
   wall: {fileID: 7121475261018358869, guid: beb9f9676edbae54c936568373cb0a77, type: 3}
+  dontOverlapAdj: 1
+  AdjPadding: 1
 --- !u!1 &1106160138
 GameObject:
   m_ObjectHideFlags: 0
@@ -15605,7 +15607,7 @@ Transform:
   m_GameObject: {fileID: 1757440976}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.35, y: -8.16, z: 0}
+  m_LocalPosition: {x: 13, y: -9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -11,10 +11,9 @@ public class PlayerSkill : MonoBehaviour
     void Update()
     {
         // Z 키를 눌렀고, 쿨다운이 끝났으면 스킬 활성화
-        if (Input.GetKeyDown(KeyCode.Z) && Time.time >= lastSkillTime + ((ActiveSkill)activeSkill).coolDown)
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            activeSkill.Activate(gameObject);
-            lastSkillTime = Time.time;
+            ActivateActiveSkill();
         }
     }
     public void ActivateActiveSkill()

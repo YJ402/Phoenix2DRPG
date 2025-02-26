@@ -1,110 +1,267 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-    public GameObject obj1, obj2; //¹üÀ§ ÁöÁ¤ ¿ÀºêÁ§Æ®
-    public GameObject rock, hole, water, wall; //»ı¼ºÇÒ ¿ÀºêÁ§Æ®
-    private int[,] nodes; //ÁÂÇ¥¸¦ ÀúÀåÇÒ array
-    int minX, maxX, minY, maxY; //Àå¾Ö¹° »ı¼º ¹üÀ§
-    Vector2 pos1, pos2; //¹üÀ§ ÁöÁ¤ ¿ÀºêÁ§Æ®ÀÇ ÁÂÇ¥°ª
-    List<(int, int)> locations = new List<(int, int)>(); //ÁÂÇ¥¸¦ Àü´ŞÇÒ List
-    int width, height;
+    [Header("ë²”ìœ„ ì˜¤ë¸Œì íŠ¸")]
+    public GameObject leftObj, rightObj;
 
-    int x, y = 0; //x, y ÁÂÇ¥¸¦ 0À¸·Î ÃÊ±âÈ­
+    [Header("ì¥ì• ë¬¼ í”„ë¦¬íŒ¹")]
+    public GameObject rock, spike, water, wall;
+
+    [Header("ì¸ì ‘ ì˜ì—­ ì„¤ì •")]
+    public bool dontOverlapAdj = true; //ì¥ì• ë¬¼ ì£¼ë³€ì´ ê²¹ì¹˜ì§€ ì•ŠëŠ”ì§€ í™•ì¸
+    public int AdjPadding = 1; ////ì¥ì• ë¬¼ ì—¬ë°±
+
+    private int[,] grid; //ì¥ì• ë¬¼ ìƒì„± ê°€ëŠ¥ ë²”ìœ„
+    //int cellValue = obstacleManager.GetGridValue(x, y); ì½”ë“œë¥¼ ì‚¬ìš©í•´ gridValueë¥¼ ê°€ì ¸ê°ˆ ìˆ˜ ìˆìŒ
+    //cellValueê°€ 1ì´ë©´ ì¥ì• ë¬¼, 2ë©´ ì¥ì• ë¬¼ ì£¼ë³€, 3ì´ë©´ ë¬¼, -1ì´ë¼ë©´ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+
+    private int minX, minY, maxX, maxY; //ë²”ìœ„ ìµœì†Œì¹˜, ìµœëŒ€ì¹˜
+    private int gridWidth, gridHeight; //ìƒì„± ë²”ìœ„ì˜ ê°€ë¡œ, ì„¸ë¡œ ê¸¸ì´
+
+    public struct GridObstacle
+    {
+        public int x, y; //ê·¸ë¦¬ë“œ ì¥ì• ë¬¼ì˜ x, y ì¢Œí‘œ
+        public int width, height; //ì¥ì• ë¬¼ì˜ ê°€ë¡œ, ì„¸ë¡œ í¬ê¸°
+        public GameObject instance; // ìƒì„±ëœ ê²Œì„ ì˜¤ë¸Œì íŠ¸ ì¸ìŠ¤í„´ìŠ¤
+    }
+
+    public List<GridObstacle> obstacles = new(); //ìœ„ì˜ structë¥¼ ì €ì¥í•  ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™”
+
+    public int[,] Grid => grid; //{get;} ëŒ€ì‹  ëŒë‹¤ì‹ ì‚¬ìš©
 
     private void Start()
     {
-        SpawnObstacle(); //Àå¾Ö¹° »ı¼º
-    }
-    private void SpawnObstacle()
-    {
-        pos1 = obj1.transform.position; //¹üÀ§ ÁöÁ¤ ¿ÀºêÁ§Æ®(ÁÂÃø »ó´Ü)ÀÇ ÁÂÇ¥
-        pos2 = obj2.transform.position; //¹üÀ§ ÁöÁ¤ ¿ÀºêÁ§Æ®(¿ìÃø ÇÏ´Ü)ÀÇ ÁÂÇ¥
-
-        //¾Æ·¡´Â È¤½Ã¶óµµ ¿ÀºêÁ§Æ®1°ú 2ÀÇ À§Ä¡°¡ ¹Ù²ğ °æ¿ì¸¦ »ı°¢ÇØ µÑ Áß ´õ ÀûÀº ÂÊÀ» min ¶Ç´Â max·Î ÁöÁ¤
-        minX = (int)Mathf.Min(pos1.x, pos2.x);
-        maxX = (int)Mathf.Max(pos1.x, pos2.x);
-        minY = (int)Mathf.Min(pos1.y, pos2.y);
-        maxY = (int)Mathf.Max(pos1.y, pos2.y);
-        width = maxX - minX; //¹üÀ§ÀÇ °¡·Î ±æÀÌ ÃøÁ¤ (¾ç¼ö·Î ³ª¿È)
-        height = maxY - minY; //¹üÀ§ÀÇ ¼¼·Î ±æÀÌ ÃøÁ¤ (¾ç¼ö·Î ³ª¿È)
-        nodes = new int[width, height]; 
-        //Debug.Log($"{width}, {height}");
-
-        ChooseLocation(rock, 3, 6, 2); //µ¹ 3°³, »çÀÌÁî´Â 1 x 1
-        ChooseLocation(hole, 3, 6, 2);
-        ChooseLocation(water, 2, 6, 2); //¹° 2°³, »çÀÌÁî´Â 6 x 2
-        ChooseLocation(wall, 2, 6, 2);
+        InitializeGrid(); //ê·¸ë¦¬ë“œ ì´ˆê¸°í™”
+        SpawnObstacle(rock, 1, 1, 3); //ëŒ, 1 x 1 í¬ê¸°, 3ê°œ
+        SpawnObstacle(spike, 1, 1, 3); //ê°€ì‹œ, 1 x 1 í¬ê¸°, 3ê°œ
+        SpawnObstacle(water, 6, 2, 2); //ë¬¼, 6 x 2 í¬ê¸°, 2ê°œ
+        SpawnObstacle(wall, 5, 2, 2); //ë²½, 5 x 2 í¬ê¸°, 2ê°œ
     }
 
-    private void ChooseLocation(GameObject go, int count, int sizeX, int sizeY)
+    private void InitializeGrid()
     {
-        int attempt = 10;
-        for (int i = 0; i < count; i++)
+        Vector2 pos1 = leftObj.transform.position; //ì™¼ìª½ ì˜¤ë¸Œì íŠ¸ì˜ x, y ê°€ì ¸ì˜¤ê¸°
+        Vector2 pos2 = rightObj.transform.position; //ì˜¤ë¥¸ìª½ ì˜¤ë¸Œì íŠ¸ì˜ x, y ê°€ì ¸ì˜¤ê¸°
+
+        minX = Mathf.FloorToInt(Mathf.Min(pos1.x, pos2.x)); //ì˜¤ë¸Œì íŠ¸ì˜ x ê°’ ì†Œìˆ˜ì ì„ ë²„ë¦¬ê³  ê°€ì¥ ì ì€ ìˆ˜ë¥¼ ê°€ì ¸ì˜´
+        maxX = Mathf.CeilToInt(Mathf.Max(pos1.x, pos2.x)); //ì˜¤ë¸Œì íŠ¸ì˜ x ê°’ ì†Œìˆ˜ì ì„ ë²„ë¦¬ê³  ê°€ì¥ í° ìˆ˜ë¥¼ ê°€ì ¸ì˜´
+        minY = Mathf.FloorToInt(Mathf.Min(pos1.y, pos2.y)); //ì˜¤ë¸Œì íŠ¸ì˜ x ê°’ ì†Œìˆ˜ì ì„ ë²„ë¦¬ê³  ê°€ì¥ ì ì€ ìˆ˜ë¥¼ ê°€ì ¸ì˜´
+        maxY = Mathf.CeilToInt(Mathf.Max(pos1.y, pos2.y)); //ì˜¤ë¸Œì íŠ¸ì˜ x ê°’ ì†Œìˆ˜ì ì„ ë²„ë¦¬ê³  ê°€ì¥ í° ìˆ˜ë¥¼ ê°€ì ¸ì˜´
+
+        gridWidth = maxX - minX; //ìµœëŒ€x ê°’ì—ì„œ ìµœì†Œx ê°’ì„ ëº€ ê±°ë¦¬
+        gridHeight = maxY - minY; //ìµœëŒ€y ê°’ì—ì„œ ìµœì†Œy ê°’ì„ ëº€ ê±°ë¦¬
+
+        grid = new int[gridWidth, gridHeight]; //ê·¸ë¦¬ë“œì˜ í¬ê¸°ëŠ” gridWidth, gridHeight ë§Œí¼ì˜ ì¹¸ì„ ì§€ë‹˜
+    }
+
+    private void SpawnObstacle(GameObject prefab, int width, int height, int count) //íŠ¹ì • í”„ë¦¬íŒ¹ì„ (n * n ì‚¬ì´ì¦ˆ) nê°œ ìƒì„±
+    {
+        const int maxAttempts = 100; //ìµœëŒ€ ì‹œë„ íšŸìˆ˜ëŠ” 100íšŒ
+        int placedCount = 0; //í˜„ì¬ ë°°ì¹˜ëœ ì¥ì• ë¬¼ì˜ ê°œìˆ˜ëŠ” 0ê°œ
+        int attempts = 0; //í˜„ì¬ ì‹œë„ ëœ íšŸìˆ˜ëŠ” 0íšŒ
+
+        while (placedCount < count && attempts < maxAttempts) //ë°°ì¹˜ëœ ê°œìˆ˜ê°€ countë³´ë‹¤ ì ê³  attempt íšŸìˆ˜ê°€ ë‚¨ì•˜ë‹¤ë©´
         {
-            if (attempt <= 0) break; //½Ãµµ È½¼ö°¡ 0 ¶Ç´Â ±× ÀÌÇÏ°¡ µÇ¸é ÁßÁö
+            //Random.Range(0, 2)ë¡œ ì ì„ ê²½ìš° 0 ~ 1ì‚¬ì´ë§Œ ë‚˜ì˜¤ê²Œ ë˜ë¯€ë¡œ +1ì„ ë„£ì–´ì¤˜ì•¼ í•¨
+            int gridX = Random.Range(0, gridWidth - width + 1); //gridXëŠ” 0ë¶€í„° (ê·¸ë¦¬ë“œ ê°€ë¡œ - ì˜¤ë¸Œì íŠ¸ ê°€ë¡œ + 1)í•œ ê°’. 
+            int gridY = Random.Range(0, gridHeight - height + 1); //gridYëŠ” 0ë¶€í„° (ê·¸ë¦¬ë“œ ì„¸ë¡œ - ì˜¤ë¸Œì íŠ¸ ì„¸ë¡œ + 1)í•œ ê°’. 
 
-            x = Random.Range(minX, maxX); //x´Â ¿ÀºêÁ§Æ®1°ú 2ÀÇ xÁÂÇ¥ »çÀÌ
-            y = Random.Range(minY, maxY); //y´Â ¿ÀºêÁ§Æ®1°ú 2ÀÇ yÁÂÇ¥ »çÀÌ
-
-            int indexX = x - minX; //¿ÀºêÁ§Æ®ÀÇ x°ª¿¡ À½¼ö¸¦ Æ÷ÇÔÇÏµµ·Ï ÇÔ. 
-            int indexY = y - minY; //¿ÀºêÁ§Æ®ÀÇ y°ª¿¡ À½¼ö¸¦ Æ÷ÇÔÇÏµµ·Ï ÇÔ. 
-
-            if (IsAreaAvailable(indexX, indexY, sizeX, sizeY))
+            if (AreaAvailable(gridX, gridY, width, height))
             {
-                SetArea(indexX, indexY, sizeX, sizeY); //¿µ¿ª ¼³Á¤
-                Vector2 goLocation = new Vector2(x, y); //¿ÀºêÁ§Æ®ÀÇ À§Ä¡¸¦ x, y·Î ¼³Á¤
-                Instantiate(go, goLocation, Quaternion.identity, this.transform); //¿ÀºêÁ§Æ® ÀÎ½ºÅÏ½ºÈ­
-                //Debug.Log($"{width}, {height}¿¡ {go.name} ¿ÀºêÁ§Æ® ÀÎ½ºÅÏ½ºÈ­ ¼º°ø");
+                MarkArea(gridX, gridY, width, height, prefab);
+
+                Vector2 worldPos = GridToWorld(gridX + width / 2.0f, gridY + height / 2.0f);
+                //ì¥ì• ë¬¼ì´ 3, 4ì— ìœ„ì¹˜í•˜ëŠ”ë° í¬ê¸°ê°€ 2, 2ë¼ë©´ ì¤‘ì‹¬ì ì€ (3+2)/2, (4+2)/2ë¡œ 4, 5ê°€ ë¨. 
+                //GridToWorldëŠ” ê·¸ë¦¬ë“œ ì¢Œí‘œë¥¼ ê²Œì„ ì›”ë“œì˜ ì¢Œí‘œë¡œ ë³€í™˜
+                GameObject instance = Instantiate(prefab, worldPos, Quaternion.identity, transform);
+
+                GridObstacle obstacle = new GridObstacle
+                //gridX, gridY, width, heightë¥¼ í† ëŒ€ë¡œ ì¥ì• ë¬¼ structì˜ x, y, width, heightë¥¼ ì¶”ê°€
+                {
+                    x = gridX,
+                    y = gridY,
+                    width = width,
+                    height = height,
+                    instance = instance // ìƒì„±ëœ ê²Œì„ ì˜¤ë¸Œì íŠ¸ ì €ì¥
+                };
+                obstacles.Add(obstacle); //í•´ë‹¹ ì¥ì• ë¬¼ì„ obstaclesë¼ëŠ” ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
+                Debug.Log($"{obstacle.x}, {obstacle.y} ìœ„ì¹˜ì— ì¥ì• ë¬¼ ìƒì„±ë¨");
+
+                placedCount++; //ë°°ì¹˜ëœ ì¥ì• ë¬¼ ê°œìˆ˜ 1 ì¦ê°€
             }
-            else
+            attempts++; //ì‹œë„ íšŸìˆ˜ ì¦ê°€
+        }
+    }
+    private bool AreaAvailable(int objPosX, int objPosY, int width, int height)
+    {
+        if (objPosX < 0 || objPosX + width > gridWidth || objPosY < 0 || objPosY + height > gridHeight) return false;
+        //ê·¸ë¦¬ë“œ ë²”ìœ„ë¥¼ ë²—ì–´ë‚˜ê²Œ ë˜ë©´ falseë¥¼ ë°˜í™˜í•¨
+        if (dontOverlapAdj) //ê²¹ì¹˜ì§€ ì•Šì•˜ì„ ê²½ìš°
+        {
+            int checkObjPosX = Mathf.Max(0, objPosX - AdjPadding);
+            int checkObjPosY = Mathf.Max(0, objPosY - AdjPadding);
+            int checkEndX = Mathf.Min(gridWidth, objPosX + width + AdjPadding);
+            int checkEndY = Mathf.Min(gridHeight, objPosY + height + AdjPadding);
+            //ì˜¤ë¸Œì íŠ¸ì˜ ë ë¶€ë¶„ ê²€ì‚¬. gridWidthë¶€í„° objPosXì˜ í¬ê¸°ì— ì—¬ë°±ì„ ë”í•œë§Œí¼. 
+            //ì˜ˆì‹œë¡œ gridHeightê°€ 10, objPosYê°€ 4, heightê°€ 2, adjPaddingì´ 1ì´ë¼ë©´ 4ì—ì„œ 7ê¹Œì§€ ê²€ì‚¬í•¨. 
+
+            for (int x = checkObjPosX; x < checkEndX; x++)
             {
-                i--;
-                attempt--;
-                continue;
+                for (int y = checkObjPosY; y < checkEndY; y++)
+                {
+                    if (grid[x, y] != 0) //x, yê°€ 0ì´ ì•„ë‹ ê²½ìš° ì¦‰, ì¥ì• ë¬¼ ë°°ì¹˜ ë¶ˆê°€ ì¹¸ì´ë¼ë©´
+                    {
+                        return false; //ì˜ì—­ì— ì¥ì• ë¬¼ ë°°ì¹˜ ë¶ˆê°€ë¡œ ì—¬ê¹€
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int x = objPosX; x < objPosX + width; x++)
+            {
+                for (int y = objPosY; y < objPosY + height; y++)
+                {
+                    if (grid[x, y] != 0) //x, yê°€ 0ì´ ì•„ë‹ ê²½ìš° ì¦‰, ì¥ì• ë¬¼ ë°°ì¹˜ ë¶ˆê°€ ì¹¸ì´ë¼ë©´
+                    {
+                        return false;  //ì˜ì—­ì— ì¥ì• ë¬¼ ë°°ì¹˜ ë¶ˆê°€ë¡œ ì—¬ê¹€
+                    }
+                }
+            }
+        }
+        return true; //ì´ì™¸ì˜ ê²½ìš° trueë¡œ ë°˜í™˜í•˜ì—¬ ì¥ì• ë¬¼ì„ ë°°ì¹˜í•  ìˆ˜ ìˆê²Œ í•´ì¤Œ
+    }
+
+    private void MarkArea(int objPosX, int objPosY, int width, int height, GameObject prefab) //ì¥ì• ë¬¼ì˜ x, y ì¢Œí‘œ ë° ì¥ì• ë¬¼ í¬ê¸°, í”„ë¦¬íŒ¹ íƒ€ì…
+    {
+        int obstacleValue = (prefab == water) ? 3 : 1; // ë¬¼ ì¥ì• ë¬¼ì¸ ê²½ìš° ê·¸ë¦¬ë“œ ê°’ì„ 3ìœ¼ë¡œ ì„¤ì •, ì•„ë‹Œ ê²½ìš° 1ë¡œ ì„¤ì •
+
+        for (int x = objPosX; x < objPosX + width; x++) //xëŠ” ì¥ì• ë¬¼ì˜ xì¢Œí‘œ, xì¢Œí‘œ + ì˜¤ë¸Œì íŠ¸ ì‚¬ì´ì¦ˆ ë§Œí¼ ë°˜ë³µ
+        {
+            for (int y = objPosY; y < objPosY + height; y++) //yëŠ” ì¥ì• ë¬¼ì˜ yì¢Œí‘œ, yì¢Œí‘œ + ì˜¤ë¸Œì íŠ¸ ì‚¬ì´ì¦ˆ ë§Œí¼ ë°˜ë³µ
+            {
+                grid[x, y] = obstacleValue; //ì¥ì• ë¬¼ íƒ€ì…ì— ë”°ë¼ ê·¸ë¦¬ë“œ ê°’ ì„¤ì •
+            }
+        }
+
+        if (dontOverlapAdj)
+        {
+            for (int x = objPosX - AdjPadding; x < objPosX + width + AdjPadding; x++)
+            {
+                for (int y = objPosY - AdjPadding; y < objPosY + height + AdjPadding; y++)
+                {
+                    // ì¥ì• ë¬¼ ì£¼ë³€ìœ¼ë¡œ ì¸ì‹ë˜ëŠ” ì¹¸ì´ ê·¸ë¦¬ë“œ ì•ˆì— ìˆëŠ”ì§€ í™•ì¸
+                    if (x >= 0 && x < gridWidth && y >= 0 && y < gridHeight)
+                    {
+                        // ì¥ì• ë¬¼ ë‚´ë¶€ê°€ ì•„ë‹ˆë¼ë©´
+                        bool isInsideObstacle = (x >= objPosX && x < objPosX + width &&
+                                               y >= objPosY && y < objPosY + height);
+
+                        if (!isInsideObstacle && grid[x, y] == 0)
+                        {
+                            grid[x, y] = 2; //ì¸ì ‘ ì˜ì—­ì€ 2ë¡œ ì§€ì •í•¨
+                        }
+                    }
+                }
             }
         }
     }
-
-    private bool IsAreaAvailable(int startX, int startY, int sizeX, int sizeY)
+    private Vector2 GridToWorld(float gridX, float gridY)
     {
-        for (int i = startX; i < startX + sizeX; i++) //int i °ªÀÌ startX ÁÂÇ¥ °ªÀÌ¶ó Ä¡°í, i°ªÀÌ startX¿Í sizeX¸¦ ´õÇÑ °ªº¸´Ù ÀûÀ» ¶§
-        {
-            for (int j = startY; j < startY + sizeY; j++) //int j°ªÀÌ startY¶ó°í Ä¡°í, j°ªÀÌ startY¿Í sizeY¸¦ ´õÇÑ °ªº¸´Ù ÀûÀ» ¶§
-            {
-                if (i < 0 || i >= width || j < 0 || j >= height || nodes[i, j] != 0)
-                //i°¡ 0º¸´Ù Àû°Å³ª, i°¡ nodesÀÇ °¡·Î ±æÀÌº¸´Ù Å©°Å³ª, j°¡ 0º¸´Ù ÀÛ°Å³ª, nodesÀÇ ¼¼·Î ±æÀÌº¸´Ù Å©°Å³ª, nodes[i, j]ÀÇ °ªÀÌ 0ÀÌ ¾Æ´Ï¶ó¸é
-                return false;
-                //Debug.Log($"{i}, {j}¿¡¼­ »ı¼º ½Ãµµ");
-            }
-        }
-        return true;
+        return new Vector2(minX + gridX, minY + gridY);
+        //minXë¼ëŠ” ìµœì†Œ xê°’ì— gridXë§Œí¼ì„ ì¶”ê°€í•œ ê°’ì„ ë°˜í™˜
     }
 
-    private void SetArea(int startX, int startY, int sizeX, int sizeY)
+    public Vector2Int WorldToGrid(Vector2 worldPos) //worldPosë¥¼ ê·¸ë¦¬ë“œë¡œ ë°˜í™˜
     {
-        for (int i = startX; i < startX + sizeX; i++)
-        {
-            for (int j = startY; j < startY + sizeY; j++)
-            {
-                int realWidth = width - 2;
-                int realHeight = height - 2;
-                nodes[i, j] = 1; //nodes [i, j]ÀÇ °ªÀ» 1À¸·Î ÁöÁ¤ÇÏ¿© ´Ù¸¥ Àå¾Ö¹°ÀÌ ¹èÄ¡µÇÁö ¸øÇÏ°Ô ¸·À½
-                if (i < realWidth) nodes[i + 1, j] = 2; //¿À¸¥ÂÊ
-                if (i < realWidth && j < realHeight) nodes[i + 1, j + 1] = 2; //¿ìÃø ÇÏ´Ü
-                if (j < realHeight) nodes[i, j + 1] = 2; //ÇÏ´Ü
-                if (i > 0 && j < realHeight) nodes[i - 1, j + 1] = 2; //ÁÂÃø ÇÏ´Ü
-                if (i > 0) nodes[i - 1, j] = 2; //¿ŞÂÊ
-                if (i > 0 && j > 0) nodes[i - 1, j - 1] = 2; //¿ŞÂÊ »ó´Ü
-                if (j > 0) nodes[i, j - 1] = 2; //À§
-                if (i < realWidth && j > 0) nodes[i + 1, j - 1] = 2; //¿ìÃø»ó´Ü
-
-                //Debug.Log($"{nodes}ÀÇ {i}, {j} ÁÂÇ¥¿¡ »ı¼ºµÊ"); //¾î´À ÁÂÇ¥°¡ 1·Î ÁöÁ¤µÇ¾ú´ÂÁö È®ÀÎ
-                locations.Add((i, j));
-            }
-        }
+        int x = Mathf.FloorToInt(worldPos.x - minX); //ì†Œìˆ˜ì  ì•„ë˜ëŠ” ë–¼ì–´ë²„ë¦¼
+        int y = Mathf.FloorToInt(worldPos.y - minY);
+        return new Vector2Int(x, y);
     }
+
+    // ê·¸ë¦¬ë“œ ìƒíƒœ í™•ì¸ (0: ë¹ˆ ê³µê°„, 1: ì¼ë°˜ ì¥ì• ë¬¼, 2: ì¸ì ‘ ì˜ì—­, 3: ë¬¼ ì¥ì• ë¬¼, -1: ìœ íš¨í•˜ì§€ ì•Šì€ ìœ„ì¹˜)
+    public int GetGridValue(int x, int y)
+    {
+        if (x >= 0 && x < gridWidth && y >= 0 && y < gridHeight)
+        {
+            return grid[x, y]; //xì™€ yê°€ ê·¸ë¦¬ë“œ ë²”ìœ„ ë‚´ì— ìˆë‹¤ë©´ ì¢Œí‘œê°’ì„ ë°˜í™˜í•¨
+        }
+        return -1; //ì•„ë‹ ê²½ìš° -1ë¥¼ ë°˜í™˜
+    }
+
+    // ë””ë²„ê¹…ìš© ê·¸ë¦¬ë“œ ì‹œê°í™”
+    //private void OnDrawGizmos()
+    //{
+    //    if (!Application.isPlaying)
+    //        return;
+
+    //    if (grid == null)
+    //        return;
+
+    //    // ê·¸ë¦¬ë“œ ì˜ì—­ ì „ì²´ ì‹œê°í™”
+    //    Gizmos.color = Color.green;
+    //    Vector3 center = new Vector3((minX + maxX) * 0.5f, (minY + maxY) * 0.5f, 0);
+    //    Vector3 size = new Vector3(maxX - minX, maxY - minY, 0.1f);
+    //    Gizmos.DrawWireCube(center, size);
+
+    //    // ê°œë³„ ì…€ ì‹œê°í™”
+    //    for (int x = 0; x < grid.GetLength(0); x++)
+    //    {
+    //        for (int y = 0; y < grid.GetLength(1); y++)
+    //        {
+    //            // ê·¸ë¦¬ë“œ ì¢Œí‘œë¥¼ ì›”ë“œ ì¢Œí‘œë¡œ ë³€í™˜
+    //            Vector3 worldPos = GridToWorld(x + 0.5f, y + 0.5f);
+
+    //            switch (grid[x, y])
+    //            {
+    //                case 1: // ì¼ë°˜ ì¥ì• ë¬¼
+    //                    Gizmos.color = new Color(1, 0, 0, 0.5f); // ë°˜íˆ¬ëª… ë¹¨ê°•
+    //                    Gizmos.DrawCube(worldPos, Vector3.one * 0.9f);
+    //                    break;
+    //                case 2: // ì¸ì ‘ ì˜ì—­
+    //                    Gizmos.color = new Color(1, 1, 0, 0.3f); // ë°˜íˆ¬ëª… ë…¸ë‘
+    //                    Gizmos.DrawCube(worldPos, Vector3.one * 0.5f);
+    //                    break;
+    //                case 3: // ë¬¼ ì¥ì• ë¬¼
+    //                    Gizmos.color = new Color(0, 0, 1, 0.5f); // ë°˜íˆ¬ëª… íŒŒë‘
+    //                    Gizmos.DrawCube(worldPos, Vector3.one * 0.9f);
+    //                    break;
+    //            }
+    //        }
+    //    }
+
+    //    // ìŠ¤í°ëœ ì¥ì• ë¬¼ ì‹œê°í™”
+    //    foreach (var obstacle in obstacles)
+    //    {
+    //        if (obstacle.instance == null)
+    //            continue;
+
+    //        // ì¤‘ì‹¬ì  í‘œì‹œ
+    //        Gizmos.color = Color.blue;
+    //        Gizmos.DrawWireSphere(obstacle.instance.transform.position, 0.2f);
+
+    //        // ì‹¤ì œ í¬ê¸°ë¡œ ì™€ì´ì–´í”„ë ˆì„ í‘œì‹œ
+    //        Gizmos.color = Color.cyan;
+    //        Vector2 bottomLeft = GridToWorld(obstacle.x, obstacle.y);
+    //        Vector2 topRight = GridToWorld(
+    //            obstacle.x + obstacle.width,
+    //            obstacle.y + obstacle.height
+    //        );
+    //        Vector2 center2D = (bottomLeft + topRight) * 0.5f;
+    //        Vector2 size2D = topRight - bottomLeft;
+
+    //        Gizmos.DrawWireCube(center2D, new Vector3(size2D.x, size2D.y, 0.1f));
+
+    //        // ì¥ì• ë¬¼ ì •ë³´ í‘œì‹œ ì„ 
+    //        Debug.DrawLine(
+    //            obstacle.instance.transform.position,
+    //            new Vector3(center2D.x, center2D.y, 0),
+    //            Color.white
+    //        );
+    //    }
+    //}
 }
