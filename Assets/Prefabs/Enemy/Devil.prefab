@@ -51,8 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 7223181663088380939}
-  isAttacking: 0
-  isPlayer: 0
   target: {fileID: 0}
   targetLayerMask:
     serializedVersion: 2

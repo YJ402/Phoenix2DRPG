@@ -23,19 +23,6 @@ public class EnemyController : BaseController
         targetLayerMask = target.gameObject.layer; 
     }
 
-    protected override void Rotate(Vector2 direction)
-    {
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        currentisLeft = Mathf.Abs(rotZ) > 90f;
-
-        if (currentisLeft != previsLeft)
-        {
-            characterRenderer.transform.parent.rotation *= Quaternion.Euler(0, 180, 0);
-        }
-
-        previsLeft = currentisLeft;
-    }
-
     public Vector2 DirectionToTarget()
     {
         Vector2 direction = (target.position - transform.position).normalized;

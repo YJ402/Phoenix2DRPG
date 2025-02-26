@@ -16,6 +16,7 @@ public class SkillManager : MonoBehaviour
     // 현재 적용된 액티브 스킬 (한 슬롯)
     private ActiveSkill currentActiveSkill;
 
+
     // 이미 적용된 패시브 스킬들을 관리하는 딕셔너리 (키: 스킬 타입, 값: 해당 패시브 스킬 컴포넌트)
     private Dictionary<System.Type, PassiveSkill> passiveSkills = new Dictionary<System.Type, PassiveSkill>();
 
@@ -74,6 +75,8 @@ public class SkillManager : MonoBehaviour
 
     private void HandleActiveSkill(ActiveSkill newSkill)
     {
+        currentActiveSkill = newSkill;
+
         if (playerSkill != null)
         {
             playerSkill.SetorUpgradeActiveSkill(newSkill);
