@@ -40,7 +40,7 @@ public class RangeStatHandler : StatHandler
     }
 
     
-    public void Shoot(Vector2 _lookDirection)
+    public override void Shoot(Vector2 _lookDirection)
     {
         
         float projectilesAngleSpace = multipleProjectilesAngel;

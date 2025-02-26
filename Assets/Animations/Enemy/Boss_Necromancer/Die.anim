@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Attack
+  m_Name: Die
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,21 +21,25 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 1139501022, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
+      value: {fileID: -464532906, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
     - time: 0.125
-      value: {fileID: 387152969, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
+      value: {fileID: 172610860, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
     - time: 0.25
-      value: {fileID: -766952447, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
+      value: {fileID: -173395029, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
     - time: 0.375
-      value: {fileID: -1958678421, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
+      value: {fileID: 1390057740, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
     - time: 0.5
-      value: {fileID: -766952447, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
+      value: {fileID: 958551185, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
     - time: 0.625
-      value: {fileID: -1887855744, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
+      value: {fileID: 2090434702, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
     - time: 0.75
-      value: {fileID: 454116856, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
+      value: {fileID: -1886202739, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
     - time: 0.875
-      value: {fileID: -1814762602, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
+      value: {fileID: -900496767, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
+    - time: 1
+      value: {fileID: -3768521, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
+    - time: 1.125
+      value: {fileID: 596694169, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -58,20 +62,22 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 1139501022, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
-    - {fileID: 387152969, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
-    - {fileID: -766952447, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
-    - {fileID: -1958678421, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
-    - {fileID: -766952447, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
-    - {fileID: -1887855744, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
-    - {fileID: 454116856, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
-    - {fileID: -1814762602, guid: 86235d2ba561f0549acfca186f9a0685, type: 3}
+    - {fileID: -464532906, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
+    - {fileID: 172610860, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
+    - {fileID: -173395029, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
+    - {fileID: 1390057740, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
+    - {fileID: 958551185, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
+    - {fileID: 2090434702, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
+    - {fileID: -1886202739, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
+    - {fileID: -900496767, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
+    - {fileID: -3768521, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
+    - {fileID: 596694169, guid: a22726993b3a2444299ddf72b2f04111, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 1.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -90,18 +96,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.625
-    functionName: CheckMeleeAttackSuccess
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1
-    functionName: ExitAttack
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
