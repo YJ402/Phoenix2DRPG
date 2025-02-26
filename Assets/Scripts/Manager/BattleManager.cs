@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
+    public static BattleManager Instance { get; private set; }
+
     EnemyManager enenmyManager;
     PlayerController playerController;
     ObstacleManager obstacleManager;
     //UI매니저의 커렌트 state 받아오기.
 
     public GameObject player;
+    public GameObject enemys;
 
     int[,] map;
     int stage;
@@ -19,6 +22,15 @@ public class BattleManager : MonoBehaviour
 
     public void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         enenmyManager = GetComponent<EnemyManager>();
         playerController = GetComponent<PlayerController>();
         obstacleManager = GetComponent<ObstacleManager>();
@@ -28,7 +40,10 @@ public class BattleManager : MonoBehaviour
         enenmyManager.Init(map, stage);
 
     }
-
+    private void Start()
+    {
+        StartRound();
+    }
     private void LoadPlayerData()
     {
         // 라운드 전환시에 데이터 저장 클래스에서 정보 받아와서 Player, 스테이지, 라운드 입력해주기.
@@ -39,7 +54,8 @@ public class BattleManager : MonoBehaviour
         //맵 장애물 배치
         enenmyManager.SpawnEnemies(5);
         //필요하다면 플레이어 소환 or 조정
-
+        player.transform.position = new Vector3(0.5f, -10f, player.transform.position.z);
+        PlayerData.Instance.RoundStartPlayerSetting();
         //몬스터에게 플레이어를 target으로 입력해주기.
 
         PlayerSkill playerskill = player.GetComponent<PlayerSkill>();

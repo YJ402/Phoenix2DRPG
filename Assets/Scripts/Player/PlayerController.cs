@@ -20,6 +20,7 @@ public class PlayerController : BaseController
     protected override void Awake()
     {
         base.Awake();
+        enemys = BattleManager.Instance.enemys.transform;
         rangeStatHandler = GetComponent<RangeStatHandler>();
         barImage = hpSlider.fillRect.GetComponent<Image>();
     }
@@ -28,8 +29,6 @@ public class PlayerController : BaseController
     {
         base.Start();
         rangeCircle.transform.localScale = new Vector3(2* rangeStatHandler.AttackRange, 2* rangeStatHandler.AttackRange); // 임시로 생성한 사정거리 원 크기
-        PlayerData.Instance.ApplyPassiveSkill();
-        
     }
 
     protected override void Update()

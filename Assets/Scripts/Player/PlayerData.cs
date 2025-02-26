@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    public Transform player;
     private int clearStage = 0;
     public int ClearStage
     {
@@ -11,8 +12,8 @@ public class PlayerData : MonoBehaviour
         set { clearStage = value; }
     }
 
-    private int currentHP;
-    public int CurrentHP
+    private float currentHP;
+    public float CurrentHP
     {
         get { return currentHP; }
         set { currentHP = value; }
@@ -36,7 +37,12 @@ public class PlayerData : MonoBehaviour
     public void RoundStartPlayerSetting()
     {
         ApplyPassiveSkill();
+        player.GetComponent<ResourceController>().CurrentHealth = CurrentHP;
+    }
 
+    public void RoundEndPlayerSetting()
+    {
+        currentHP = player.GetComponent<ResourceController>().CurrentHealth;
     }
     public void SaveCurrentHP(int currentHP)
     {
