@@ -9,6 +9,7 @@ public enum UIState
     Title,
     Lobby,
     Battle,
+    SkillPoint,
     HealthBar,
     SelectSkill,
     EquipSkill,
@@ -20,6 +21,7 @@ public class UIManager : MonoBehaviour
     TitleUI titleUI;
     LobbyUI lobbyUI;
     BattleUI battleUI;
+    // SkillPointUI skillPointUI;
     // HealthBarUI healBarUI;
     // SelectSkillUI selectSkillUI;
     // EquipSkillUI equipSkillUI;
@@ -35,6 +37,8 @@ public class UIManager : MonoBehaviour
         lobbyUI?.Init(this);
         battleUI = GetComponentInChildren<BattleUI>(true);
         battleUI?.Init(this);
+        // skillPointUI = GetComponentInChildren<SkillPointUI>(true);
+        // skillPointUI?.Init(this);
         // HealthBarUI = GetComponentInChildren<HealthBarUI>(true);
         // HealthBarUI.Init(this);
         // SelectSkillUI = GetComponentInChildren<SelectSkillUI>(true);
