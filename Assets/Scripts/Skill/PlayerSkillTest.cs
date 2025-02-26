@@ -37,7 +37,7 @@
 //    /// <summary>
 //    /// 외부(예: 보상 시스템)에서 새로운 액티브 스킬을 설정하거나 업그레이드할 때 호출합니다.
 //    /// </summary>
-//    public void SetorUpgradeActiveSkill(ActiveSkill newSkill)
+//    public void SetOrUpgradeActiveSkill(ActiveSkill newSkill)
 //    {
 //        // 같은 타입의 스킬이면 업그레이드
 //        if (activeSkill != null && activeSkill.GetType() == newSkill.GetType())
