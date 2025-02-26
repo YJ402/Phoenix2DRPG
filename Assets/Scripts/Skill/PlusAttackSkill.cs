@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class PlusAttackSkill : PassiveSkill
 {
-    public string skillName = "PlusAttack";
-
+    public new string name = "PlusAttackSkill";
     public int attackIncrease = 1;
 
     private bool bonusApplied = false;
