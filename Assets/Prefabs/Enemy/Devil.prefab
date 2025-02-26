@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1101534868242660239}
   - component: {fileID: 8147609689754165905}
   - component: {fileID: 783436167169622748}
-  - component: {fileID: 8204419227848658961}
   - component: {fileID: 5835125908001579257}
   - component: {fileID: 6410804321825611463}
   - component: {fileID: 1354103858783096769}
@@ -69,22 +68,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dccd7164c6366c5418671c5b2a40529e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8204419227848658961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802623538465189238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d3ce4952bd719748895659e51c382bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelCollisionLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  fxOnDestory: 1
 --- !u!114 &5835125908001579257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e680b3b9b3095542910ad66c3a846d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOnKnockback: 0
+  isOnKnockback: 1
   knockbackPower: 0.1
   knockbackTime: 0.5
   maxHealth: 1000
@@ -107,13 +90,13 @@ MonoBehaviour:
   attackDistance: 2.92
   target:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   projectileSpawnPosition: {fileID: 185080765082749772}
   bulletIndex: 1
   bulletSpeed: 1
   bulletCount: 1
-  multipleProjectilesAngel: 0
-  spread: 0
+  multipleProjectilesAngel: 5
+  spread: 5
 --- !u!114 &6410804321825611463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +194,7 @@ GameObject:
   - component: {fileID: 6728355153353958480}
   - component: {fileID: 7223181663088380939}
   - component: {fileID: 8815956087579581477}
+  - component: {fileID: 2606840349316033077}
   m_Layer: 7
   m_Name: MainSprite
   m_TagString: Untagged
@@ -306,6 +290,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2606840349316033077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629336532397964132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb42960419e11e54a8dc17e08f25dca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5053539448670876063
 GameObject:
   m_ObjectHideFlags: 0

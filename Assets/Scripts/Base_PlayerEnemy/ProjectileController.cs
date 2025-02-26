@@ -54,6 +54,7 @@ public class ProjectileController : MonoBehaviour
             if (resourceController != null)
             {
                 resourceController.ChangeHealth(-rangeStatHandler.AttackPower);
+                Debug.Log($"체력 변경: {-rangeStatHandler.AttackPower} \n 잔여 체력: {resourceController.CurrentHealth}");
                 if (rangeStatHandler.IsOnKnockback)
                 {
                     BaseController controller = collision.GetComponent<BaseController>();

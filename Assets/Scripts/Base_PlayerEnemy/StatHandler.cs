@@ -117,6 +117,10 @@ public class StatHandler : MonoBehaviour
     {
 
     }
-}                                                          //                                                           
 
-                                                                                                                      
+    public virtual void CheckHit(Vector2 _lookDirection)
+    {
+
+    }
+}
+
