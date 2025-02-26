@@ -68,7 +68,8 @@ public class PlayerController : BaseController
         {
             foreach (Transform enemyTransform in enemys)
             {
-                if (targetTransform == null || Vector3.Distance(transform.position, targetTransform.position) > Vector3.Distance(transform.position, enemyTransform.position))
+                BaseController enemybasecontroller = enemyTransform.GetComponent<BaseController>();
+                if ((targetTransform == null || Vector3.Distance(transform.position, targetTransform.position) > Vector3.Distance(transform.position, enemyTransform.position) )&& !enemybasecontroller.IsDead)
                 {
                     targetTransform = enemyTransform;
                 }

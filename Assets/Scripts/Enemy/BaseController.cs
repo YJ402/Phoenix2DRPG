@@ -26,7 +26,8 @@ public class BaseController : MonoBehaviour
 
     protected bool currentisLeft;
     bool previsLeft;
-
+    private bool isDead = false;
+    public bool IsDead { get { return isDead; } private set { isDead = value; } }
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -117,6 +118,7 @@ public class BaseController : MonoBehaviour
 
     public virtual void Death()
     {
+        IsDead = true;
         _rigidbody.velocity = Vector3.zero;
 
         foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
