@@ -5,35 +5,18 @@ using UnityEngine;
 public class PlayerSkill : MonoBehaviour
 {
     public ActiveSkill activeSkill;
-
     private float lastSkillTime = -Mathf.Infinity;
 
     void Update()
     {
-        // Z 키를 눌렀고, 쿨다운이 끝났으면 스킬 활성화
-        if (Input.GetKeyDown(KeyCode.Z) && Time.time >= lastSkillTime + ((ActiveSkill)activeSkill).coolDown)
+        if (Input.GetKeyDown(KeyCode.Z) && activeSkill != null && Time.time >= lastSkillTime + activeSkill.coolDown)
         {
             activeSkill.Activate(gameObject);
             lastSkillTime = Time.time;
         }
     }
-    public void ActivateActiveSkill()
-    {
-        if (activeSkill == null)
-        {
-            return;
-        }
-        if (Time.time >= lastSkillTime + activeSkill.coolDown)
-        {
-            activeSkill.Activate(gameObject);
-            lastSkillTime = Time.time;
-        }
-        else
-        {
-            Debug.Log("스킬 쿨타임입니다.");
-        }
-    }
-    public void SetorUpgradeActiveSkill(ActiveSkill newSkill)
+
+    public void SetOrUpgradeActiveSkill(ActiveSkill newSkill)
     {
         if (activeSkill != null && activeSkill.GetType() == newSkill.GetType())
         {
@@ -49,6 +32,18 @@ public class PlayerSkill : MonoBehaviour
             activeSkill.skillName = newSkill.skillName;
             activeSkill.coolDown = newSkill.coolDown;
             activeSkill.duration = newSkill.duration;
-        }      
+        }
+    }
+    public void ActivateActiveSkill()
+    {
+        if (activeSkill == null)
+        {
+            return;
+        }
+        if (Time.time >= lastSkillTime + activeSkill.coolDown)
+        {
+            activeSkill.Activate(gameObject);
+            lastSkillTime = Time.time;
+        }
     }
 }

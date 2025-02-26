@@ -75,7 +75,7 @@ public class SkillManager : MonoBehaviour
     {
         if (playerSkill != null)
         {
-            playerSkill.SetorUpgradeActiveSkill(newSkill);
+            playerSkill.SetOrUpgradeActiveSkill(newSkill);
         }
     }
 
