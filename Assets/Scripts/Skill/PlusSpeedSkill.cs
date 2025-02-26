@@ -12,10 +12,6 @@ public class PlusSpeedSkill : PassiveSkill
     {
         skillName = "PlusSpeedSkill";
     }
-    public override void Activate(GameObject user)
-    {
-        
-    }
     public override void ApplySkill()
     {
         statHandler = GetComponent<StatHandler>();

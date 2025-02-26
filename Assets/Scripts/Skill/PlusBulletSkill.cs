@@ -12,10 +12,6 @@ public class PlusBulletSkill : PassiveSkill
     {
         skillName = "PlusBulletSkill";
     }
-    public override void Activate(GameObject user)
-    {
-        
-    }
     public override void ApplySkill()
     {
         rangeStatHandler = GetComponent<RangeStatHandler>();

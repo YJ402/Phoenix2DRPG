@@ -12,10 +12,6 @@ public class PlusHealthSkill : PassiveSkill
     {
         skillName = "PlusHealthSkill";
     }
-    public override void Activate(GameObject user)
-    {
-        
-    }
     public override void ApplySkill()
     {
         statHandler = GetComponent<StatHandler>();

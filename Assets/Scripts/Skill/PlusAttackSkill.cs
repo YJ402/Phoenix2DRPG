@@ -15,10 +15,6 @@ public class PlusAttackSkill : PassiveSkill
     {
         skillName = "PlusAttack";
     }
-    public override void Activate(GameObject user)
-    {
-        
-    }
     public override void ApplySkill()
     {
         statHandler = GetComponent<StatHandler>();

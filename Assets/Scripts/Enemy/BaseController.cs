@@ -5,7 +5,7 @@ public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
 
-    [SerializeField] private SpriteRenderer characterRenderer;
+    [SerializeField] protected SpriteRenderer characterRenderer;
     //[SerializeField] private Transform weaponPivot;
 
     protected Vector2 movementDirection = Vector2.zero;
@@ -24,7 +24,7 @@ public class BaseController : MonoBehaviour
     protected bool isAttacking;
     private float timeSinceLastAttack = float.MaxValue;
 
-    bool currentisLeft;
+    protected bool currentisLeft;
     bool previsLeft;
 
     protected virtual void Awake()
@@ -65,7 +65,7 @@ public class BaseController : MonoBehaviour
 
     }
 
-    private void Movment(Vector2 direction)
+    protected virtual void Movment(Vector2 direction)
     {
         direction = direction * statHandler.Speed;
         if (knockbackDuration > 0.0f)
@@ -78,26 +78,9 @@ public class BaseController : MonoBehaviour
         animationHandler.Move(direction);
     }
 
-    private void Rotate(Vector2 direction)
+    protected virtual void Rotate(Vector2 direction)
     {
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        currentisLeft = Mathf.Abs(rotZ) > 90f;
 
-        if (currentisLeft != previsLeft)
-        {
-            Vector2 scale = characterRenderer.transform.parent.localScale;
-            scale.x *= -1;
-            characterRenderer.transform.parent.localScale = scale;
-        }
-
-        previsLeft = currentisLeft;
-
-        //if (weaponPivot != null)
-        //{
-        //    weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
-        //}
-
-        //weaponHandler?.Rotate(isLeft);
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
