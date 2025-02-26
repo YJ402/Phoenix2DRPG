@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletDoubleSkill : ActiveSkill
+public class BulletDoubleSkill : BaseSkill
 {
     public float bulletMultiplier = 2f;
 
     public override void Activate(GameObject user)
     {
-        RangeStatHandler rangeStatHandler = user.GetComponent<RangeStatHandler>();
-        if (rangeStatHandler != null)
+        PlayerStatus playerStatus = user.GetComponent<PlayerStatus>();
+        if (playerStatus != null)
         {
-            StartCoroutine(ApplyBulletDouble(rangeStatHandler));
+            playerStatus.StartCoroutine(ApplyBulletDouble(playerStatus));
         }
     }
-    private IEnumerator ApplyBulletDouble(RangeStatHandler rangeStatHandler)
+    private IEnumerable ApplyBulletDouble(PlayerStatus playerStatus)
     {
-        int originalBulletCount = rangeStatHandler.BulletCount;
-        rangeStatHandler.BulletCount = Mathf.RoundToInt(originalBulletCount * bulletMultiplier);
+        int originalBulletCount = PlayerStatus.bulletCount;
+        playerStatus.bulletCount = Mathf.RoundToInt(originalBulletCount * bulletMultiplier);
         yield return new WaitForSeconds(duration);
-        rangeStatHandler.BulletCount = originalBulletCount;
+
+        playerStatus.bulletCount = originalBulletCount;
     }
 }
 

@@ -3,32 +3,32 @@ using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
-public class AttackIncreaseSkill : ActiveSkill
+public class AttackIncreaseSkill : BaseSkill
 {
     public float baseAttackMultiplier = 2f;
     public float attackMultiplierPerLevel = 0.5f;
 
     public override void Activate(GameObject user)
     {
-        StatHandler statHandler = user.GetComponent<StatHandler>();
-        if (statHandler != null)
+        PlayerStatus playerStatus = user.GetComponent<PlayerStatus>();
+        if (playerStatus != null)
         {
-            statHandler.StartCoroutine(ApplyAttackIncrease(statHandler));
+            playerStatus.StartCoroutine(ApplyAttackIncrease(playerStatus));
         }
     }
 
-    private IEnumerator ApplyAttackIncrease(StatHandler statHandler)
+    private IEnumerator ApplyAttackIncrease(PlayerStatus playerStatus)
     {
         float effectiveMultiplier = baseAttackMultiplier + (level - 1) * attackMultiplierPerLevel;
 
         // 원래 공격력 저장 후 증가된 공격력 적용
-        int originalAttack = statHandler.AttackPower;
-        statHandler.AttackPower = Mathf.RoundToInt(originalAttack * effectiveMultiplier);
+        float originalAttack = playerStatus.attack;
+        playerStatus.attack *= effectiveMultiplier;
 
         // 효과 지속 시간 대기
         yield return new WaitForSeconds(duration);
 
         // 효과 종료 후 공격력 복원
-        statHandler.AttackPower = originalAttack;
+        playerStatus.attack = originalAttack;
     }
 }
