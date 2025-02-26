@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     BattleUI battleUI;
     // SkillPointUI skillPointUI;
     // HealthBarUI healBarUI;
-    // SelectSkillUI selectSkillUI;
+    SelectSkillUI selectSkillUI;
     // EquipSkillUI equipSkillUI;
     // GameOverUI gameOverUI;
     //
@@ -41,8 +41,8 @@ public class UIManager : MonoBehaviour
         // skillPointUI?.Init(this);
         // HealthBarUI = GetComponentInChildren<HealthBarUI>(true);
         // HealthBarUI.Init(this);
-        // SelectSkillUI = GetComponentInChildren<SelectSkillUI>(true);
-        // SelectSkillUI.Init(this);
+        selectSkillUI = GetComponentInChildren<SelectSkillUI>(true);
+        selectSkillUI?.Init(this);
         // EquipSkillUI = GetComponentInChildren<EquipSkillUI>(true);
         // EquipSkillUI.Init(this);
         // gameOverUI = GetComponentInChildren<GameOverUI>(true);

@@ -4,15 +4,5 @@ using UnityEngine;
 
 public class StartStageUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // 배틀 처음 접근시 StartStageUI 켜짐
 }

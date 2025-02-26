@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class SkillPointUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // // 상단 포인트 표시
+    // public void UpdatePoint(int point)
+    // {
+    //     if (pointText != null)
+    //     {
+    //         pointText.text = $"Point {point}";
+    //     }
+    // }
 }

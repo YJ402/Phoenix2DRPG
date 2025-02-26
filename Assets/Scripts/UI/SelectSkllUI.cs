@@ -1,84 +1,88 @@
-// using UnityEngine;
-// using UnityEngine.UI;
-// using System;
-//
-// // BaseUI를 상속한다고 가정 (없다면 MonoBehaviour로 교체)
-// public class SelectSkillUI : BaseUI
-// {
-//     [Header("UI Text Elements")]
-//     [SerializeField] private Text titleText;   // "Select Skill"
-//     [SerializeField] private Text pointText;   // "Point 3" 등 포인트 표시
-//
-//     [Header("Skill Slots")]
-//     // 스킬 슬롯 구조체
-//     [Serializable]
-//     public class SkillSlot
-//     {
-//         public Image skillIcon;      // 스킬 아이콘 이미지
-//         public Text skillInfoText;   // "SkillInfoText"
-//         public Button selectButton;  // "Select" 버튼
-//     }
-//
-//     // 3개의 슬롯을 배열로 관리
-//     [SerializeField] private SkillSlot[] skillSlots = new SkillSlot[3];
-//
-//     // UIManager 연동 (BaseUI 상속 시)
-//     public override void Init(UIManager manager)
-//     {
-//         base.Init(manager);
-//
-//         // 스킬 슬롯의 버튼에 클릭 이벤트 등록
-//         for (int i = 0; i < skillSlots.Length; i++)
-//         {
-//             int index = i; // 캡처 변수
-//             if (skillSlots[i].selectButton != null)
-//             {
-//                 skillSlots[i].selectButton.onClick.AddListener(() => OnSelectSkill(index));
-//             }
-//         }
-//
-//         // 기본 제목 설정 (원한다면 Inspector에서 직접 설정 가능)
-//         if (titleText != null)
-//         {
-//             titleText.text = "Select Skill";
-//         }
-//     }
-//
-//     public override void SetActive(UIState currentState)
-//     {
-//         // 예: UIState.Home → 로비, UIState.Game → 전투, UIState.SelectSkill → 스킬 선택
-//         // 프로젝트 상황에 맞게 상태 조건을 바꾸세요.
-//         bool isActive = (currentState == UIState.Home); 
-//         gameObject.SetActive(isActive);
-//     }
-//
-//     // 스킬 슬롯 정보를 갱신하는 함수
-//     public void UpdateSkillSlot(int slotIndex, Sprite icon, string info)
-//     {
-//         if (slotIndex < 0 || slotIndex >= skillSlots.Length) return;
-//
-//         SkillSlot slot = skillSlots[slotIndex];
-//         if (slot.skillIcon != null)
-//             slot.skillIcon.sprite = icon;
-//
-//         if (slot.skillInfoText != null)
-//             slot.skillInfoText.text = info;
-//     }
-//
-//     // 상단 포인트 표시
-//     public void UpdatePoint(int point)
-//     {
-//         if (pointText != null)
-//         {
-//             pointText.text = $"Point {point}";
-//         }
-//     }
-//
-//     // 스킬 선택 버튼을 눌렀을 때 호출
-//     private void OnSelectSkill(int slotIndex)
-//     {
-//         Debug.Log($"Skill Slot {slotIndex} selected.");
-//         // 여기서 실제 로직(예: 게임 매니저에 선택 결과 전달, 씬 전환 등)을 수행
-//         // e.g. uiManager.ChangeState(UIState.Game) or SceneManager.LoadScene("BattleScene");
-//     }
-// }
+using UnityEngine;
+using UnityEngine.UI;
+using System;
+
+public class SelectSkillUI : BaseUI
+{
+    [Header("Select Skill UI Root")]
+    [SerializeField] private GameObject selectSkillUI; // Unity에서 연결 (필요하다면)
+
+    [Header("UI Text Elements")]
+    [SerializeField] private Text titleText;   // "Select Skill"
+    [SerializeField] private Text pointText;   // "Point 3" 등 포인트 표시
+
+    // [Header("Skill Slots")]
+    [Serializable]
+    public class SkillSlot
+    {
+        public Text skillInfoText;
+        public Button selectButton;
+    }
+
+    [Header("Slot Array")]
+    [SerializeField] private SkillSlot[] skillSlots = new SkillSlot[3];
+
+    // BaseUI 구현: 어떤 UIState를 담당하는지 반환
+    protected override UIState GetUIState()
+    {
+        return UIState.SelectSkill;
+    }
+
+    // 초기화 (UIManager에서 호출)
+    public override void Init(UIManager manager)
+    {
+        base.Init(manager);
+
+        // 스킬 슬롯의 버튼에 클릭 이벤트 등록
+        for (int i = 0; i < skillSlots.Length; i++)
+        {
+            int index = i; // 람다 캡처용 임시 변수
+            if (skillSlots[i].selectButton != null)
+            {
+                skillSlots[i].selectButton.onClick.AddListener(() => OnSelectSkill(index));
+            }
+        }
+
+        // 필요하다면 제목/포인트 텍스트 초기화
+        if (titleText != null) titleText.text = "Select Skill";
+        if (pointText != null) pointText.text = "Point 3";
+    }
+
+    // 상태 전환 시 활성/비활성
+    public override void SetActive(UIState currentState)
+    {
+        // SelectSkillUI는 UIState.SelectSkill일 때만 활성화
+        bool isActive = (currentState == UIState.SelectSkill);
+        gameObject.SetActive(isActive);
+    }
+
+    // 스킬 슬롯 정보를 갱신하는 함수 (예시)
+    public void UpdateSkillSlot(int slotIndex, string info)
+    {
+        if (slotIndex < 0 || slotIndex >= skillSlots.Length) return;
+
+        var slot = skillSlots[slotIndex];
+        if (slot.skillInfoText != null)
+        {
+            slot.skillInfoText.text = info;
+        }
+    }
+
+    // 스킬 선택 버튼을 눌렀을 때
+    private void OnSelectSkill(int slotIndex)
+    {
+        Debug.Log($"Skill Slot {slotIndex} selected.");
+
+        // selectSkillUI 오브젝트를 꺼야 한다면:
+        if (selectSkillUI != null)
+        {
+            selectSkillUI.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("selectSkillUI 오브젝트가 설정되지 않았습니다.");
+        }
+
+        // 이후 스킬 선택 로직, 씬 전환, 포인트 차감 등 원하는 작업을 진행
+    }
+}
