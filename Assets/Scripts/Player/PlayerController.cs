@@ -60,22 +60,17 @@ public class PlayerController : BaseController
     {
         movementDirection= new Vector2 (Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized;
 
-        if (enemys.childCount == 0)
+        targetTransform = null;
+        foreach (Transform enemyTransform in enemys)
         {
-            targetTransform = null;
-        }
-        else
-        {
-            foreach (Transform enemyTransform in enemys)
+            BaseController enemybasecontroller = enemyTransform.GetComponent<BaseController>();
+
+            if ((targetTransform == null || Vector3.Distance(transform.position, targetTransform.position) > Vector3.Distance(transform.position, enemyTransform.position)) && !enemybasecontroller.IsDead)
             {
-                BaseController enemybasecontroller = enemyTransform.GetComponent<BaseController>();
-                if ((targetTransform == null || Vector3.Distance(transform.position, targetTransform.position) > Vector3.Distance(transform.position, enemyTransform.position) )&& !enemybasecontroller.IsDead)
-                {
-                    targetTransform = enemyTransform;
-                }
+                targetTransform = enemyTransform;
             }
         }
-        
+
 
         if (targetTransform != null)
         {
