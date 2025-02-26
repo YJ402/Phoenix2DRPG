@@ -15,12 +15,16 @@ public class ObstacleManager : MonoBehaviour
     public bool dontOverlapAdj = true; //장애물 주변이 겹치지 않는지 확인
     public int AdjPadding = 1; ////장애물 여백
 
-    private int[,] grid; //장애물 생성 가능 범위
+    public int[,] grid; //장애물 생성 가능 범위
     //int cellValue = obstacleManager.GetGridValue(x, y); 코드를 사용해 gridValue를 가져갈 수 있음
     //cellValue가 1이면 장애물, 2면 장애물 주변, 3이면 물, -1이라면 유효하지 않음
 
     private int minX, minY, maxX, maxY; //범위 최소치, 최대치
     private int gridWidth, gridHeight; //생성 범위의 가로, 세로 길이
+
+    private EnemyManager enemyManager;
+
+    private Item item;
 
     public struct GridObstacle
     {
@@ -33,7 +37,7 @@ public class ObstacleManager : MonoBehaviour
 
     public int[,] Grid => grid; //{get;} 대신 람다식 사용
 
-    private void Start()
+    private void Awake()
     {
         InitializeGrid(); //그리드 초기화
         SpawnObstacle(rock, 1, 1, 3); //돌, 1 x 1 크기, 3개
@@ -96,6 +100,8 @@ public class ObstacleManager : MonoBehaviour
             attempts++; //시도 횟수 증가
         }
     }
+
+
     private bool AreaAvailable(int objPosX, int objPosY, int width, int height)
     {
         if (objPosX < 0 || objPosX + width > gridWidth || objPosY < 0 || objPosY + height > gridHeight) return false;
@@ -170,7 +176,7 @@ public class ObstacleManager : MonoBehaviour
             }
         }
     }
-    private Vector2 GridToWorld(float gridX, float gridY)
+    public Vector2 GridToWorld(float gridX, float gridY)
     {
         return new Vector2(minX + gridX, minY + gridY);
         //minX라는 최소 x값에 gridX만큼을 추가한 값을 반환
@@ -192,6 +198,7 @@ public class ObstacleManager : MonoBehaviour
         }
         return -1; //아닐 경우 -1를 반환
     }
+}
 
     // 디버깅용 그리드 시각화
     //private void OnDrawGizmos()
@@ -264,4 +271,3 @@ public class ObstacleManager : MonoBehaviour
     //        );
     //    }
     //}
-}
