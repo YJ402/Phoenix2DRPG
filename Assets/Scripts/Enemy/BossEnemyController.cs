@@ -1,12 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BossEnemyController : EnemyController
 {
+    
+    public List<Action> bossEvent = new();
+
     protected override void Start()
     {
-         // 지워도 무방
+        base.Start();
+        bossEvent.Add(() => { });
+        bossEvent.Add(() => { });
+        bossEvent.Add(() => { });
+        bossEvent[0] += Attack1;
+        bossEvent[1] += Attack2;
+        bossEvent[2] += Attack3;
+    }
+
+    public void TriggerBossEvent(int i)
+    {
+        bossEvent[i]?.Invoke();
     }
 
     protected override void Attack(bool isAttack)
@@ -14,27 +29,18 @@ public class BossEnemyController : EnemyController
         base.Attack(isAttack); // Attack 애니메이션 트리거 // 추가 로직 작성 안할거면 지워도 무방.
     }
 
-    public void Attack1()
+    private void Attack1()
     {
         //몹 소환
     }
 
-    public void Attack2()
+    private void Attack2()
     {
-        //전체 공격
+        //범위 마법 공격
     }
 
-    public void Attack3()
+    private void Attack3()
     {
         //순간 이동
     }
-
-
-    //순간이동
-
-    //공격은 어디서 실행해?
-    //애니메이션은 어디서 실행해? =>BaseController.Attack에서 애니메이션만 실행시키고. 애니메이션의 이벤트로 공격을 가함.
-
-    //언제 할것인가?
-
 }

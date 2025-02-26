@@ -628,7 +628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 831828333922359289}
-  - component: {fileID: 8489373869659950823}
+  - component: {fileID: 8489373869659950825}
   - component: {fileID: 8489373869659950824}
   - component: {fileID: 6068819639777856655}
   - component: {fileID: 6644374908274422449}
@@ -651,8 +651,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6457497808182675494}
   - component: {fileID: 6989492226296176765}
-  - component: {fileID: 2373137701078582851}
   - component: {fileID: 6989492226296176766}
+  - component: {fileID: 6989492226296176767}
   m_Layer: 7
   m_Name: MainSprite
   m_TagString: Untagged
@@ -687,18 +687,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2373137701078582851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323741251360970514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb42960419e11e54a8dc17e08f25dca5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4819845613832117737
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +851,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6989492226296176767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323741251360970514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d14d634034c5942aab925c3325ebfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &6996187264139143172
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -924,25 +924,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8489373869659950823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144251361875378432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0684d7426f24364c98742f400573ac9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterRenderer: {fileID: 6989492226296176765}
-  isAttacking: 0
-  target: {fileID: 1832939603}
-  targetLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  followRange: 100
 --- !u!114 &8489373869659950824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,6 +936,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e1a58248cf9574db1cd62ac627c500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8489373869659950825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144251361875378432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61d69df9d78d0d42a39d80928e0dc19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterRenderer: {fileID: 6989492226296176765}
+  isAttacking: 0
+  target: {fileID: 1832939603}
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  followRange: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
