@@ -10,7 +10,6 @@ public class ResourceController : MonoBehaviour
     private AnimationHandler animationHandler;
     PlayerController playerController;
     private float timeSinceLastChange = float.MaxValue;
-
     public float CurrentHealth { get; private set; }
     public float MaxHealth => statHandler.MaxHealth;            //원래 healt는 최대체력 의미하는것이라 MaxHealth로 변경
 
@@ -57,6 +56,7 @@ public class ResourceController : MonoBehaviour
         CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
 
         OnChangeHealth?.Invoke(CurrentHealth, MaxHealth);
+        playerController?.UpdateHpSlider(CurrentHealth / MaxHealth);
 
         if (change < 0)
         {

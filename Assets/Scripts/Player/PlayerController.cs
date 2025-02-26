@@ -29,6 +29,7 @@ public class PlayerController : BaseController
         base.Start();
         rangeCircle.transform.localScale = new Vector3(2* rangeStatHandler.AttackRange, 2* rangeStatHandler.AttackRange); // 임시로 생성한 사정거리 원 크기
         PlayerData.Instance.ApplyPassiveSkill();
+        
     }
 
     protected override void Update()
@@ -59,27 +60,36 @@ public class PlayerController : BaseController
     {
         movementDirection= new Vector2 (Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized;
 
-        
-        foreach(Transform enemyTransform in enemys)
+        if (enemys.childCount == 0)
         {
-            if(targetTransform == null || Vector3.Distance(transform.position, targetTransform.position) > Vector3.Distance(transform.position, enemyTransform.position))
+            targetTransform = null;
+        }
+        else
+        {
+            foreach (Transform enemyTransform in enemys)
             {
-                targetTransform = enemyTransform;
+                if (targetTransform == null || Vector3.Distance(transform.position, targetTransform.position) > Vector3.Distance(transform.position, enemyTransform.position))
+                {
+                    targetTransform = enemyTransform;
+                }
             }
         }
+        
 
         if (targetTransform != null)
+        {
             targetDistance = Vector3.Distance(transform.position, targetTransform.position);
+            lookDirection = (targetTransform.position - transform.position).normalized;
+        }
 
-        lookDirection = (targetTransform.position - transform.position).normalized;
 
-        animationHandler.Attack(targetDistance < rangeStatHandler.AttackRange);
+        animationHandler.Attack((targetDistance < rangeStatHandler.AttackRange) && targetTransform != null);
     }
 
 
     //=================================================================
     // 캐릭터 체력바 UI관련
-
+    
     public void UpdateHpSlider(float percentage)
     {
         hpSlider.value = percentage;

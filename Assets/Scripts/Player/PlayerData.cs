@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    private int clearStage = 0;
+    public int ClearStage
+    {
+        get { return clearStage; }
+        set { clearStage = value; }
+    }
+
+    private int currentHP;
+    public int CurrentHP
+    {
+        get { return currentHP; }
+        set { currentHP = value; }
+    }
     public static PlayerData Instance { get; private set; }
     
     private void Awake()
@@ -20,18 +33,10 @@ public class PlayerData : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private int clearStage=0;
-    public int ClearStage
+    public void RoundStartPlayerSetting()
     {
-        get {return clearStage;}
-        set {clearStage = value;}
-    }
+        ApplyPassiveSkill();
 
-    private int currentHP;
-    public int CurrentHP
-    {
-        get { return currentHP; }
-        set { currentHP = value; }
     }
     public void SaveCurrentHP(int currentHP)
     {
@@ -47,10 +52,19 @@ public class PlayerData : MonoBehaviour
         }
         return false;
     }
-    public void UpGradeSkill()
+    public void AddSkill(BaseSkill skill)
     {
 
     }
+    public void UpGradeSkill(BaseSkill skill)
+    {
+        foreach(BaseSkill hasSkill in transform)
+        {
+            if(hasSkill == skill)
+                skill.UpgradeSkill();
+        }
+    }
+
     public void ClearSkillList()
     {
         foreach (Transform skill in transform)
