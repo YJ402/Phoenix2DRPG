@@ -1,44 +1,53 @@
-// using System;
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-//
-// public enum UIState
-// {
-//     Lobby,
-//     Battle,
-//     HealthBar,
-//     SelectSkill,
-//     EquipSkill,
-//     GameOver
-// }
-//
-// public class UIManager : MonoBehaviour
-// {   
-//     LobbyUI lobbyUI;
-//     BattleUI battleUI;
-//     HealthBarUI healBarUI;
-//     SelectSkillUI selectSkillUI;
-//     EquipSkillUI equipSkillUI;
-//     GameOverUI gameOverUI;
-//     private UIState currentState;
-//
-//     private void Awake()
-//     {
-//         lobbyUI = GetComponentInChildren<GameUI>(true);
-//         lobbyUI.Init(this);
-//         BattleUI = GetComponentInChildren<GameUI>(true);
-//         BattleUI.Init(this);
-//         HealthBarUI = GetComponentInChildren<GameUI>(true);
-//         HealthBarUI.Init(this);
-//         SelectSkillUI = GetComponentInChildren<GameUI>(true);
-//         SelectSkillUI.Init(this);
-//         EquipSkillUI = GetComponentInChildren<GameUI>(true);
-//         EquipSkillUI.Init(this);
-//         gameOverUI = GetComponentInChildren<GameOverUI>(true);
-//         gameOverUI.Init(this);
-//         
-//         ChangeState(UIState.Home);
-//     }
-//
-// }
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEngine;
+
+public enum UIState
+{
+    Title,
+    Lobby,
+    Battle,
+    SkillPoint,
+    HealthBar,
+    SelectSkill,
+    EquipSkill,
+    GameOver
+}
+
+public class UIManager : MonoBehaviour
+{   
+    TitleUI titleUI;
+    LobbyUI lobbyUI;
+    BattleUI battleUI;
+    // SkillPointUI skillPointUI;
+    // HealthBarUI healBarUI;
+    // SelectSkillUI selectSkillUI;
+    // EquipSkillUI equipSkillUI;
+    // GameOverUI gameOverUI;
+    //
+    private UIState currentState;
+
+    private void Awake()
+    {   
+        titleUI = GetComponentInChildren<TitleUI>(true);
+        titleUI?.Init(this);
+        lobbyUI = GetComponentInChildren<LobbyUI>(true);
+        lobbyUI?.Init(this);
+        battleUI = GetComponentInChildren<BattleUI>(true);
+        battleUI?.Init(this);
+        // skillPointUI = GetComponentInChildren<SkillPointUI>(true);
+        // skillPointUI?.Init(this);
+        // HealthBarUI = GetComponentInChildren<HealthBarUI>(true);
+        // HealthBarUI.Init(this);
+        // SelectSkillUI = GetComponentInChildren<SelectSkillUI>(true);
+        // SelectSkillUI.Init(this);
+        // EquipSkillUI = GetComponentInChildren<EquipSkillUI>(true);
+        // EquipSkillUI.Init(this);
+        // gameOverUI = GetComponentInChildren<GameOverUI>(true);
+        // gameOverUI.Init(this);
+        
+    }
+
+}
