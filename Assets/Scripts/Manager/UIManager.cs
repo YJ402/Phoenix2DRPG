@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
 {   
     TitleUI titleUI;
     LobbyUI lobbyUI;
-    // BattleUI battleUI;
+    BattleUI battleUI;
     // HealthBarUI healBarUI;
     // SelectSkillUI selectSkillUI;
     // EquipSkillUI equipSkillUI;
@@ -33,8 +33,8 @@ public class UIManager : MonoBehaviour
         titleUI?.Init(this);
         lobbyUI = GetComponentInChildren<LobbyUI>(true);
         lobbyUI?.Init(this);
-        // BattleUI = GetComponentInChildren<BattleUI>(true);
-        // BattleUI.Init(this);
+        battleUI = GetComponentInChildren<BattleUI>(true);
+        battleUI?.Init(this);
         // HealthBarUI = GetComponentInChildren<HealthBarUI>(true);
         // HealthBarUI.Init(this);
         // SelectSkillUI = GetComponentInChildren<SelectSkillUI>(true);
