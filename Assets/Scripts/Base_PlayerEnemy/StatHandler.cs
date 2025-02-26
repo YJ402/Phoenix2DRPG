@@ -111,6 +111,16 @@ public class StatHandler : MonoBehaviour
     {                                                      //                                                           
         animationHandler.ChangeMovingSpeed(Speed);         //                                                           
         animationHandler.ChangeAttackSpeed(AttackSpeed);   //                                                           
-    }                                                      //                                                           
-}                                                          //                                                           
-                                                                                                                      
+    }
+    
+    public virtual void Shoot(Vector2 _lookDirection)
+    {
+
+    }
+
+    public virtual void CheckHit(Vector2 _lookDirection)
+    {
+
+    }
+}
+

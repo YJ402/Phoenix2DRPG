@@ -5,31 +5,23 @@ using UnityEngine;
 
 public class PlusAttackSkill : PassiveSkill
 {
-    public new string name = "PlusAttackSkill";
+
     public int attackIncrease = 1;
 
     private bool bonusApplied = false;
     private StatHandler statHandler;
 
-    public override void Activate(GameObject user)
+    private void Awake()
     {
-        
+        skillName = "PlusAttack";
     }
-    private void OnEnable()
+    public override void ApplySkill()
     {
         statHandler = GetComponent<StatHandler>();
         if (statHandler != null && !bonusApplied)
         {
-            statHandler.AttackPower += attackIncrease;
+            statHandler.AttackPower += attackIncrease * level;
             bonusApplied = true;
-        }
-    }
-    private void OnDestroy()
-    {
-        if (statHandler != null && bonusApplied)
-        {
-            statHandler.AttackPower -= attackIncrease;
-            bonusApplied = false;
         }
     }
     public override void UpgradeSkill()
