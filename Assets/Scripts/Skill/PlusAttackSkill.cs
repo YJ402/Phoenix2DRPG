@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class PlusAttackSkill : PassiveSkill
 {
-    public new string skillName = "공격력증가(패시브)";
+     
 
+    private void Start()
+    {
+        skillName = "공격력증가(패시브)";
+    }
     public int attackIncrease = 1;
 
     private bool bonusApplied = false;

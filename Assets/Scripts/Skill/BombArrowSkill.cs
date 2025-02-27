@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class BombArrowSkill : ActiveSkill
 {
-    public new string skillName = "ÆøÅº ÀåÂø";
+    public void Start()
+    {
+        skillName = "ÆøÅº ÀåÂø";
+    }
     public override void Activate(GameObject user)
     {
         PlayerWeapon weapon = user.GetComponent<PlayerWeapon>();

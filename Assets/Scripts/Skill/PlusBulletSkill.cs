@@ -5,13 +5,12 @@ using UnityEngine;
 public class PlusBulletSkill : PassiveSkill
 {
     public int bulletincrease = 1;
-    public new string skillName = "탄환 1개 추가(패시브)";
     private bool bonusApplied = false;
     private RangeStatHandler rangeStatHandler;
 
-    private void Awake()
+    private void Start()
     {
-        skillName = "PlusBulletSkill";
+        skillName = "탄환 1개 추가(패시브)";
     }
     public override void ApplySkill()
     {
