@@ -28,26 +28,18 @@ public class BattleManager : MonoBehaviour
         get { return currentRound; }
         private set { currentRound = value; }
     }
-    public static Transform PlayerTransform;
-
     List<EnemyController> restEnemy = new();
     BossEnemyController boss;
 
     public void Awake()
     {
         playerController = player.GetComponent<PlayerController>();
-        PlayerTransform = player.transform;
     }
     private void Start()
     {
         StartRound();
     }
-    public void RoundClear()  //적이 0이 됬을때 호출   보상UI띄우기 추가필요
-    {
-        Time.timeScale = 0;
-
-        Debug.Log("적을 모두 처치하였습니다.");
-    }
+    
     private void LoadPlayerData()
     {
         Map = obstacleManager.Grid;
@@ -114,6 +106,13 @@ public class BattleManager : MonoBehaviour
         {
             RoundClear();
         }
+    }
+    public void RoundClear()  //적이 0이 됬을때 호출   보상UI띄우기 추가필요
+    {
+        obstacleManager.BlockRemove();
+        Time.timeScale = 0;
+
+        Debug.Log("적을 모두 처치하였습니다.");
     }
     public void GoNextRound()
     {
