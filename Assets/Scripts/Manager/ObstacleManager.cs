@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-
     [Header("범위 오브젝트")]
     public GameObject leftObj, rightObj;
 
@@ -113,6 +112,7 @@ public class ObstacleManager : MonoBehaviour
         //그리드 범위를 벗어나게 되면 false를 반환함
         int checkObjPosX = Mathf.Max(0, objPosX - AdjPadding);
         int checkObjPosY = Mathf.Max(0, objPosY - AdjPadding);
+        //0과 objPosN - AdjPadding 값 중 더 큰 쪽을 저장하므로 만에하나 음수가 나오면 0을 저장함
         int checkEndX = Mathf.Min(gridWidth, objPosX + width + AdjPadding);
         int checkEndY = Mathf.Min(gridHeight, objPosY + height + AdjPadding);
         //오브젝트의 끝 부분 검사. gridWidth부터 objPosX의 크기에 여백을 더한만큼. 
