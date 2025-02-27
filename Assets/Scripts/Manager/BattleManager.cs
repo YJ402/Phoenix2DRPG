@@ -44,6 +44,10 @@ public class BattleManager : MonoBehaviour
     {
         StartRound();
     }
+    public void RoundClear()  //적이 0이 됬을때 호출   보상UI띄우기 추가필요
+    {
+        Debug.Log("적을 모두 처치하였습니다.");
+    }
     private void LoadPlayerData()
     {
         // 라운드 전환시에 데이터 저장 클래스에서 정보 받아와서 Player, 스테이지, 라운드 입력해주기.
@@ -76,4 +80,5 @@ public class BattleManager : MonoBehaviour
             Debug.Log("패시브 스킬이 선택되지 않았습니다.");
         }
     }
+    
 }

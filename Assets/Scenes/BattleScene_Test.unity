@@ -9795,7 +9795,7 @@ MonoBehaviour:
   knockbackTime: 0.5
   maxHealth: 1000
   speed: 6
-  attackPower: 100
+  attackPower: 500
   attackSpeed: 3
   attackDistance: 8
   target:

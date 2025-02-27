@@ -104,12 +104,17 @@ public class EnemyController : BaseController
         }
     }
 
+    private void OnDestroy()
+    {
+        PlayerData.Instance.UpdateEnemyCount(true);
+    }
+
 
 
     //public Vector2 FindWayToTarget()
     //{
     //    //경로찾기
-        
+
     //    //타겟과 나 좌표를 int화.
     //    Vector2 targetOnTarget = new Vector2((int)Math.Round(target.position.x), (int)Math.Round(target.position.y));
     //    Vector2 MeOnTarget = new Vector2((int)Math.Round(transform.position.x), (int)Math.Round(transform.position.y));

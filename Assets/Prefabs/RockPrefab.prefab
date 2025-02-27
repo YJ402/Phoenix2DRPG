@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8956392102729268735}
   - component: {fileID: 5218096281580037266}
-  - component: {fileID: 4920435463558270415}
+  - component: {fileID: -7159105207037518607}
   m_Layer: 8
   m_Name: RockPrefab
   m_TagString: Untagged
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4920435463558270415
-BoxCollider2D:
+--- !u!60 &-7159105207037518607
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -127,6 +127,14 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.20393395, y: 0.74088895}
+      - {x: -0.63870925, y: 0.25459823}
+      - {x: -0.8622275, y: -0.39918262}
+      - {x: -0.4644073, y: -0.8125}
+      - {x: 0.53056884, y: -0.8316587}
+      - {x: 0.875, y: -0.3125}
+      - {x: 0.6003918, y: 0.33668256}
+      - {x: 0.21125697, y: 0.72811663}
+  m_UseDelaunayMesh: 0
