@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-    public static ObstacleManager Instance { get; private set; }
-
     [Header("범위 오브젝트")]
     public GameObject leftObj, rightObj;
 
@@ -41,16 +39,6 @@ public class ObstacleManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         InitializeGrid(); //그리드 초기화
         block.gameObject.SetActive(true); //출구 막는 장애물 활성화
         SpawnObstacle(rock, 1, 1, 3); //돌, 1 x 1 크기, 3개
@@ -193,13 +181,6 @@ public class ObstacleManager : MonoBehaviour
     {
         return new Vector2(minX + gridX, minY + gridY);
         //minX라는 최소 x값에 gridX만큼을 추가한 값을 반환
-    }
-
-    public Vector2Int WorldToGrid(Vector2 worldPos) //worldPos를 그리드로 반환
-    {
-        int x = Mathf.FloorToInt(worldPos.x - minX); //소수점 아래는 떼어버림
-        int y = Mathf.FloorToInt(worldPos.y - minY);
-        return new Vector2Int(x, y);
     }
 
     // 그리드 상태 확인 (0: 빈 공간, 1: 일반 장애물, 2: 인접 영역, 3: 물 장애물, -1: 유효하지 않은 위치)
