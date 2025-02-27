@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SkillManager : MonoBehaviour
 {
     // Inspector에 등록된 전체 스킬 목록 (BaseSkill을 상속한 스킬들)

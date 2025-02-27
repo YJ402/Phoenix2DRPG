@@ -104,6 +104,7 @@ public class BattleUI : BaseUI
     {
         Time.timeScale = 0;
     }
+    
 
     
 }

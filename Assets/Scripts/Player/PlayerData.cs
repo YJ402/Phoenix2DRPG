@@ -23,8 +23,24 @@ public class PlayerData : MonoBehaviour
         get { return playerLevel; }
         set { playerLevel = value; }
     }
-
-    
+    private int playerExp;
+    public int PlayerExp
+    {
+        get { return playerExp; }
+        set
+        {
+            if (value >= 5 * PlayerLevel)
+            {
+                PlayerLevel++;
+                PlayerExp = value - 5 * (PlayerLevel - 1);
+            }
+            else { playerExp = value; }
+        }
+    }
+    public int MaxEXP
+    {
+        get { return PlayerExp*5; }
+    }
     public Transform player;
     private int clearStage = 0;
     public int ClearStage

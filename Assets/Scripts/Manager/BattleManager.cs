@@ -75,15 +75,15 @@ public class BattleManager : MonoBehaviour
         {
             foreach (PassiveSkill passiveSkill in passiveSkills)
             {
-                Debug.Log("ï¿½Ð½Ãºï¿½ ï¿½ï¿½Å³: " + passiveSkill.skillName + ", ï¿½ï¿½ï¿½ï¿½: " + passiveSkill.level);
+                Debug.Log(" " + passiveSkill.skillName + "" + passiveSkill.level);
             }
         }
         else
         {
-            Debug.Log("ï¿½Ð½Ãºï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
+            Debug.Log("");
         }
 
-        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å© ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½Ê¿ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.(ï¿½ï¿½ï¿½ï¿½)
+        
         foreach (EnemyController enemy in restEnemy)
         {
             if (enemy is BossEnemyController)
@@ -96,11 +96,7 @@ public class BattleManager : MonoBehaviour
 
     public void SubscribeBossEvent()
     {
-        boss.bossEvent[1] += enenmyManager.SpawnEnemy; // ï¿½Ù¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
-
-        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-
-        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+        boss.bossEvent[1] += enenmyManager.SpawnEnemy; //
     }
     public void UpdateEnemyDeath(EnemyController enemy)
     {
@@ -110,16 +106,29 @@ public class BattleManager : MonoBehaviour
             RoundClear();
         }
     }
-    public void RoundClear()  //ÀûÀÌ 0ÀÌ ‰çÀ»¶§ È£Ãâ   º¸»óUI¶ç¿ì±â Ãß°¡ÇÊ¿ä
+    public void RoundClear()
     {
         obstacleManager.BlockRemove();
         Time.timeScale = 0;
+        if(CurrentRound == 10)
+        {
+            StageClear();
+        }
+        else
+        {
+             //º¸»ó ½ºÅ³¼±ÅÃ ui È£Ãâ
+        }
 
         Debug.Log("ÀûÀ» ¸ðµÎ Ã³Ä¡ÇÏ¿´½À´Ï´Ù.");
     }
+    public void StageClear()
+    {
+        PlayerData.Instance.PlayerExp += (int)(5 * Mathf.Pow(2,CurrentStage-1));
+                //Å¬¸®¾î ui È£Ãâ
+    }
     public void GoNextRound()
     {
-        PlayerData.Instance.RoundEndSetting();
+        PlayerData.Instance.RoundEndSetting();  //ÇÃ·¹ÀÌ¾î Ã¼·Â ÀúÀå, ¶ó¿îµåÁõ°¡
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

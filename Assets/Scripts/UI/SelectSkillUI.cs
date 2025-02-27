@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 public class SelectSkillUI : BaseUI
 {
     [Header("Skill Slots")]
     [SerializeField] private SkillSlotUI[] skillSlots; // Slot0, Slot1, Slot2를 Inspector에서 연결
+    [SerializeField] private TextMeshProUGUI[] skillNameTxt;
 
     // SkillManager 참조
     private SkillManager skillManager;
@@ -40,16 +42,10 @@ public class SelectSkillUI : BaseUI
         // 슬롯 갯수와 리스트 갯수를 맞춰 세팅
         for (int i = 0; i < skillSlots.Length; i++)
         {
-            if (i < randomSkills.Count && randomSkills[i] != null)
+            if (randomSkills[i] != null)
             {
                 BaseSkill skill = randomSkills[i];
-                // 스킬 정보 설정 (예: skill.skillImage, skill.skillName)
-                // onSelect 콜백: 슬롯 선택 시 SkillManager.SelectSkillOption(i)를 호출
-                //skillSlots[i].SetSkillData(
-                //    // skill.skillImage,                // 예: BaseSkill 내 sprite
-                //    skill.skillName,                 // 예: 스킬 이름
-                //    () => OnSelectSkill(i)           // 버튼 클릭 시 실행할 메서드
-                //);
+                skillNameTxt[i].text = randomSkills[i].skillName;
             }
             // else
             // {
