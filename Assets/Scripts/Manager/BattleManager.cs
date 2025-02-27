@@ -1,75 +1,70 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using TMPro.EditorUtilities;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
-    public static BattleManager Instance { get; private set; }
-
-    EnemyManager enenmyManager;
+    [SerializeField] public EnemyManager enenmyManager;
     PlayerController playerController;
     ResourceController playerResourceController;
-    ObstacleManager obstacleManager;
-    //UIï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½Æ® state ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½.
+    public ObstacleManager obstacleManager;
+    //UI¸Å´ÏÀúÀÇ Ä¿·»Æ® state ¹Þ¾Æ¿À±â.
 
 
     public GameObject player;
-    public GameObject enemys;
-
-    int[,] map;
-    int stage;
-    int round;
-
-    public static Transform PlayerTransform;
 
 
+
+    private int[,] map; public int[,] Map { get { return map; } set { map = value; } }
+    private int currentStage = 0;
+    public int CurrentStage
+    {
+        get { return currentStage; }
+        private set { currentStage = value; }
+    }
+    private int currentRound = 0;
+    public int CurrentRound
+    {
+        get { return currentRound; }
+        private set { currentRound = value; }
+    }
     List<EnemyController> restEnemy = new();
-    BossEnemyController boss;
+    //BossEnemyController boss;
 
     public void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-        enenmyManager = GetComponent<EnemyManager>();
         playerController = player.GetComponent<PlayerController>();
-        playerController = player.GetComponent<PlayerController>();
-        obstacleManager = GetComponent<ObstacleManager>();
-
-        //LoadPlayerData();
-
-        enenmyManager.Init(map, stage);
-
     }
     private void Start()
     {
         StartRound();
     }
-    public void RoundClear()  //ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½UIï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ê¿ï¿½
-    {
-        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³Ä¡ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
-    }
+
+
     private void LoadPlayerData()
     {
-        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Í¼ï¿½ Player, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö±ï¿½.
+        Map = obstacleManager.Grid;
+        CurrentStage = PlayerData.Instance.CurrentStage;
+        CurrentRound = PlayerData.Instance.CurrentRound;
+        // ¶ó¿îµå ÀüÈ¯½Ã¿¡ µ¥ÀÌÅÍ ÀúÀå Å¬·¡½º¿¡¼­ Á¤º¸ ¹Þ¾Æ¿Í¼­ Player, ½ºÅ×ÀÌÁö, ¶ó¿îµå ÀÔ·ÂÇØÁÖ±â.
     }
 
-    private void StartRound() // ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û½Ã¿ï¿½ UIManagerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. 
+    private void StartRound()
     {
-        //ï¿½ï¿½ ï¿½ï¿½Ö¹ï¿½ ï¿½ï¿½Ä¡
-        // enenmyManager.SpawnEnemies(5);
-        //ï¿½Ê¿ï¿½ï¿½Ï´Ù¸ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½È¯ or ï¿½ï¿½ï¿½ï¿½
+
+        obstacleManager.SettingObstacle();                               //Àå¾Ö¹° »ý¼º
+        LoadPlayerData();
+        enenmyManager.Init(Map, CurrentStage);
+        enenmyManager.SpawnEnemiesInMap(5);                              //Àû »ý¼º
+        restEnemy = enenmyManager.restEnemy;
+
+        PlayerData.Instance.RoundStartPlayerSetting();
+        //
+        //
+
         player.transform.position = new Vector3(0.5f, -10f, player.transform.position.z);
         PlayerData.Instance.RoundStartPlayerSetting();
-        //ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ targetï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö±ï¿½.
+
 
         PlayerSkill playerskill = player.GetComponent<PlayerSkill>();
         if (playerskill != null && playerskill.activeSkill != null)
@@ -81,32 +76,68 @@ public class BattleManager : MonoBehaviour
         {
             foreach (PassiveSkill passiveSkill in passiveSkills)
             {
-                Debug.Log("ï¿½Ð½Ãºï¿½ ï¿½ï¿½Å³: " + passiveSkill.skillName + ", ï¿½ï¿½ï¿½ï¿½: " + passiveSkill.level);
+                Debug.Log(" " + passiveSkill.skillName + "" + passiveSkill.level);
             }
         }
         else
         {
-            Debug.Log("ï¿½Ð½Ãºï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
+            Debug.Log("");
         }
 
-        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å© ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½Ê¿ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.(ï¿½ï¿½ï¿½ï¿½)
-        foreach (EnemyController enemy in restEnemy)
-        {
-            if (enemy is BossEnemyController)
-            {
-                boss = enemy as BossEnemyController;
-                SubscribeBossEvent();
-            }
-        }
+
+        //foreach (EnemyController enemy in restEnemy)
+        //{
+        //    if (enemy is BossEnemyController)
+        //    {
+        //        boss = enemy as BossEnemyController;
+        //        SubscribeBossEvent();
+        //    }
+        //}
     }
 
-    public void SubscribeBossEvent()
+    //public void SubscribeBossEvent()
+    //{
+    //    boss.bossEvent[1] += enenmyManager.SpawnEnemy; //
+    //}
+    public void UpdateEnemyDeath(EnemyController enemy)
     {
-        boss.bossEvent[1] += enenmyManager.SpawnEnemy; // ï¿½Ù¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
-
-        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-
-        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+        restEnemy.Remove(enemy);
+        if (restEnemy.Count <= 0)
+        {
+            RoundClear();
+        }
     }
-    
+    public void RoundClear()
+    {
+        obstacleManager.BlockRemove();
+        Time.timeScale = 0;
+        if (CurrentRound == 10)
+        {
+            StageClear();
+        }
+        else
+        {
+            //º¸»ó ½ºÅ³¼±ÅÃ ui È£Ãâ
+        }
+
+        Debug.Log("ÀûÀ» ¸ðµÎ Ã³Ä¡ÇÏ¿´½À´Ï´Ù.");
+    }
+    public void StageClear()
+    {
+        PlayerData.Instance.PlayerExp += (int)(5 * Mathf.Pow(2, CurrentStage - 1));
+        //Å¬¸®¾î ui È£Ãâ
+    }
+    public void GoNextRound()
+    {
+        PlayerData.Instance.RoundEndSetting();  //ÇÃ·¹ÀÌ¾î Ã¼·Â ÀúÀå, ¶ó¿îµåÁõ°¡
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void AddMonsterToList(List<EnemyController> enemylist)
+    {
+        foreach (EnemyController enemy in enemylist)
+        {
+            restEnemy.Add(enemy);
+        }
+    }
 }

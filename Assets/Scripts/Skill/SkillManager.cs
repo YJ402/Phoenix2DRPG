@@ -2,29 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SkillManager : MonoBehaviour
 {
-    // 싱글톤 인스턴스 선언
-    public static SkillManager Instance { get; private set; }
-    
-    // Awake에서 인스턴스 초기화
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    
     // Inspector에 등록된 전체 스킬 목록 (BaseSkill을 상속한 스킬들)
     public List<BaseSkill> everyskill;
 
     // 보상으로 보여줄 3개의 스킬 옵션 (중복 없이, 순서 무작위) //@@ 2 애도가저옴
-    public List<BaseSkill> randomSkill = new List<BaseSkill>();
+    private List<BaseSkill> randomSkill = new List<BaseSkill>();
 
     public GameObject player;
     public PlayerSkill playerSkill;
@@ -43,18 +28,25 @@ public class SkillManager : MonoBehaviour
     
     private PlayerData playerData;
     
-    public void SelectSkillOption(int index)
+    public void SelectSkillOption(int index, PlayerData playerData)
     {
-        if (index < 0 || index >= randomSkill.Count)
+        if (index < 0 || index >= randomSkill.Count) return;
+        
+        // PlayerData의 ClearStage 값을 복사하여 skillPoints로 사용
+        int skillPoints = PlayerData.Instance.PlayerLevel; // 복사
+        
+        // 스킬 포인트가 남아있는지 확인
+        if (skillPoints <= 0)
         {
+            Debug.Log("스킬 포인트가 부족합니다!");
             return;
         }
 
         BaseSkill selectedSkill = randomSkill[index];
 
         // 스킬 포인트 차감
-        PlayerData.Instance.SkillPoint--;
-        Debug.Log($"스킬 포인트 1점 사용. 남은 포인트: {PlayerData.Instance.SkillPoint}");
+        PlayerData.Instance.PlayerLevel--;
+        Debug.Log($"스킬 포인트 1점 사용. 남은 포인트: {PlayerData.Instance.PlayerLevel}");
         
         // 선택된 스킬이 액티브 스킬인지 패시브 스킬인지 분기
         if (selectedSkill is ActiveSkill activeSkill)
@@ -69,7 +61,7 @@ public class SkillManager : MonoBehaviour
 
     private void HandleActiveSkill(ActiveSkill newSkill)
     {
-        // currentActiveSkill = newSkill;
+        //currentActiveSkill = newSkill;
 
         if (playerSkill != null)
         {

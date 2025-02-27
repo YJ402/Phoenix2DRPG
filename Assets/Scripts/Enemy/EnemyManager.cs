@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -12,7 +13,7 @@ public class EnemyManager : MonoBehaviour
 
     List<List<EnemyController>> stageEnemyPrefabs;
 
-    List<EnemyController> restEnemy = new();
+    public List<EnemyController> restEnemy = new();
 
     //프리팹, 생성 영역, 
     public void Init(int[,] _map, int _currentStage) // 
@@ -30,19 +31,27 @@ public class EnemyManager : MonoBehaviour
             return null;
         }
 
-        int x = Random.Range(0, map.GetLength(0));
-        int y = Random.Range(0, map.GetLength(1));
+        
 
 
         while (numOfEnemies > 0)
         {
+            int x = Random.Range(0, map.GetLength(0));
+            int y = Random.Range(0, map.GetLength(1));
+
             if (map[x, y] != 0)
             {
                 continue;
             }
-            int randNum = Random.Range(0, stageEnemyPrefabs[curStage].Count);
-            restEnemy.Add(Instantiate(stageEnemyPrefabs[curStage][randNum].gameObject, new Vector2(x, y), Quaternion.identity).GetComponent<EnemyController>());
             
+            int randNum = Random.Range(0, stageEnemyPrefabs[curStage].Count);
+
+            GameObject newEnemy = Instantiate(stageEnemyPrefabs[curStage][randNum].gameObject, new Vector2(x- map.GetLength(0)/2, y - map.GetLength(0)/3), Quaternion.identity);
+            newEnemy.transform.SetParent(transform, false);
+            restEnemy.Add(newEnemy.GetComponent<EnemyController>());
+
+            newEnemy.GetComponent<EnemyController>().Init(this);
+
             if (numOfEnemies == 1)
                 Debug.Log("몬스터 생성 완료");
             numOfEnemies--;
@@ -51,14 +60,12 @@ public class EnemyManager : MonoBehaviour
         return restEnemy;
     }
 
-    public void SpawnEnemy() // 보스 소환기
+    public void SpawnEnemy(int numOfEnemies) // 보스 소환기
     {
-        int numOfEnemies = 5;
-
         int x = Random.Range(0, map.GetLength(0));
         int y = Random.Range(0, map.GetLength(1));
 
-
+        List<EnemyController> AddedEnemy = new();
         while (numOfEnemies > 0)
         {
             if (map[x, y] != 0)
@@ -67,10 +74,9 @@ public class EnemyManager : MonoBehaviour
             }
             int randNum = Random.Range(0, stageEnemyPrefabs[curStage].Count);
             restEnemy.Add(Instantiate(stageEnemyPrefabs[curStage][randNum].gameObject, new Vector2(x, y), Quaternion.identity).GetComponent<EnemyController>());
-
-            if (numOfEnemies == 1)
-                Debug.Log("몬스터 생성 완료");
             numOfEnemies--;
+            if (numOfEnemies == 0)
+                Debug.Log("보스의 몬스터 생성 완료");
         }
     }
 

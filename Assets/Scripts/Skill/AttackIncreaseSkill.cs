@@ -6,6 +6,11 @@ public class AttackIncreaseSkill : ActiveSkill
 {
     public float baseAttackMultiplier = 2f;
 
+    public void Start()
+    {
+        skillName = "공격력 2배증가";
+    }
+
     public override void Activate(GameObject user)
     {
         StatHandler statHandler = user.GetComponent<StatHandler>();

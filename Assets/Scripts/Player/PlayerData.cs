@@ -4,22 +4,43 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    private int enemyCount;
-    public int EnemyCount { get { return enemyCount; } set { enemyCount = value; } }
+    private int currentStage = 1; 
+    public int CurrentStage
+    {
+        get { return currentStage; }
+        private set { currentStage = value; }
+    }
+    private int currentRound = 1;
+    public int CurrentRound
+    {
+        get { return currentRound; }
+        private set { currentRound = value; }
+    }
+
     private int playerLevel;
     public int PlayerLevel
     {
         get { return playerLevel; }
         set { playerLevel = value; }
     }
-    private int skillPoint;
-    public int SkillPoint
+    private int playerExp;
+    public int PlayerExp
     {
-        get { return skillPoint; }
-        set { skillPoint = value; }
+        get { return playerExp; }
+        set
+        {
+            if (value >= 5 * PlayerLevel)
+            {
+                PlayerLevel++;
+                PlayerExp = value - 5 * (PlayerLevel - 1);
+            }
+            else { playerExp = value; }
+        }
     }
-
-    
+    public int MaxEXP
+    {
+        get { return PlayerExp*5; }
+    }
     public Transform player;
     private int clearStage = 0;
     public int ClearStage
@@ -49,31 +70,19 @@ public class PlayerData : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-    public void UpdateEnemyCount(bool isEnemyDead = false)
-    {
-        EnemyCount = BattleManager.Instance.enemys.transform.childCount - (isEnemyDead ? 1 : 0);
-        if (EnemyCount <= 0)
-        {
-            skillPoint++;
-            //������ �Լ� ȣ��
-            BattleManager.Instance.RoundClear();
-        }
+    
 
-    }
-
-    public void SatgeStartPlayerSetting()
-    {
-        SkillPoint = PlayerLevel;
-    }
     public void RoundStartPlayerSetting()
     {
         ApplyPassiveSkill();
         player.GetComponent<ResourceController>().CurrentHealth = CurrentHP;
+        player.transform.position = new Vector3(0.5f, -10f, player.transform.position.z);
     }
 
-    public void RoundEndPlayerSetting()
+    public void RoundEndSetting()
     {
         currentHP = player.GetComponent<ResourceController>().CurrentHealth;
+        CurrentRound++;
     }
     public void SaveCurrentHP(int currentHP)
     {

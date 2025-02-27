@@ -8,6 +8,12 @@ public class StealthSkill : ActiveSkill
 
     private int originalLayer;
     private GameObject player;
+
+    private void Start()
+    {
+        skillName = "≈ı∏Ì»≠";
+    }
+
     public override void Activate(GameObject user)
     {
         player = user;

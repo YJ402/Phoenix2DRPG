@@ -10691,7 +10691,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3b54705e37cab45b50d998fb795ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  block: {fileID: 36224248}
   leftObj: {fileID: 151284091}
   rightObj: {fileID: 1757440976}
   rock: {fileID: 8679844637300723683, guid: f3762a85b2f43294c921489940fc043e, type: 3}
@@ -10700,6 +10699,7 @@ MonoBehaviour:
   wall: {fileID: 7121475261018358869, guid: beb9f9676edbae54c936568373cb0a77, type: 3}
   dontOverlapAdj: 1
   AdjPadding: 1
+  block: {fileID: 36224248}
 --- !u!1 &1106160138
 GameObject:
   m_ObjectHideFlags: 0
@@ -18511,7 +18511,7 @@ Transform:
   m_GameObject: {fileID: 1970303857}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.2038784, y: -1.4182858, z: -0.3229755}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18530,7 +18530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 3978561617942624, guid: 2cc770c395e133f41bfb0846ee459ea3, type: 3}
-  spawnChance: 1
+  spawnChance: 10
   maxItems: 3
   obstacleManager: {fileID: 857702998}
 --- !u!1 &2024527830

@@ -8,9 +8,9 @@ public class PlusAttackSpeedSkill : PassiveSkill
     private bool bonusApplied = false;
     private StatHandler statHandler;
 
-    private void Awake()
+    private void Start()
     {
-        skillName = "PlusAttackSpeedSkill";
+        skillName = "발사속도 증가(패시브)";
     }
     public override void ApplySkill()
     {

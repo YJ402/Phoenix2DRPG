@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
+    protected BattleManager battleManager;
     protected Rigidbody2D _rigidbody;
 
     [SerializeField] protected SpriteRenderer characterRenderer;
@@ -34,6 +35,7 @@ public class BaseController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
         statHandler = GetComponent<StatHandler>();
+        battleManager = FindAnyObjectByType<BattleManager>();
 
         //if(!TryGetComponent<RangeStatHandler>(out rangeStatHandler))
         //{

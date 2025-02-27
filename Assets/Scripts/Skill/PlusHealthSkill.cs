@@ -8,9 +8,9 @@ public class PlusHealthSkill : PassiveSkill
     private bool bonusApplied = false;
     private StatHandler statHandler;
 
-    private void Awake()
+    private void Start()
     {
-        skillName = "PlusHealthSkill";
+        skillName = "체력 증가(패시브)";
     }
     public override void ApplySkill()
     {
