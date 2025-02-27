@@ -65,7 +65,7 @@ public class BattleManager : MonoBehaviour
     private void StartRound() // 스킬 선택 끝나고 라운드 시작시에 UIManager에서 실행하도록 하는 게 괜찮을듯. 
     {
         //맵 장애물 배치
-        enenmyManager.SpawnEnemies(5);
+        //enenmyManager.SpawnEnemies(5);
         //필요하다면 플레이어 소환 or 조정
         player.transform.position = new Vector3(0.5f, -10f, player.transform.position.z);
         PlayerData.Instance.RoundStartPlayerSetting();
