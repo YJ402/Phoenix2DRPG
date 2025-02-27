@@ -45,7 +45,7 @@ public class SkillManager : MonoBehaviour
         BaseSkill selectedSkill = randomSkill[index];
 
         // 스킬 포인트 차감
-        PlayerData.Instance.PlayerLevel--;
+        PlayerData.Instance.SkillPoint--;
         Debug.Log($"스킬 포인트 1점 사용. 남은 포인트: {PlayerData.Instance.PlayerLevel}");
         
         // 선택된 스킬이 액티브 스킬인지 패시브 스킬인지 분기

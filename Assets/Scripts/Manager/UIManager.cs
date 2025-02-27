@@ -12,9 +12,7 @@ public enum UIState
     Battle,
     SelectSkill,
     SkillPoint,
-    HealthBar,
-    EquipSkill,
-    SkillSlot,
+    StageClear,
     GameOver
 }
 
@@ -23,13 +21,9 @@ public class UIManager : MonoBehaviour
     TitleUI titleUI;
     LobbyUI lobbyUI;
     BattleUI battleUI;
-    // SkillPointUI skillPointUI;
-    // HealthBarUI healBarUI;
     SelectSkillUI selectSkillUI;
-    // EquipSkillUI equipSkillUI;
-    SkillSlotUI skillSlotUI;
-    // GameOverUI gameOverUI;
-    //
+    StageClearUI stageClearUI;
+    GameOverUI gameOverUI;
     private UIState currentState;
 
     private void Awake()
@@ -40,27 +34,34 @@ public class UIManager : MonoBehaviour
         lobbyUI?.Init(this);
         battleUI = GetComponentInChildren<BattleUI>(true);
         battleUI?.Init(this); 
-        // skillPointUI = GetComponentInChildren<SkillPointUI>(true);
-        // skillPointUI?.Init(this);
-        // HealthBarUI = GetComponentInChildren<HealthBarUI>(true);
-        // HealthBarUI.Init(this);
         selectSkillUI = GetComponentInChildren<SelectSkillUI>(true);
-        //selectSkillUI?.Init(this);
-        // EquipSkillUI = GetComponentInChildren<EquipSkillUI>(true);
-        // EquipSkillUI.Init(this);
-        skillSlotUI = GetComponentInChildren<SkillSlotUI>(true);
-        //skillSlotUI?.init(this);
-        // gameOverUI = GetComponentInChildren<GameOverUI>(true);
-        // gameOverUI.Init(this);
-        
+        selectSkillUI?.Init(this);
+        stageClearUI = GetComponentInChildren<StageClearUI>(true);
+        stageClearUI?.Init(this);
+        gameOverUI = GetComponentInChildren<GameOverUI>(true);
+        gameOverUI?.Init(this);
+
     }
     public void ChangeState(UIState state)
     {
         currentState = state;
-        titleUI.SetActive(currentState);
-        lobbyUI.SetActive(currentState);
-        battleUI.SetActive(currentState);
-        selectSkillUI.SetActive(currentState);
+        titleUI?.SetActive(currentState);
+        lobbyUI?.SetActive(currentState);
+        battleUI?.SetActive(currentState);
+        selectSkillUI?.SetActive(currentState);
+        stageClearUI?.SetActive(currentState);
+        gameOverUI?.SetActive(currentState);
     }
-
+    public void UpdateEnemyCountInBattleUI(int count)
+    {
+        battleUI.UpdateEnemyCountText(count);
+    }
+    public void UpdateRoundTxtInBattleUI(int round)
+    {
+        battleUI.UpdateRoundText(round);
+    }
+    public void UpdateStageTxtInBattleUI(int stage)
+    {
+        battleUI.UpdateStageText(stage);
+    }
 }

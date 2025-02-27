@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AllEnemyAttack : ActiveSkill
 {
-    public float damage = 50f;
+    public int damage = 50;
     public new string skillNmae = "전체공격";
 
     public override void Activate(GameObject user)

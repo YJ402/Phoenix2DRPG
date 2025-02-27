@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
+    [SerializeField] UIManager uIManager;
     [SerializeField] public EnemyManager enenmyManager;
     PlayerController playerController;
     ResourceController playerResourceController;
@@ -16,19 +17,19 @@ public class BattleManager : MonoBehaviour
 
 
     private int[,] map; public int[,] Map { get { return map; } set { map = value; } }
-    private int currentStage = 0;
+    private int currentStage = 1;
     public int CurrentStage
     {
         get { return currentStage; }
         private set { currentStage = value; }
     }
-    private int currentRound = 0;
+    private int currentRound = 1;
     public int CurrentRound
     {
         get { return currentRound; }
         private set { currentRound = value; }
     }
-    List<EnemyController> restEnemy = new();
+    public List<EnemyController> restEnemy = new();
     BossEnemyController boss;
 
     public void Awake()
@@ -38,6 +39,13 @@ public class BattleManager : MonoBehaviour
     private void Start()
     {
         StartRound();
+        if (CurrentRound == 1 && PlayerData.Instance.SkillPoint > 0)
+        {
+            uIManager.ChangeState(UIState.SelectSkill);
+        }
+        else
+            uIManager.ChangeState(UIState.Battle);
+        
     }
 
 
@@ -51,18 +59,13 @@ public class BattleManager : MonoBehaviour
 
     private void StartRound()
     {
-
+        
         obstacleManager.SettingObstacle();                               //장애물 생성
         LoadPlayerData();
         enenmyManager.Init(Map, CurrentStage);
         enenmyManager.SpawnEnemiesInMap(5);                              //적 생성
         restEnemy = enenmyManager.restEnemy;
-
-        PlayerData.Instance.RoundStartPlayerSetting();
-        //
-        //
-
-        player.transform.position = new Vector3(0.5f, -10f, player.transform.position.z);
+        UpdateUIStart();
         PlayerData.Instance.RoundStartPlayerSetting();
 
 
@@ -83,7 +86,7 @@ public class BattleManager : MonoBehaviour
         {
             Debug.Log("");
         }
-
+        
 
         //foreach (EnemyController enemy in restEnemy)
         //{
@@ -94,7 +97,12 @@ public class BattleManager : MonoBehaviour
         //    }
         //}
     }
-
+    public void UpdateUIStart()
+    {
+        uIManager.UpdateEnemyCountInBattleUI(restEnemy.Count);
+        uIManager.UpdateRoundTxtInBattleUI(currentRound);
+        uIManager.UpdateStageTxtInBattleUI(currentStage);
+    }
     public void SubscribeBossEvent()
     {
         //boss.bossEvent[1] += enenmyManager.SpawnEnemy; //
@@ -106,6 +114,7 @@ public class BattleManager : MonoBehaviour
         {
             RoundClear();
         }
+        uIManager.UpdateEnemyCountInBattleUI(restEnemy.Count);
     }
     public void RoundClear()
     {
@@ -117,19 +126,19 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            //보상 스킬선택 ui 호출
+            uIManager.ChangeState(UIState.SelectSkill);
         }
 
-        Debug.Log("적을 모두 처치하였습니다.");
     }
     public void StageClear()
     {
         PlayerData.Instance.PlayerExp += (int)(5 * Mathf.Pow(2, CurrentStage - 1));
-        //클리어 ui 호출
+        PlayerData.Instance.resetSkillPoint();
+        uIManager.ChangeState(UIState.StageClear);
     }
     public void GoNextRound()
     {
-        PlayerData.Instance.RoundEndSetting();  //플레이어 체력 저장, 라운드증가
+        PlayerData.Instance.GoNextRoundSetting();  //플레이어 체력 저장, 라운드증가
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
