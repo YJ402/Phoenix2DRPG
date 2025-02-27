@@ -5,13 +5,12 @@ using UnityEngine;
 public class PlusHealthSkill : PassiveSkill
 {
     public int healthIncrease = 100;
-    public new string skillName = "체력 증가(패시브)";
     private bool bonusApplied = false;
     private StatHandler statHandler;
 
-    private void Awake()
+    private void Start()
     {
-        skillName = "PlusHealthSkill";
+        skillName = "체력 증가(패시브)";
     }
     public override void ApplySkill()
     {

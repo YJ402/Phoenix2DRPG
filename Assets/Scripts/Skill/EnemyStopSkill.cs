@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class EnemyStopSkill : ActiveSkill
 {
-    public new string skillName = "시간정지";
+    
+
+    private void Start()
+    {
+        skillName = "시간정지";
+    }
     public override void Activate(GameObject user)
     {
         StartCoroutine(StopAllEnemies());

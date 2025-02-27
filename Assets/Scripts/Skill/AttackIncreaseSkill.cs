@@ -5,7 +5,11 @@ using UnityEngine;
 public class AttackIncreaseSkill : ActiveSkill
 {
     public float baseAttackMultiplier = 2f;
-    public new string skillName = "공격력 2배증가";
+
+    public void Start()
+    {
+        skillName = "공격력 2배증가";
+    }
 
     public override void Activate(GameObject user)
     {

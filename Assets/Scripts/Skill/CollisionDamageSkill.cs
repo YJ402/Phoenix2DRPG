@@ -5,8 +5,11 @@ using UnityEngine;
 public class CollisionDamageSkill : ActiveSkill
 {
     public float damageMultiplier = 1.0f;
-    public new string skillName = "몸통박치기";
-
+    
+    private void Start()
+    {
+        skillName = "몸통박치기";
+    }
     public override void Activate(GameObject user)
     {
         CollisionDamageEffect effect = user.AddComponent<CollisionDamageEffect>();

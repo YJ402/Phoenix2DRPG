@@ -5,13 +5,12 @@ using UnityEngine;
 public class PlusSpeedSkill : PassiveSkill
 {
     public float speedIncrease = 1f;
-    public new string skillName = "이동속도 증가(패시브)";
     private bool bonusApplied = false;
     private StatHandler statHandler;
 
-    private void Awake()
+    private void Start()
     {
-        skillName = "PlusSpeedSkill";
+        skillName = "이동속도 증가(패시브)";
     }
     public override void ApplySkill()
     {

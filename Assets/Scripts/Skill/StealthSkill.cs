@@ -6,10 +6,14 @@ public class StealthSkill : ActiveSkill
 {
     public string stealthLayer="Stealth";
 
-    public new string skillName = "투명화";
-
     private int originalLayer;
     private GameObject player;
+
+    private void Start()
+    {
+        skillName = "투명화";
+    }
+
     public override void Activate(GameObject user)
     {
         player = user;
