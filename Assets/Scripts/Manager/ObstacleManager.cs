@@ -182,12 +182,6 @@ public class ObstacleManager : MonoBehaviour
         return new Vector2(minX + gridX, minY + gridY);
         //minX라는 최소 x값에 gridX만큼을 추가한 값을 반환
     }
-    //public Vector2Int WorldToGrid(Vector2 worldPos) //worldPos를 그리드로 반환
-    //{
-    //    int x = Mathf.FloorToInt(worldPos.x - minX); //소수점 아래는 떼어버림
-    //    int y = Mathf.FloorToInt(worldPos.y - minY);
-    //    return new Vector2Int(x, y);
-    //}
 
     // 그리드 상태 확인 (0: 빈 공간, 1: 일반 장애물, 2: 인접 영역, 3: 물 장애물, -1: 유효하지 않은 위치)
     public int GetGridValue(int x, int y)
