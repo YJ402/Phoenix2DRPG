@@ -13,6 +13,7 @@ public enum UIState
     HealthBar,
     SelectSkill,
     EquipSkill,
+    SkillSlot,
     GameOver
 }
 
@@ -25,6 +26,7 @@ public class UIManager : MonoBehaviour
     // HealthBarUI healBarUI;
     SelectSkillUI selectSkillUI;
     // EquipSkillUI equipSkillUI;
+    SkillSlotUI skillSlotUI;
     // GameOverUI gameOverUI;
     //
     private UIState currentState;
@@ -45,6 +47,8 @@ public class UIManager : MonoBehaviour
         selectSkillUI?.Init(this);
         // EquipSkillUI = GetComponentInChildren<EquipSkillUI>(true);
         // EquipSkillUI.Init(this);
+        skillSlotUI = GetComponentInChildren<SkillSlotUI>(true);
+        skillSlotUI?.init(this);
         // gameOverUI = GetComponentInChildren<GameOverUI>(true);
         // gameOverUI.Init(this);
         

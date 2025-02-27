@@ -164,6 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectSkillUI: {fileID: 8499882827157423605, guid: 3a3ab36e4746c437b9bbc0dfbd136153, type: 3}
+  titleText: {fileID: 0}
+  pointText: {fileID: 0}
   skillSlots:
   - skillInfoText: {fileID: 0}
     selectButton: {fileID: 6617742800157918486}

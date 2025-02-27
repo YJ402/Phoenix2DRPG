@@ -12,7 +12,7 @@ public class BattleManager : MonoBehaviour
     PlayerController playerController;
     ResourceController playerResourceController;
     ObstacleManager obstacleManager;
-    //UI¸Å´ÏÀúÀÇ Ä¿·»Æ® state ¹Þ¾Æ¿À±â.
+    //UIï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½Æ® state ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½.
 
 
     public GameObject player;
@@ -53,23 +53,23 @@ public class BattleManager : MonoBehaviour
     {
         StartRound();
     }
-    public void RoundClear()  //ÀûÀÌ 0ÀÌ ‰çÀ»¶§ È£Ãâ   º¸»óUI¶ç¿ì±â Ãß°¡ÇÊ¿ä
+    public void RoundClear()  //ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½UIï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ê¿ï¿½
     {
-        Debug.Log("ÀûÀ» ¸ðµÎ Ã³Ä¡ÇÏ¿´½À´Ï´Ù.");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³Ä¡ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
     }
     private void LoadPlayerData()
     {
-        // ¶ó¿îµå ÀüÈ¯½Ã¿¡ µ¥ÀÌÅÍ ÀúÀå Å¬·¡½º¿¡¼­ Á¤º¸ ¹Þ¾Æ¿Í¼­ Player, ½ºÅ×ÀÌÁö, ¶ó¿îµå ÀÔ·ÂÇØÁÖ±â.
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Í¼ï¿½ Player, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö±ï¿½.
     }
 
-    private void StartRound() // ½ºÅ³ ¼±ÅÃ ³¡³ª°í ¶ó¿îµå ½ÃÀÛ½Ã¿¡ UIManager¿¡¼­ ½ÇÇàÇÏµµ·Ï ÇÏ´Â °Ô ±¦ÂúÀ»µí. 
+    private void StartRound() // ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û½Ã¿ï¿½ UIManagerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. 
     {
-        //¸Ê Àå¾Ö¹° ¹èÄ¡
-        enenmyManager.SpawnEnemies(5);
-        //ÇÊ¿äÇÏ´Ù¸é ÇÃ·¹ÀÌ¾î ¼ÒÈ¯ or Á¶Á¤
+        //ï¿½ï¿½ ï¿½ï¿½Ö¹ï¿½ ï¿½ï¿½Ä¡
+        // enenmyManager.SpawnEnemies(5);
+        //ï¿½Ê¿ï¿½ï¿½Ï´Ù¸ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½È¯ or ï¿½ï¿½ï¿½ï¿½
         player.transform.position = new Vector3(0.5f, -10f, player.transform.position.z);
         PlayerData.Instance.RoundStartPlayerSetting();
-        //¸ó½ºÅÍ¿¡°Ô ÇÃ·¹ÀÌ¾î¸¦ targetÀ¸·Î ÀÔ·ÂÇØÁÖ±â.
+        //ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ targetï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö±ï¿½.
 
         PlayerSkill playerskill = player.GetComponent<PlayerSkill>();
         if (playerskill != null && playerskill.activeSkill != null)
@@ -81,15 +81,15 @@ public class BattleManager : MonoBehaviour
         {
             foreach (PassiveSkill passiveSkill in passiveSkills)
             {
-                Debug.Log("ÆÐ½Ãºê ½ºÅ³: " + passiveSkill.skillName + ", ·¹º§: " + passiveSkill.level);
+                Debug.Log("ï¿½Ð½Ãºï¿½ ï¿½ï¿½Å³: " + passiveSkill.skillName + ", ï¿½ï¿½ï¿½ï¿½: " + passiveSkill.level);
             }
         }
         else
         {
-            Debug.Log("ÆÐ½Ãºê ½ºÅ³ÀÌ ¼±ÅÃµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.Log("ï¿½Ð½Ãºï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
         }
 
-        //º¸½º ÀÖ´ÂÁö Ã¼Å© ÈÄ ÀÖ´Ù¸é ÇÊ¿ä ¸Þ¼­µå ±¸µ¶.(º¸·ù)
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å© ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½Ê¿ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.(ï¿½ï¿½ï¿½ï¿½)
         foreach (EnemyController enemy in restEnemy)
         {
             if (enemy is BossEnemyController)
@@ -102,11 +102,11 @@ public class BattleManager : MonoBehaviour
 
     public void SubscribeBossEvent()
     {
-        boss.bossEvent[1] += enenmyManager.SpawnEnemy; // ´Ù¼¸ ¸¶¸® ¼ÒÈ¯
+        boss.bossEvent[1] += enenmyManager.SpawnEnemy; // ï¿½Ù¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 
-        // ¹üÀ§ ¸¶¹ý °ø°Ý
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        // ¼ø°£ ÀÌµ¿
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     }
     
 }
