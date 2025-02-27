@@ -74,22 +74,27 @@ public class EnemyController : BaseController
         }
 
         Vector2 direction = DirectionToSomewhere(target.position);
-        //float distance = DistanceToTarget(transform.position);
+        float distance = DistanceToTarget(transform.position);
+        if (followRange > distance)
+        {
+            lookDirection = direction;
 
-        if (TargetInLine(transform.position, direction) && TargetInDistance(direction))
-        {
-            isAttacking = true;
+            if (TargetInLine(transform.position, direction) && TargetInDistance(direction))
+            {
+                isAttacking = true;
+            }
+            else
+            {
+                Vector2 nextDirection = BFS().normalized; //노멀라이즈
+                movementDirection = nextDirection;
+            }
+            Attack(isAttacking); // 애니메이션 실행 메서드로 변경하고, 실제 공격판정은 애니메이션에서 이벤트로 트리거
         }
-        else
-        {
-            Vector2 nextDirection = BFS(); //노멀라이즈
-            movementDirection = nextDirection;
-        }
-        Attack(isAttacking); // 애니메이션 실행 메서드로 변경하고, 실제 공격판정은 애니메이션에서 이벤트로 트리거
     }
 
     private Vector2 BFS()
     {
+        Debug.Log($"플레이어 위치: {target.position}");
         //int[,] map = battleManager.Map;
         int[,] map = new int[10, 10] // 테스트용
 {
@@ -174,8 +179,12 @@ public class EnemyController : BaseController
 
         if (path.Count != 0)
         {
-            Debug.Log($"{path.Pop() - (Vector2)transform.position}으로 이동");
-        return path.Pop() - (Vector2)transform.position;
+            //Vector2 destination = battleManager.obstacleManager.GridToWorld(path.Pop().x, path.Pop().y);
+            Vector2 destination = path.Pop() + new Vector2(-5, -5);
+            Debug.Log($"{destination}으로 이동");
+            Debug.Log($"플레이어 위치: {target.position}");
+
+            return destination - (Vector2)transform.position;
         }
         else
         {
