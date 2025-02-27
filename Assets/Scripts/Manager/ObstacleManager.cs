@@ -6,18 +6,6 @@ using UnityEngine;
 public class ObstacleManager : MonoBehaviour
 {
     public static ObstacleManager Instance { get; private set; }
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-    }
 
     [Header("범위 오브젝트")]
     public GameObject leftObj, rightObj;
@@ -52,6 +40,19 @@ public class ObstacleManager : MonoBehaviour
     public int[,] Grid => grid; //{get;} 대신 람다식 사용
 
     private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
+    }
+    public void SettingObstacle()
     {
         InitializeGrid(); //그리드 초기화
         SpawnObstacle(rock, 1, 1, 3); //돌, 1 x 1 크기, 3개

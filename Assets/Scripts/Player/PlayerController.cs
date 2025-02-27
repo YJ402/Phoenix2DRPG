@@ -20,7 +20,6 @@ public class PlayerController : BaseController
     protected override void Awake()
     {
         base.Awake();
-        enemys = BattleManager.Instance.enemys.transform;
         rangeStatHandler = GetComponent<RangeStatHandler>();
         barImage = hpSlider.fillRect.GetComponent<Image>();
     }

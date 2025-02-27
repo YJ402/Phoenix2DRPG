@@ -105,7 +105,8 @@ public class EnemyController : BaseController
 
     private void OnDestroy()
     {
-        PlayerData.Instance.UpdateEnemyCount(true);
+        Debug.Log("¸÷ÀÌ Á×¾ú½À´Ï´Ù");
+        battleManager.UpdateEnemyCount(this);
     }
 
 
