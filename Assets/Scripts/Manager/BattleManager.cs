@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro.EditorUtilities;
 using UnityEngine;
@@ -8,8 +10,10 @@ public class BattleManager : MonoBehaviour
 
     EnemyManager enenmyManager;
     PlayerController playerController;
+    ResourceController playerResourceController;
     ObstacleManager obstacleManager;
     //UI매니저의 커렌트 state 받아오기.
+
 
     public GameObject player;
     public GameObject enemys;
@@ -19,6 +23,10 @@ public class BattleManager : MonoBehaviour
     int round;
 
     public static Transform PlayerTransform;
+
+
+    List<EnemyController> restEnemy = new();
+    BossEnemyController boss;
 
     public void Awake()
     {
@@ -32,10 +40,11 @@ public class BattleManager : MonoBehaviour
             return;
         }
         enenmyManager = GetComponent<EnemyManager>();
-        playerController = GetComponent<PlayerController>();
+        playerController = player.GetComponent<PlayerController>();
+        playerController = player.GetComponent<PlayerController>();
         obstacleManager = GetComponent<ObstacleManager>();
 
-        LoadPlayerData();
+        //LoadPlayerData();
 
         enenmyManager.Init(map, stage);
 
@@ -79,6 +88,25 @@ public class BattleManager : MonoBehaviour
         {
             Debug.Log("패시브 스킬이 선택되지 않았습니다.");
         }
+
+        //보스 있는지 체크 후 있다면 필요 메서드 구독.(보류)
+        foreach (EnemyController enemy in restEnemy)
+        {
+            if (enemy is BossEnemyController)
+            {
+                boss = enemy as BossEnemyController;
+                SubscribeBossEvent();
+            }
+        }
+    }
+
+    public void SubscribeBossEvent()
+    {
+        boss.bossEvent[1] += enenmyManager.SpawnEnemy; // 다섯 마리 소환
+
+        // 범위 마법 공격
+
+        // 순간 이동
     }
     
 }
