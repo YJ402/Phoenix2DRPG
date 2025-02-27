@@ -22,10 +22,6 @@
 //                graph[i, j] = 0;
 //    }
 
-//    public Graph SetObstacle() // 그냥 땅은 0이고, 통과 불가능한 장애물은 1이고, 
-//    {
-//        //필요하시면 작성 ㄱㄱ
-//    }
 
 //    public List<(int, int)> WayToTarget(Transform origin, Transform target)
 //    {
