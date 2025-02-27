@@ -16,21 +16,26 @@ public class EnemyController : BaseController
 
     List<Vector2> obstaclePosition;
 
+    [SerializeField] protected float attackDelayT = 0.5f;
+    protected float delayT;
+
     public void Init(EnemyManager enemyManager)
     {
         this.enemyManager = enemyManager;
         this.target = BattleManager.PlayerTransform;
         targetLayerMask = target.gameObject.layer;
+        delayT = attackDelayT;
     }
 
     protected override void Update()
     {
-            base.Update();
+        base.Update();
+        delayT -= Time.deltaTime;
     }
 
     protected override void FixedUpdate()
     {
-            base.FixedUpdate();
+        base.FixedUpdate();
     }
 
     protected override void Rotate(Vector2 direction)
@@ -65,7 +70,7 @@ public class EnemyController : BaseController
     {
         base.HandleAction();
 
-        
+
 
         if (target == null)
         {
@@ -87,7 +92,11 @@ public class EnemyController : BaseController
             {
                 if (targetInSight)
                 {
-                    isAttacking = true;
+                    if (delayT < 0)
+                    {
+                        isAttacking = true;
+                        delayT = attackDelayT;
+                    }
                     movementDirection = Vector2.zero;
                 }
                 else
@@ -95,7 +104,7 @@ public class EnemyController : BaseController
                     Debug.Log("길이 막혔습니다. 경로 찾기 로직을 실행합니다.");
                 }
             }
-            else
+            else if (!isAttacking)
             {
                 movementDirection = direction;
             }

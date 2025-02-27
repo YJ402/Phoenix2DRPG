@@ -17,18 +17,18 @@ public class BossEventHandler : MonoBehaviour
 
     private void AttackSpoke1()
     {
-        bossEnemyController.Attack1();
+        bossEnemyController.AttackSkill(1);
     }
 
     private void AttackSpoke2()
     {
-        bossEnemyController.Attack2();
+        bossEnemyController.AttackSkill(2);
 
     }
 
     private void AttackSpoke3()
     {
-        bossEnemyController.Attack3();
+        bossEnemyController.AttackSkill(3);
     }
 
     private void ExitAttack()

@@ -13,6 +13,7 @@ public class BossEnemyController : EnemyController
     int[,] map;
     [SerializeField] private int skill2Number = 20;
 
+
     protected override void Awake()
     {
         base.Awake();
@@ -24,7 +25,8 @@ public class BossEnemyController : EnemyController
         //bossEvent[2] += Attack3;
         obstacleManager = FindObjectOfType<ObstacleManager>();
         battleManager = FindObjectOfType<BattleManager>();
-        map = battleManager.Map;
+
+        //map = battleManager.Map;
     }
 
     //public void TriggerBossEvent(int i)
@@ -32,32 +34,58 @@ public class BossEnemyController : EnemyController
     //    bossEvent[i]?.Invoke();
     //}
 
+    protected override void Update()
+    {
+        base.Update();
+
+    }
+
     protected override void Attack(bool isAttack)
     {
         base.Attack(isAttack); // Attack 애니메이션 트리거 // 추가 로직 작성 안할거면 지워도 무방.
     }
 
-    public void Attack1()
+    public void AttackSkill(int i)
     {
-        //몹 소환
+        switch (i)
+        {
+            case 1:
+                Attack1();
+                break;
+
+            case 2:
+                Attack2();
+                break;
+
+            case 3:
+                Attack3();
+                break;
+
+            default:
+                Debug.Log("잘못된 스킬번호입니다");
+                break;
+        }
+    }
+    private void Attack1() // 몹 5마리 소환
+    {
         Debug.Log("1실행");
 
         battleManager.enenmyManager.SpawnEnemy(5);
     }
 
 
-    public void Attack2()
+    private void Attack2() // Boom
     {
         Debug.Log("2실행");
         for (int i = 0; i < skill2Number; i++)
         {
-            Instantiate(enemyskill, randomSpotInMap(), Quaternion.identity);
+            //Instantiate(enemyskill, randomSpotInMap(), Quaternion.identity);
+            Instantiate(enemyskill, Vector2.zero, Quaternion.identity);
         }
     }
 
-    public void Attack3()
+    private void Attack3() // 순간이동
     {
-        //순간 이동
         Debug.Log("3실행");
         Vector2 farPos = Vector2.zero;
         float farDistance = float.MinValue;
