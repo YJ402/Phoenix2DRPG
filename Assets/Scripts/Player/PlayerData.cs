@@ -8,7 +8,7 @@ public class PlayerData : MonoBehaviour
     public int CurrentStage
     {
         get { return currentStage; }
-        private set { currentStage = value; }
+        set { currentStage = value; }
     }
     private int currentRound = 1;
     public int CurrentRound
@@ -69,11 +69,11 @@ public class PlayerData : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+        
     }
-    
-
     public void RoundStartPlayerSetting()
     {
+        player = FindAnyObjectByType<PlayerController>().transform;
         ApplyPassiveSkill();
         player.GetComponent<ResourceController>().CurrentHealth = CurrentHP;
         player.transform.position = new Vector3(0.5f, -10f, player.transform.position.z);

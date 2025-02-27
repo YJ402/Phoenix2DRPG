@@ -29,7 +29,7 @@ public class BattleManager : MonoBehaviour
         private set { currentRound = value; }
     }
     List<EnemyController> restEnemy = new();
-    //BossEnemyController boss;
+    BossEnemyController boss;
 
     public void Awake()
     {
@@ -97,7 +97,7 @@ public class BattleManager : MonoBehaviour
 
     public void SubscribeBossEvent()
     {
-        boss.bossEvent[1] += enenmyManager.SpawnEnemy; //
+        //boss.bossEvent[1] += enenmyManager.SpawnEnemy; //
     }
     public void UpdateEnemyDeath(EnemyController enemy)
     {

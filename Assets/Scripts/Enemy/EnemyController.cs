@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyController : BaseController
 {
-    EnemyManager enemyManager;
+    protected EnemyManager enemyManager;
     [SerializeField] Transform target; // 디버깅용으로 시리얼필드로 만듦. 나중에 배틀매니저에서 enemyController.Init하면 자동으로 할당됨.
 
     [SerializeField] protected LayerMask targetLayerMask; // 디버깅용으로 시리얼필드로 만듦. 나중에 배틀매니저에서 enemyController.Init하면 자동으로 할당됨.
