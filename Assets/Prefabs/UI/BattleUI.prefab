@@ -624,6 +624,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78c5a6ad61574b20a36bdfea3a997b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageText: {fileID: 0}
+  roundText: {fileID: 0}
+  enemyCountText: {fileID: 0}
+  startStageUI: {fileID: 7964553647977473159, guid: 9f4e6c9225bb1491a81ebfc525cc7d08, type: 3}
+  clearRewardUI: {fileID: 102529942206739459, guid: d286780735e8243808b8c15a9edc0ad6, type: 3}
+  gameOverUI: {fileID: 2763150087095923309, guid: d3970402655a04b71b30707164616518, type: 3}
+  stageClearUI: {fileID: 6944751709582998497, guid: c41ee57a22a75435da48a0cc5f79e7d3, type: 3}
 --- !u!1 &6300259264766791744
 GameObject:
   m_ObjectHideFlags: 0

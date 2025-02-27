@@ -15,7 +15,8 @@ public enum UIState
     HealthBar,
     EquipSkill,
     SkillSlot,
-    GameOver
+    GameOver,
+    StageClear
 }
 
 public class UIManager : MonoBehaviour
@@ -23,13 +24,11 @@ public class UIManager : MonoBehaviour
     TitleUI titleUI;
     LobbyUI lobbyUI;
     BattleUI battleUI;
-    // SkillPointUI skillPointUI;
-    // HealthBarUI healBarUI;
     SelectSkillUI selectSkillUI;
-    // EquipSkillUI equipSkillUI;
     SkillSlotUI skillSlotUI;
-    // GameOverUI gameOverUI;
-    //
+    GameOverUI gameOverUI;
+    StageClearUI stageClearUI;
+    
     private UIState currentState;
 
     private void Awake()
@@ -40,18 +39,12 @@ public class UIManager : MonoBehaviour
         lobbyUI?.Init(this);
         battleUI = GetComponentInChildren<BattleUI>(true);
         battleUI?.Init(this); 
-        // skillPointUI = GetComponentInChildren<SkillPointUI>(true);
-        // skillPointUI?.Init(this);
-        // HealthBarUI = GetComponentInChildren<HealthBarUI>(true);
-        // HealthBarUI.Init(this);
         selectSkillUI = GetComponentInChildren<SelectSkillUI>(true);
-        //selectSkillUI?.Init(this);
-        // EquipSkillUI = GetComponentInChildren<EquipSkillUI>(true);
-        // EquipSkillUI.Init(this);
-        skillSlotUI = GetComponentInChildren<SkillSlotUI>(true);
-        //skillSlotUI?.init(this);
-        // gameOverUI = GetComponentInChildren<GameOverUI>(true);
-        // gameOverUI.Init(this);
+        selectSkillUI?.Init(this);
+        gameOverUI = GetComponentInChildren<GameOverUI>(true);
+        gameOverUI?.Init(this);
+        stageClearUI = GetComponentInChildren<StageClearUI>(true);
+        stageClearUI?.Init(this);
         
     }
     public void ChangeState(UIState state)
@@ -61,6 +54,8 @@ public class UIManager : MonoBehaviour
         lobbyUI.SetActive(currentState);
         battleUI.SetActive(currentState);
         selectSkillUI.SetActive(currentState);
+        gameOverUI.SetActive(currentState);
+        stageClearUI.SetActive(currentState);
     }
 
 }

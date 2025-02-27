@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameOverUI : BaseUI
+public class StageClearUI : BaseUI
 {
     [Header("Overlay UIs")]
-    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject stageClearUI;
     
     Button exitButton;
     
     protected override UIState GetUIState()
     {
-        return UIState.GameOver;
+        return UIState.StageClear;
     }
 
     public override void Init(UIManager uiManager)

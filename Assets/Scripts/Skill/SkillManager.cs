@@ -5,11 +5,28 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+    public static SkillManager Instance { get; set; }
+    
+    // Awake에서 인스턴스 초기화
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            // 필요하다면 아래 줄을 활성화해서 씬 전환 시 파괴되지 않도록 할 수 있음.
+            // DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     // Inspector에 등록된 전체 스킬 목록 (BaseSkill을 상속한 스킬들)
     public List<BaseSkill> everyskill;
 
     // 보상으로 보여줄 3개의 스킬 옵션 (중복 없이, 순서 무작위) //@@ 2 애도가저옴
-    private List<BaseSkill> randomSkill = new List<BaseSkill>();
+    public List<BaseSkill> randomSkill = new List<BaseSkill>();
 
     public GameObject player;
     public PlayerSkill playerSkill;
@@ -31,16 +48,6 @@ public class SkillManager : MonoBehaviour
     public void SelectSkillOption(int index, PlayerData playerData)
     {
         if (index < 0 || index >= randomSkill.Count) return;
-        
-        // PlayerData의 ClearStage 값을 복사하여 skillPoints로 사용
-        int skillPoints = PlayerData.Instance.PlayerLevel; // 복사
-        
-        // 스킬 포인트가 남아있는지 확인
-        if (skillPoints <= 0)
-        {
-            Debug.Log("스킬 포인트가 부족합니다!");
-            return;
-        }
 
         BaseSkill selectedSkill = randomSkill[index];
 
@@ -122,54 +129,6 @@ public class SkillManager : MonoBehaviour
     {
         return randomSkill;
     }
-    // 구동 확인용 비활성화 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    // public void SelectSkillOption(int index)                    //스킬선택했을때 호출할 메서드
-    // {
-    //     if (index < 0 || index >= randomSkill.Count)
-    //     {
-    //         return;
-    //     }
-    //
-    //     BaseSkill selectedSkill = randomSkill[index];
-    //
-    //     // 선택된 스킬이 액티브 스킬인지 패시브 스킬인지에 따라 분기
-    //     if (selectedSkill is ActiveSkill)
-    //     {
-    //         HandleActiveSkill(selectedSkill as ActiveSkill);
-    //     }
-    //     else if (selectedSkill is PassiveSkill)
-    //     {
-    //         HandlePassiveSkill(selectedSkill as PassiveSkill);
-    //     }
-    // }
-    //
-    // private void HandleActiveSkill(ActiveSkill newSkill)
-    // {
-    //     currentActiveSkill = newSkill;
-    //
-    //     if (playerSkill != null)
-    //     {
-    //         playerSkill.SetorUpgradeActiveSkill(newSkill);
-    //     }
-    // }
-    //
-    // private void HandlePassiveSkill(PassiveSkill newSkill)
-    // {
-    //     System.Type skillType = newSkill.GetType();
-    //     if (passiveSkills.ContainsKey(skillType))
-    //     {
-    //         PassiveSkill existingSkill = passiveSkills[skillType];
-    //         existingSkill.UpgradeSkill();
-    //     }
-    //     else
-    //     {
-    //         PassiveSkill addedSkill = player.AddComponent(skillType) as PassiveSkill;
-    //         addedSkill.skillName = newSkill.skillName;
-    //         addedSkill.level = newSkill.level;
-    //         passiveSkills.Add(skillType, addedSkill);
-    //     }
-    // }
-    // 구동 확인용 비활성화 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     private void ShuffleList<T>(List<T> list)
     {

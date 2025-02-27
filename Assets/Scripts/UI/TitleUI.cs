@@ -14,7 +14,6 @@ public class TitleUI : BaseUI
     
     public override void Init(UIManager uiManager)
     {
-        Debug.Log("Init");
         base.Init(uiManager);
         
         startButton = transform.GetComponentInChildren<Button>();

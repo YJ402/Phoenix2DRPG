@@ -12,14 +12,15 @@ public class BattleUI : BaseUI
     [Header("Overlay UIs")]
     [SerializeField] private GameObject startStageUI;   // StartStageUI 오브젝트 (SelectSkillUI, EquipSkillUI, SkillPointUI 포함)
     [SerializeField] private GameObject clearRewardUI;  // ClearRewardUI 오브젝트 (SelectSkillUI, EquipSkillUI 포함)
-
+    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject stageClearUI;
+    
     private int currentStage;
     private int currentRound;
     private int currentEnemyCount;
 
     protected override UIState GetUIState()
     {
-        // 이 UI는 UIState.Battle 상태일 때만 활성화
         return UIState.Battle;
     }
 
@@ -31,6 +32,8 @@ public class BattleUI : BaseUI
         // 처음엔 오버레이 패널들 비활성화
         startStageUI.SetActive(true);
         clearRewardUI.SetActive(false);
+        gameOverUI.SetActive(false);
+        stageClearUI.SetActive(false);
 
         // 배틀 정보 초기화 (예: 스테이지1, 라운드1, 적0)
         UpdateBattleInfo(1, 1, 0);
@@ -97,6 +100,26 @@ public class BattleUI : BaseUI
         {
             clearRewardUI.SetActive(false);
         }
+    }
+    
+    // 게임 패배시 GameOverUI 켜기
+    public void ShowGameOverUI()
+    {
+        if (gameOverUI != null && PlayerData.Instance.CurrentHP <= 0)
+        {
+            gameOverUI.SetActive(true);
+            PauseBattle();
+        } 
+    }
+    
+    // 게임 승리시 stageClearUI 켜기
+    public void ShowStageClearUI()
+    {
+        if (stageClearUI != null) // 보스클리어조건 넣어야함
+        {
+            stageClearUI.SetActive(true);
+            PauseBattle();
+        } 
     }
     
     // 배틀 진행 일시정지
