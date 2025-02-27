@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class BossEnemyController : EnemyController
 {
-    BattleManager battleManager;
+    //BattleManager battleManager;
     ObstacleManager obstacleManager;
     [SerializeField] Enemyskill enemyskill;
     //public List<Action> bossEvent = new();

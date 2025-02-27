@@ -95,24 +95,24 @@ public class EnemyController : BaseController
     private Vector2 BFS()
     {
         Debug.Log($"플레이어 위치: {target.position}");
-        //int[,] map = battleManager.Map;
-        int[,] map = new int[10, 10] // 테스트용
-{
-        { 0, 0, 3, 0, 1, 0, 0, 1, 0, 0 },
-        { 0, 0, 0, 1, 0, 3, 0, 0, 0, 0 },
-        { 0, 1, 0, 0, 0, 0, 1, 0, 0, 0 },
-        { 0, 0, 0, 0, 1, 0, 0, 3, 0, 0 },
-        { 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 1, 0, 0, 0, 0, 3, 0, 0, 0 },
-        { 3, 0, 0, 0, 0, 1, 0, 0, 0, 0 },
-        { 0, 0, 0, 1, 0, 0, 0, 1, 0, 0 },
-        { 0, 0, 1, 0, 0, 3, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 }
-};
+        int[,] map = battleManager.Map;
+//        int[,] map = new int[10, 10] // 테스트용
+//{
+//        { 0, 0, 3, 0, 1, 0, 0, 1, 0, 0 },
+//        { 0, 0, 0, 1, 0, 3, 0, 0, 0, 0 },
+//        { 0, 1, 0, 0, 0, 0, 1, 0, 0, 0 },
+//        { 0, 0, 0, 0, 1, 0, 0, 3, 0, 0 },
+//        { 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
+//        { 0, 1, 0, 0, 0, 0, 3, 0, 0, 0 },
+//        { 3, 0, 0, 0, 0, 1, 0, 0, 0, 0 },
+//        { 0, 0, 0, 1, 0, 0, 0, 1, 0, 0 },
+//        { 0, 0, 1, 0, 0, 3, 0, 0, 0, 0 },
+//        { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 }
+//};
 
 
-        //int MaxNavigation = Mathf.Clamp((int)Math.Pow((followRange*2+1),2),0,200);
-        int MaxNavigation = int.MaxValue;
+        int MaxNavigation = Mathf.Clamp((int)Math.Pow((followRange*2+1),2),0,200);
+        //int MaxNavigation = int.MaxValue;
 
         Queue<Vector2> spots = new Queue<Vector2>(); // 한장짜리 수색 스팟 순서 목록
         HashSet<Vector2> isVisited = new HashSet<Vector2>();
@@ -132,13 +132,13 @@ public class EnemyController : BaseController
 
         int x1 = Mathf.RoundToInt(target.position.x);
         int y1 = Mathf.RoundToInt(target.position.y);
-        //Vector2 targetPos = new Vector2(x1, y1) - battleManager.obstacleManager.GridToWorld(0, 0); // 타겟 좌표를 일치화
-        Vector2 targetPos = new Vector2(x1, y1) - new Vector2(-5, -5); // 테스트용
+        Vector2 targetPos = new Vector2(x1, y1) - battleManager.obstacleManager.GridToWorld(0, 0); // 타겟 좌표를 일치화
+        //Vector2 targetPos = new Vector2(x1, y1) - new Vector2(-5, -5); // 테스트용
 
         int x2 = Mathf.RoundToInt(transform.position.x);
         int y2 = Mathf.RoundToInt(transform.position.y);
-        //Vector2 finderPos = new Vector2(x2, y2) - battleManager.obstacleManager.GridToWorld(0, 0); // 현재 몹 좌표를 일치화
-        Vector2 finderPos = new Vector2(x2, y2) - new Vector2(-5, -5); // 테스트용
+        Vector2 finderPos = new Vector2(x2, y2) - battleManager.obstacleManager.GridToWorld(0, 0); // 현재 몹 좌표를 일치화
+        //Vector2 finderPos = new Vector2(x2, y2) - new Vector2(-5, -5); // 테스트용
 
         spots.Enqueue(finderPos);
 
@@ -179,8 +179,8 @@ public class EnemyController : BaseController
 
         if (path.Count != 0)
         {
-            //Vector2 destination = battleManager.obstacleManager.GridToWorld(path.Pop().x, path.Pop().y);
-            Vector2 destination = path.Pop() + new Vector2(-5, -5);
+            Vector2 destination = battleManager.obstacleManager.GridToWorld(path.Pop().x, path.Pop().y);
+            //Vector2 destination = path.Pop() + new Vector2(-5, -5);
             Debug.Log($"{destination}으로 이동");
             Debug.Log($"플레이어 위치: {target.position}");
 
