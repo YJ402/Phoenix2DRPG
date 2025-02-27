@@ -8,7 +8,6 @@ public class BattleManager : MonoBehaviour
     PlayerController playerController;
     ResourceController playerResourceController;
     [SerializeField] ObstacleManager obstacleManager;
-    //UIë§¤ë‹ˆì €ì˜ ì»¤ë ŒíŠ¸ state ë°›ì•„ì˜¤ê¸°.
 
 
     public GameObject player;
@@ -39,28 +38,32 @@ public class BattleManager : MonoBehaviour
     {
         StartRound();
     }
-    
+
+
     private void LoadPlayerData()
     {
         Map = obstacleManager.Grid;
         CurrentStage = PlayerData.Instance.CurrentStage;
         CurrentRound = PlayerData.Instance.CurrentRound;
-        // ë¼ìš´ë“œ ì „í™˜ì‹œì— ë°ì´í„° ì €ì¥ í´ë˜ìŠ¤ì—ì„œ ì •ë³´ ë°›ì•„ì™€ì„œ Player, ìŠ¤í…Œì´ì§€, ë¼ìš´ë“œ ì…ë ¥í•´ì£¼ê¸°.
+        // ¶ó¿îµå ÀüÈ¯½Ã¿¡ µ¥ÀÌÅÍ ÀúÀå Å¬·¡½º¿¡¼­ Á¤º¸ ¹Ş¾Æ¿Í¼­ Player, ½ºÅ×ÀÌÁö, ¶ó¿îµå ÀÔ·ÂÇØÁÖ±â.
     }
 
-    private void StartRound() // ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û½Ã¿ï¿½ UIManagerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. 
+    private void StartRound() 
     {
         
-        obstacleManager.SettingObstacle();                               //ì¥ì• ë¬¼ ìƒì„±
+        obstacleManager.SettingObstacle();                               //Àå¾Ö¹° »ı¼º
         LoadPlayerData();
         enenmyManager.Init(Map, CurrentStage);
-        enenmyManager.SpawnEnemiesInMap(5);                              //ì  ìƒì„±
+        enenmyManager.SpawnEnemiesInMap(5);                              //Àû »ı¼º
         restEnemy = enenmyManager.restEnemy;
 
         PlayerData.Instance.RoundStartPlayerSetting();
                                                        //
                         //
-        //ëª¬ìŠ¤í„°ì—ê²Œ í”Œë ˆì´ì–´ë¥¼ targetìœ¼ë¡œ ì…ë ¥í•´ì£¼ê¸°.
+        
+        player.transform.position = new Vector3(0.5f, -10f, player.transform.position.z);
+        PlayerData.Instance.RoundStartPlayerSetting();
+       
 
         PlayerSkill playerskill = player.GetComponent<PlayerSkill>();
         if (playerskill != null && playerskill.activeSkill != null)
@@ -107,12 +110,12 @@ public class BattleManager : MonoBehaviour
             RoundClear();
         }
     }
-    public void RoundClear()  //ì ì´ 0ì´ ë¬ì„ë•Œ í˜¸ì¶œ   ë³´ìƒUIë„ìš°ê¸° ì¶”ê°€í•„ìš”
+    public void RoundClear()  //ÀûÀÌ 0ÀÌ ‰çÀ»¶§ È£Ãâ   º¸»óUI¶ç¿ì±â Ãß°¡ÇÊ¿ä
     {
         obstacleManager.BlockRemove();
         Time.timeScale = 0;
 
-        Debug.Log("ì ì„ ëª¨ë‘ ì²˜ì¹˜í•˜ì˜€ìŠµë‹ˆë‹¤.");
+        Debug.Log("ÀûÀ» ¸ğµÎ Ã³Ä¡ÇÏ¿´½À´Ï´Ù.");
     }
     public void GoNextRound()
     {

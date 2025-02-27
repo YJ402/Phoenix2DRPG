@@ -12,7 +12,7 @@ public class SkillPointUI : MonoBehaviour
         if (skillPointText != null && PlayerData.Instance != null)
         {
             // 문자열로 변환해 표시
-            skillPointText.text = PlayerData.Instance.SkillPoint.ToString();
+            skillPointText.text = PlayerData.Instance.PlayerLevel.ToString();
         }
     }
     

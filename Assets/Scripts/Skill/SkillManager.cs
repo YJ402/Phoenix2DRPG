@@ -32,7 +32,7 @@ public class SkillManager : MonoBehaviour
         if (index < 0 || index >= randomSkill.Count) return;
         
         // PlayerData의 ClearStage 값을 복사하여 skillPoints로 사용
-        int skillPoints = PlayerData.Instance.SkillPoint; // 복사
+        int skillPoints = PlayerData.Instance.PlayerLevel; // 복사
         
         // 스킬 포인트가 남아있는지 확인
         if (skillPoints <= 0)
@@ -44,8 +44,8 @@ public class SkillManager : MonoBehaviour
         BaseSkill selectedSkill = randomSkill[index];
 
         // 스킬 포인트 차감
-        PlayerData.Instance.SkillPoint--;
-        Debug.Log($"스킬 포인트 1점 사용. 남은 포인트: {PlayerData.Instance.SkillPoint}");
+        PlayerData.Instance.PlayerLevel--;
+        Debug.Log($"스킬 포인트 1점 사용. 남은 포인트: {PlayerData.Instance.PlayerLevel}");
         
         // 선택된 스킬이 액티브 스킬인지 패시브 스킬인지 분기
         if (selectedSkill is ActiveSkill activeSkill)
@@ -60,7 +60,7 @@ public class SkillManager : MonoBehaviour
 
     private void HandleActiveSkill(ActiveSkill newSkill)
     {
-        currentActiveSkill = newSkill;
+        //currentActiveSkill = newSkill;
 
         if (playerSkill != null)
         {

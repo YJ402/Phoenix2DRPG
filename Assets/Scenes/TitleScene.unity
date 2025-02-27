@@ -247,6 +247,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.9064563
       objectReference: {fileID: 0}
+    - target: {fileID: 7180194677489071003, guid: 4a1b5601cb2774605ba25793c9f087b7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180194677489071003, guid: 4a1b5601cb2774605ba25793c9f087b7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180194677489071003, guid: 4a1b5601cb2774605ba25793c9f087b7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1694137906}
+    - target: {fileID: 7180194677489071003, guid: 4a1b5601cb2774605ba25793c9f087b7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7941534571349368275, guid: 4a1b5601cb2774605ba25793c9f087b7, type: 3}
       propertyPath: m_Name
       value: TitleUI
@@ -6455,7 +6471,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 5e2537ffb6b9d474e9bb7a2c156a78d7, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6503,6 +6519,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1694137906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8554070963877969589, guid: 4a1b5601cb2774605ba25793c9f087b7, type: 3}
+  m_PrefabInstance: {fileID: 103658815}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2012698735
 GameObject:
   m_ObjectHideFlags: 0
