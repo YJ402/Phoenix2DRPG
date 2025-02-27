@@ -101,6 +101,8 @@ public class PlayerData : MonoBehaviour
     public void StageEndSetting()
     {
         CurrentHP = 1000;
+        currentRound = 1;
+        isLevelSkillSelect = true;
     }
     public void SaveCurrentHP(int currentHP)
     {

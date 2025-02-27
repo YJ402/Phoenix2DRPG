@@ -204,11 +204,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 3570008711632133553}
   isAttacking: 0
+  itemPrefab: {fileID: 3978561617942624, guid: 2cc770c395e133f41bfb0846ee459ea3, type: 3}
+  percentDropItem: 10
   target: {fileID: 0}
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 64
   followRange: 100
+  attackDelayT: 0.5
   hitBox: {fileID: 8316897099603807326}
 --- !u!114 &7718505469129326404
 MonoBehaviour:
@@ -257,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d33d48cb16ed1458b855e75cd3996d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trapDamage: 50
   healthChangeDelay: 0.5
   damageClip: {fileID: 0}
 --- !u!50 &411688205642521595

@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.Rendering;
 
 public class EnemyController : BaseController
 {
+    [SerializeField] GameObject itemPrefab;
+    [SerializeField] float percentDropItem;
     EnemyManager enemyManager;
     [SerializeField] Transform target; // 디버깅용으로 시리얼필드로 만듦. 나중에 배틀매니저에서 enemyController.Init하면 자동으로 할당됨.
 
@@ -220,6 +223,11 @@ private void OnDestroy()
     {
         Debug.Log("몹이 죽었습니다");
         battleManager.UpdateEnemyDeath(this);
+        System.Random random = new System.Random();
+        if((float)random.NextDouble()*100 < percentDropItem)
+        {
+            Instantiate(itemPrefab, transform.position, Quaternion.identity);
+        }
     }
 }
 
@@ -264,4 +272,4 @@ private void OnDestroy()
     //}
 
     //private void Chasing()
-}
+//    }

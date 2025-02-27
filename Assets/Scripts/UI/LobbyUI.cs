@@ -34,7 +34,6 @@ public class LobbyUI : BaseUI
     private void OnSelectStage(int stage)
     {
         PlayerData.Instance.CurrentStage = stage;
-        Debug.Log("Stage selected. Transition to battle scene...");
         SceneManager.LoadScene("BattleScene_Test");
     }
     

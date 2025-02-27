@@ -121,12 +121,13 @@ public class BattleManager : MonoBehaviour
     {
         obstacleManager.BlockRemove();
         Time.timeScale = 0;
-        if (CurrentRound == 2)
+        if (CurrentRound == 3)
         {
             StageClear();
         }
         else
         {
+            PlayerData.Instance.SkillPoint++;
             uIManager.ChangeState(UIState.SelectSkill);
         }
 
@@ -141,6 +142,7 @@ public class BattleManager : MonoBehaviour
         bool isLevelUp = backLevel != frontLevel;
         uIManager.UpdateStageClearUI(isLevelUp,plusExp,backLevel,PlayerData.Instance.PlayerExp);
         PlayerData.Instance.resetSkillPoint();
+        PlayerData.Instance.StageEndSetting();
         uIManager.ChangeState(UIState.StageClear);
     }
     public void GoNextRound()
@@ -148,7 +150,10 @@ public class BattleManager : MonoBehaviour
         PlayerData.Instance.GoNextRoundSetting();  //플레이어 체력 저장, 라운드증가
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
+    public void GameOver()
+    {
+        uIManager.ChangeState(UIState.GameOver);
+    }
     public void AddMonsterToList(List<EnemyController> enemylist)
     {
         foreach (EnemyController enemy in enemylist)

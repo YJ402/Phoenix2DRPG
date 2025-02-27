@@ -5,16 +5,20 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    private ResourceController resourceController;
     public ItemManager itemManager;
-    public void OnTriggerEnter2D(Collider2D other)
+    private void Awake()
     {
-        if (other.gameObject.name == "Player")
+        itemManager = GetComponentInParent<ItemManager>();
+    }
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            resourceController.ChangeHealth(20);
+            collider.GetComponent<ResourceController>().ChangeHealth(100);
+            itemManager?.spawnedItems.Remove(this.gameObject);
+            Debug.Log($"{this.gameObject} removed");
+            Destroy(this.gameObject);
         }
-        itemManager.spawnedItems.Remove(this.gameObject);
-        Debug.Log($"{this.gameObject} removed");
-        Destroy(this);
+        
     }
 }

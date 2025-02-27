@@ -80,10 +80,15 @@ public class PlayerController : BaseController
         animationHandler.Attack((targetDistance < rangeStatHandler.AttackRange) && targetTransform != null);
     }
 
+    private void OnDestroy()
+    {
+        battleManager.GameOver();
+    }
+
 
     //=================================================================
     // 캐릭터 체력바 UI관련
-    
+
     public void UpdateHpSlider(float percentage)
     {
         hpSlider.value = percentage;

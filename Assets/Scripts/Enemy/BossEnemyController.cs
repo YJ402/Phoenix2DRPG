@@ -69,7 +69,7 @@ public class BossEnemyController : EnemyController
     {
         Debug.Log("1½ÇÇà");
 
-        enemyManager.SpawnEnemy(5);
+        //enemyManager.SpawnEnemy(5);
     }
 
 

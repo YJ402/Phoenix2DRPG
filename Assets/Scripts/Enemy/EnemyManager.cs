@@ -44,9 +44,9 @@ public class EnemyManager : MonoBehaviour
                 continue;
             }
             
-            int randNum = Random.Range(0, stageEnemyPrefabs[curStage].Count);
+            int randNum = Random.Range(0, stageEnemyPrefabs[curStage-1].Count);
 
-            GameObject newEnemy = Instantiate(stageEnemyPrefabs[curStage][randNum].gameObject, new Vector2(x- map.GetLength(0)/2, y - map.GetLength(0)/3), Quaternion.identity);
+            GameObject newEnemy = Instantiate(stageEnemyPrefabs[curStage-1][randNum].gameObject, new Vector2(x- map.GetLength(0)/2, y - map.GetLength(0)/3), Quaternion.identity);
             newEnemy.transform.SetParent(transform, false);
             restEnemy.Add(newEnemy.GetComponent<EnemyController>());
 

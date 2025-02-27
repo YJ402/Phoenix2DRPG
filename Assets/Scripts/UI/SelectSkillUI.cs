@@ -73,6 +73,7 @@ public class SelectSkillUI : BaseUI
         {
             Time.timeScale = 1f;
             PlayerData.Instance.isLevelSkillSelect = false;
+            PlayerData.Instance.SkillPoint = 0;
             uiManager.ChangeState(UIState.Battle);
         }
         else
