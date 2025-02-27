@@ -184,7 +184,7 @@ public class ObstacleManager : MonoBehaviour
             }
         }
     }
-    private Vector2 GridToWorld(float gridX, float gridY)
+    public Vector2 GridToWorld(float gridX, float gridY)
     {
         return new Vector2(minX + gridX, minY + gridY);
         //minX라는 최소 x값에 gridX만큼을 추가한 값을 반환

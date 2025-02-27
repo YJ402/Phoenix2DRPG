@@ -105,7 +105,7 @@ public class EnemyController : BaseController
 
     private void OnDestroy()
     {
-        PlayerData.Instance.UpdateEnemyCount(true);
+        //PlayerData.Instance.UpdateEnemyCount(true);
     }
 
 
