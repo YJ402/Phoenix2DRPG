@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7690573727370187560}
   - component: {fileID: 6371260151123109172}
   m_Layer: 5
-  m_Name: PointText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 3672868595723944029}
   - component: {fileID: 8621874222859630725}
   m_Layer: 5
-  m_Name: PointNumber
+  m_Name: SkillPointText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,7 +327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1374303476285020939}
   m_Layer: 5
-  m_Name: PointInfo
+  m_Name: Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

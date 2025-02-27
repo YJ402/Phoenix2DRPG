@@ -1,80 +1,68 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System;
+using System.Collections.Generic;
 
-public class SelectSkillUI : BaseUI
+public class SelectSkillUI : MonoBehaviour
 {
-    [Header("Select Skill UI Root")]
-    [SerializeField] private GameObject selectSkillUI; // Unity에서 연결 (필요하다면)
+    [Header("Skill Slots")]
+    [SerializeField] private SkillSlotUI[] skillSlots; // Slot0, Slot1, Slot2를 Inspector에서 연결
 
-    // [Header("Skill Slots")]
-    [Serializable]
-    public class SkillSlot
-    {
-        public Text skillInfoText;
-        public Button selectButton;
-    }
-
-    [Header("Slot Array")]
-    [SerializeField] private SkillSlot[] skillSlots = new SkillSlot[3];
-    
-    protected override UIState GetUIState()
-    {
-        return UIState.SelectSkill;
-    }
-    
+    // SkillManager 참조
     private SkillManager skillManager;
-    
-    // 최초 스킬 선택 - UI가 활성화될 때마다 초기화
-    private bool isFirstSkillSelection = true;
-    
+
+    private void Awake()
+    {
+        // 씬 내 SkillManager를 찾음 (또는 Inspector 연결)
+        skillManager = FindObjectOfType<SkillManager>();
+    }
+
     private void OnEnable()
     {
-        isFirstSkillSelection = true;
+        // UI가 활성화될 때, 스킬 목록 생성 & 슬롯 업데이트
+        RefreshSkillSlots();
     }
-    
-    public override void Init(UIManager manager)
-    {
-        base.Init(manager);
 
-        // 스킬 슬롯의 버튼에 클릭 이벤트 등록
+    // SkillManager의 MakeSkillOptions() -> GetRandomSkillOptions()를 사용해 슬롯 갱신
+    private void RefreshSkillSlots()
+    {
+        if (skillManager == null) return;
+
+        // 1) 스킬 옵션 생성
+        skillManager.MakeSkillOptions();
+
+        // 2) 스킬 리스트 가져오기
+        List<BaseSkill> randomSkills = skillManager.GetRandomSkillOptions();
+
+        // 슬롯 갯수와 리스트 갯수를 맞춰 세팅
         for (int i = 0; i < skillSlots.Length; i++)
         {
-            int index = i; // 람다 캡처용 임시 변수
-            if (skillSlots[i].selectButton != null)
+            if (i < randomSkills.Count && randomSkills[i] != null)
             {
-                skillSlots[i].selectButton.onClick.AddListener(() => OnSelectSkill(index));
+                BaseSkill skill = randomSkills[i];
+                // 스킬 정보 설정 (예: skill.skillImage, skill.skillName)
+                // onSelect 콜백: 슬롯 선택 시 SkillManager.SelectSkillOption(i)를 호출
+                skillSlots[i].SetSkillData(
+                    // skill.skillImage,                // 예: BaseSkill 내 sprite
+                    skill.skillName,                 // 예: 스킬 이름
+                    () => OnSelectSkill(i)           // 버튼 클릭 시 실행할 메서드
+                );
             }
+            // else
+            // {
+            //     // 슬롯을 비움
+            //     skillSlots[i].ClearSlot();
+            // }
         }
-        
     }
 
-    // 스킬 선택 버튼을 눌렀을 때
+    // 슬롯 선택 시 호출되는 메서드
     private void OnSelectSkill(int slotIndex)
     {
         Debug.Log($"Skill Slot {slotIndex} selected.");
-        
-        // 최초 스킬 선택 - 최초 1회는 스킬 포인트 체크 없이 진행
-        if (isFirstSkillSelection)
-        {
-            Debug.Log("최초 스킬 선택: 스킬 포인트 차감 없이 스킬 장착.");
-            isFirstSkillSelection = false;
-        }
-        else
-        {
-            // 최초 이후는 SkillManager 내에서 스킬 포인트 체크 및 차감 로직이 진행됨
-        }
+        // SkillManager에 선택된 슬롯 인덱스를 전달
+        skillManager.SelectSkillOption(slotIndex);
 
-        // SkillManager에 선택된 스킬 옵션 전달
-        if (skillManager != null)
-        {
-            skillManager.SelectSkillOption(slotIndex);
-        }
-
-        // UI 닫기
-        if (selectSkillUI != null)
-        {
-            selectSkillUI.SetActive(false);
-        }
+        // 스킬 선택 후 UI 닫기 등
+        gameObject.SetActive(false);
     }
 }

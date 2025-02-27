@@ -8,7 +8,7 @@ public class BattleManager : MonoBehaviour
     PlayerController playerController;
     ResourceController playerResourceController;
     [SerializeField] ObstacleManager obstacleManager;
-    //UI¸Å´ÏÀúÀÇ Ä¿·»Æ® state ¹Ş¾Æ¿À±â.
+    //UIë§¤ë‹ˆì €ì˜ ì»¤ë ŒíŠ¸ state ë°›ì•„ì˜¤ê¸°.
 
 
     public GameObject player;
@@ -45,22 +45,22 @@ public class BattleManager : MonoBehaviour
         Map = obstacleManager.Grid;
         CurrentStage = PlayerData.Instance.CurrentStage;
         CurrentRound = PlayerData.Instance.CurrentRound;
-        // ¶ó¿îµå ÀüÈ¯½Ã¿¡ µ¥ÀÌÅÍ ÀúÀå Å¬·¡½º¿¡¼­ Á¤º¸ ¹Ş¾Æ¿Í¼­ Player, ½ºÅ×ÀÌÁö, ¶ó¿îµå ÀÔ·ÂÇØÁÖ±â.
+        // ë¼ìš´ë“œ ì „í™˜ì‹œì— ë°ì´í„° ì €ì¥ í´ë˜ìŠ¤ì—ì„œ ì •ë³´ ë°›ì•„ì™€ì„œ Player, ìŠ¤í…Œì´ì§€, ë¼ìš´ë“œ ì…ë ¥í•´ì£¼ê¸°.
     }
 
-    private void StartRound() // ½ºÅ³ ¼±ÅÃ ³¡³ª°í ¶ó¿îµå ½ÃÀÛ½Ã¿¡ UIManager¿¡¼­ ½ÇÇàÇÏµµ·Ï ÇÏ´Â °Ô ±¦ÂúÀ»µí. 
+    private void StartRound() // ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û½Ã¿ï¿½ UIManagerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. 
     {
         
-        obstacleManager.SettingObstacle();                               //Àå¾Ö¹° »ı¼º
+        obstacleManager.SettingObstacle();                               //ì¥ì• ë¬¼ ìƒì„±
         LoadPlayerData();
         enenmyManager.Init(Map, CurrentStage);
-        enenmyManager.SpawnEnemiesInMap(5);                              //Àû »ı¼º
+        enenmyManager.SpawnEnemiesInMap(5);                              //ì  ìƒì„±
         restEnemy = enenmyManager.restEnemy;
 
         PlayerData.Instance.RoundStartPlayerSetting();
                                                        //
                         //
-        //¸ó½ºÅÍ¿¡°Ô ÇÃ·¹ÀÌ¾î¸¦ targetÀ¸·Î ÀÔ·ÂÇØÁÖ±â.
+        //ëª¬ìŠ¤í„°ì—ê²Œ í”Œë ˆì´ì–´ë¥¼ targetìœ¼ë¡œ ì…ë ¥í•´ì£¼ê¸°.
 
         PlayerSkill playerskill = player.GetComponent<PlayerSkill>();
         if (playerskill != null && playerskill.activeSkill != null)
@@ -72,15 +72,15 @@ public class BattleManager : MonoBehaviour
         {
             foreach (PassiveSkill passiveSkill in passiveSkills)
             {
-                Debug.Log("ÆĞ½Ãºê ½ºÅ³: " + passiveSkill.skillName + ", ·¹º§: " + passiveSkill.level);
+                Debug.Log("ï¿½Ğ½Ãºï¿½ ï¿½ï¿½Å³: " + passiveSkill.skillName + ", ï¿½ï¿½ï¿½ï¿½: " + passiveSkill.level);
             }
         }
         else
         {
-            Debug.Log("ÆĞ½Ãºê ½ºÅ³ÀÌ ¼±ÅÃµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.Log("ï¿½Ğ½Ãºï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
         }
 
-        //º¸½º ÀÖ´ÂÁö Ã¼Å© ÈÄ ÀÖ´Ù¸é ÇÊ¿ä ¸Ş¼­µå ±¸µ¶.(º¸·ù)
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å© ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½Ê¿ï¿½ ï¿½Ş¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.(ï¿½ï¿½ï¿½ï¿½)
         foreach (EnemyController enemy in restEnemy)
         {
             if (enemy is BossEnemyController)
@@ -93,11 +93,11 @@ public class BattleManager : MonoBehaviour
 
     public void SubscribeBossEvent()
     {
-        boss.bossEvent[1] += enenmyManager.SpawnEnemy; // ´Ù¼¸ ¸¶¸® ¼ÒÈ¯
+        boss.bossEvent[1] += enenmyManager.SpawnEnemy; // ï¿½Ù¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 
-        // ¹üÀ§ ¸¶¹ı °ø°İ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        // ¼ø°£ ÀÌµ¿
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     }
     public void UpdateEnemyDeath(EnemyController enemy)
     {
@@ -107,12 +107,12 @@ public class BattleManager : MonoBehaviour
             RoundClear();
         }
     }
-    public void RoundClear()  //ÀûÀÌ 0ÀÌ ‰çÀ»¶§ È£Ãâ   º¸»óUI¶ç¿ì±â Ãß°¡ÇÊ¿ä
+    public void RoundClear()  //ì ì´ 0ì´ ë¬ì„ë•Œ í˜¸ì¶œ   ë³´ìƒUIë„ìš°ê¸° ì¶”ê°€í•„ìš”
     {
         obstacleManager.BlockRemove();
         Time.timeScale = 0;
 
-        Debug.Log("ÀûÀ» ¸ğµÎ Ã³Ä¡ÇÏ¿´½À´Ï´Ù.");
+        Debug.Log("ì ì„ ëª¨ë‘ ì²˜ì¹˜í•˜ì˜€ìŠµë‹ˆë‹¤.");
     }
     public void GoNextRound()
     {
