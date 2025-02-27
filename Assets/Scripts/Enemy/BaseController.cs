@@ -21,7 +21,8 @@ public class BaseController : MonoBehaviour
     protected AnimationHandler animationHandler;
     protected StatHandler statHandler;
 
-    protected bool isAttacking;
+    [HideInInspector] public bool isAttacking;
+
     private float timeSinceLastAttack = float.MaxValue;
 
     protected bool currentisLeft;
@@ -42,7 +43,6 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Start()
     {
-
     }
 
     protected virtual void Update()
@@ -145,4 +145,5 @@ public class BaseController : MonoBehaviour
     public virtual void CheckHit()
     {
     }
+    
 }

@@ -14,13 +14,12 @@ public class SkillManager : MonoBehaviour
     public PlayerSkill playerSkill;
 
     // 현재 적용된 액티브 스킬 (한 슬롯)
+    // @@@@@@@@@ 플레이어데이터에서 불러와야함.
     private ActiveSkill currentActiveSkill;
 
 
     // 이미 적용된 패시브 스킬들을 관리하는 딕셔너리 (키: 스킬 타입, 값: 해당 패시브 스킬 컴포넌트)
     private Dictionary<System.Type, PassiveSkill> passiveSkills = new Dictionary<System.Type, PassiveSkill>();
-
-    
 
     public void MakeSkillOptions()                   //스킬선택 UI가 호출될때 같이 호출되는 메서드 (스킬 선택지 생성)
     {
@@ -52,16 +51,15 @@ public class SkillManager : MonoBehaviour
     {
         return randomSkill;
     }
-
     public void SelectSkillOption(int index)                    //스킬선택했을때 호출할 메서드
     {
         if (index < 0 || index >= randomSkill.Count)
         {
             return;
         }
-
+    
         BaseSkill selectedSkill = randomSkill[index];
-
+    
         // 선택된 스킬이 액티브 스킬인지 패시브 스킬인지에 따라 분기
         if (selectedSkill is ActiveSkill)
         {
@@ -72,17 +70,17 @@ public class SkillManager : MonoBehaviour
             HandlePassiveSkill(selectedSkill as PassiveSkill);
         }
     }
-
+    
     private void HandleActiveSkill(ActiveSkill newSkill)
     {
         currentActiveSkill = newSkill;
-
+    
         if (playerSkill != null)
         {
             playerSkill.SetorUpgradeActiveSkill(newSkill);
         }
     }
-
+    
     private void HandlePassiveSkill(PassiveSkill newSkill)
     {
         System.Type skillType = newSkill.GetType();
@@ -99,7 +97,6 @@ public class SkillManager : MonoBehaviour
             passiveSkills.Add(skillType, addedSkill);
         }
     }
-
 
     private void ShuffleList<T>(List<T> list)
     {
