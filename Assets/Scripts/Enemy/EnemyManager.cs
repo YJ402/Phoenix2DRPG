@@ -12,7 +12,7 @@ public class EnemyManager : MonoBehaviour
 
     List<List<EnemyController>> stageEnemyPrefabs;
 
-    List<EnemyController> restEnemy = new();
+    public List<EnemyController> restEnemy = new();
 
     //프리팹, 생성 영역, 
     public void Init(int[,] _map, int _currentStage) // 
@@ -30,18 +30,24 @@ public class EnemyManager : MonoBehaviour
             return null;
         }
 
-        int x = Random.Range(0, map.GetLength(0));
-        int y = Random.Range(0, map.GetLength(1));
+        
 
 
         while (numOfEnemies > 0)
         {
+            int x = Random.Range(0, map.GetLength(0));
+            int y = Random.Range(0, map.GetLength(1));
+
             if (map[x, y] != 0)
             {
                 continue;
             }
+            
             int randNum = Random.Range(0, stageEnemyPrefabs[curStage].Count);
-            restEnemy.Add(Instantiate(stageEnemyPrefabs[curStage][randNum].gameObject, new Vector2(x, y), Quaternion.identity).GetComponent<EnemyController>());
+
+            GameObject newEnemy = Instantiate(stageEnemyPrefabs[curStage][randNum].gameObject, new Vector2(x- map.GetLength(0)/2, y - map.GetLength(0)/3), Quaternion.identity);
+            newEnemy.transform.SetParent(transform, false);
+            restEnemy.Add(newEnemy.GetComponent<EnemyController>());
             
             if (numOfEnemies == 1)
                 Debug.Log("몬스터 생성 완료");

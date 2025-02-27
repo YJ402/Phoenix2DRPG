@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-    public static ObstacleManager Instance { get; private set; }
 
     [Header("범위 오브젝트")]
     public GameObject leftObj, rightObj;
@@ -41,16 +40,6 @@ public class ObstacleManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-        
     }
     public void SettingObstacle()
     {

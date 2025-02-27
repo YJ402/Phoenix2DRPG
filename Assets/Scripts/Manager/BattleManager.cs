@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,11 +12,10 @@ public class BattleManager : MonoBehaviour
 
 
     public GameObject player;
-    public GameObject enemys;
 
 
     
-    int[,] map;
+    private int[,] map; public int[,] Map {  get { return map; } set { map = value; } }
     private int currentStage=0;
     public int CurrentStage
     {
@@ -40,11 +36,6 @@ public class BattleManager : MonoBehaviour
     public void Awake()
     {
         playerController = player.GetComponent<PlayerController>();
-        playerController = player.GetComponent<PlayerController>();
-        LoadPlayerData();
-
-        enenmyManager.Init(map, CurrentStage);
-
     }
     private void Start()
     {
@@ -52,13 +43,15 @@ public class BattleManager : MonoBehaviour
     }
     public void RoundClear()  //적이 0이 됬을때 호출   보상UI띄우기 추가필요
     {
+        Time.timeScale = 0;
+
         Debug.Log("적을 모두 처치하였습니다.");
     }
     private void LoadPlayerData()
     {
+        Map = obstacleManager.Grid;
         CurrentStage = PlayerData.Instance.CurrentStage;
         CurrentRound = PlayerData.Instance.CurrentRound;
-
         // 라운드 전환시에 데이터 저장 클래스에서 정보 받아와서 Player, 스테이지, 라운드 입력해주기.
     }
 
@@ -66,7 +59,11 @@ public class BattleManager : MonoBehaviour
     {
         
         obstacleManager.SettingObstacle();                               //장애물 생성
+        LoadPlayerData();
+        enenmyManager.Init(Map, CurrentStage);
         enenmyManager.SpawnEnemiesInMap(5);                              //적 생성
+        restEnemy = enenmyManager.restEnemy;
+
         PlayerData.Instance.RoundStartPlayerSetting();
                                                        //
                         //
@@ -109,7 +106,7 @@ public class BattleManager : MonoBehaviour
 
         // 순간 이동
     }
-    public void UpdateEnemyCount(EnemyController enemy)
+    public void UpdateEnemyDeath(EnemyController enemy)
     {
         restEnemy.Remove(enemy);
         if (restEnemy.Count <= 0)

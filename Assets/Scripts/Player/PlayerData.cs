@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    private int currentStage = 0; 
+    private int currentStage = 1; 
     public int CurrentStage
     {
         get { return currentStage; }
