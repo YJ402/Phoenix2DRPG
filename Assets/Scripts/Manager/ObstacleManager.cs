@@ -5,20 +5,6 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-    public static ObstacleManager Instance { get; private set; }
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-    }
-
     [Header("범위 오브젝트")]
     public GameObject leftObj, rightObj;
 
@@ -29,12 +15,16 @@ public class ObstacleManager : MonoBehaviour
     public bool dontOverlapAdj = true; //장애물 주변이 겹치지 않는지 확인
     public int AdjPadding = 1; ////장애물 여백
 
-    private int[,] grid; //장애물 생성 가능 범위
+    public int[,] grid; //장애물 생성 가능 범위
     //int cellValue = obstacleManager.GetGridValue(x, y); 코드를 사용해 gridValue를 가져갈 수 있음
     //cellValue가 1이면 장애물, 2면 장애물 주변, 3이면 물, -1이라면 유효하지 않음
 
     private int minX, minY, maxX, maxY; //범위 최소치, 최대치
     private int gridWidth, gridHeight; //생성 범위의 가로, 세로 길이
+
+    private EnemyManager enemyManager;
+    private Item item;
+    public GameObject block;
 
     public struct GridObstacle
     {
@@ -47,9 +37,10 @@ public class ObstacleManager : MonoBehaviour
 
     public int[,] Grid => grid; //{get;} 대신 람다식 사용
 
-    private void Start()
+    private void Awake()
     {
         InitializeGrid(); //그리드 초기화
+        block.gameObject.SetActive(true); //출구 막는 장애물 활성화
         SpawnObstacle(rock, 1, 1, 3); //돌, 1 x 1 크기, 3개
         SpawnObstacle(spike, 1, 1, 3); //가시, 1 x 1 크기, 3개
         SpawnObstacle(water, 6, 2, 2); //물, 6 x 2 크기, 2개
@@ -110,6 +101,8 @@ public class ObstacleManager : MonoBehaviour
             attempts++; //시도 횟수 증가
         }
     }
+
+
     private bool AreaAvailable(int objPosX, int objPosY, int width, int height)
     {
         if (objPosX < 0 || objPosX + width > gridWidth || objPosY < 0 || objPosY + height > gridHeight) return false;
@@ -190,13 +183,6 @@ public class ObstacleManager : MonoBehaviour
         //minX라는 최소 x값에 gridX만큼을 추가한 값을 반환
     }
 
-    public Vector2Int WorldToGrid(Vector2 worldPos) //worldPos를 그리드로 반환
-    {
-        int x = Mathf.FloorToInt(worldPos.x - minX); //소수점 아래는 떼어버림
-        int y = Mathf.FloorToInt(worldPos.y - minY);
-        return new Vector2Int(x, y);
-    }
-
     // 그리드 상태 확인 (0: 빈 공간, 1: 일반 장애물, 2: 인접 영역, 3: 물 장애물, -1: 유효하지 않은 위치)
     public int GetGridValue(int x, int y)
     {
@@ -207,75 +193,8 @@ public class ObstacleManager : MonoBehaviour
         return -1; //아닐 경우 -1를 반환
     }
 
-    // 디버깅용 그리드 시각화
-    //private void OnDrawGizmos()
-    //{
-    //    if (!Application.isPlaying)
-    //        return;
-
-    //    if (grid == null)
-    //        return;
-
-    //    // 그리드 영역 전체 시각화
-    //    Gizmos.color = Color.green;
-    //    Vector3 center = new Vector3((minX + maxX) * 0.5f, (minY + maxY) * 0.5f, 0);
-    //    Vector3 size = new Vector3(maxX - minX, maxY - minY, 0.1f);
-    //    Gizmos.DrawWireCube(center, size);
-
-    //    // 개별 셀 시각화
-    //    for (int x = 0; x < grid.GetLength(0); x++)
-    //    {
-    //        for (int y = 0; y < grid.GetLength(1); y++)
-    //        {
-    //            // 그리드 좌표를 월드 좌표로 변환
-    //            Vector3 worldPos = GridToWorld(x + 0.5f, y + 0.5f);
-
-    //            switch (grid[x, y])
-    //            {
-    //                case 1: // 일반 장애물
-    //                    Gizmos.color = new Color(1, 0, 0, 0.5f); // 반투명 빨강
-    //                    Gizmos.DrawCube(worldPos, Vector3.one * 0.9f);
-    //                    break;
-    //                case 2: // 인접 영역
-    //                    Gizmos.color = new Color(1, 1, 0, 0.3f); // 반투명 노랑
-    //                    Gizmos.DrawCube(worldPos, Vector3.one * 0.5f);
-    //                    break;
-    //                case 3: // 물 장애물
-    //                    Gizmos.color = new Color(0, 0, 1, 0.5f); // 반투명 파랑
-    //                    Gizmos.DrawCube(worldPos, Vector3.one * 0.9f);
-    //                    break;
-    //            }
-    //        }
-    //    }
-
-    //    // 스폰된 장애물 시각화
-    //    foreach (var obstacle in obstacles)
-    //    {
-    //        if (obstacle.instance == null)
-    //            continue;
-
-    //        // 중심점 표시
-    //        Gizmos.color = Color.blue;
-    //        Gizmos.DrawWireSphere(obstacle.instance.transform.position, 0.2f);
-
-    //        // 실제 크기로 와이어프레임 표시
-    //        Gizmos.color = Color.cyan;
-    //        Vector2 bottomLeft = GridToWorld(obstacle.x, obstacle.y);
-    //        Vector2 topRight = GridToWorld(
-    //            obstacle.x + obstacle.width,
-    //            obstacle.y + obstacle.height
-    //        );
-    //        Vector2 center2D = (bottomLeft + topRight) * 0.5f;
-    //        Vector2 size2D = topRight - bottomLeft;
-
-    //        Gizmos.DrawWireCube(center2D, new Vector3(size2D.x, size2D.y, 0.1f));
-
-    //        // 장애물 정보 표시 선
-    //        Debug.DrawLine(
-    //            obstacle.instance.transform.position,
-    //            new Vector3(center2D.x, center2D.y, 0),
-    //            Color.white
-    //        );
-    //    }
-    //}
+    public void BlockRemove()
+    {
+        block.gameObject.SetActive(false); //출구 막는 장애물 비활성화
+    }
 }

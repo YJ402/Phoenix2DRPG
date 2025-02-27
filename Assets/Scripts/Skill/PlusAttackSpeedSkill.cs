@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlusAttackSpeedSkill : PassiveSkill
 {
     public float attckSpeedIncrease = 0.5f;
+    public new string skillName = "발사속도 증가(패시브)";
     private bool bonusApplied = false;
     private StatHandler statHandler;
 
