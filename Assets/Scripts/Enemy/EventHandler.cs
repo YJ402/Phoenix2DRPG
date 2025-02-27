@@ -19,4 +19,9 @@ public class EventHandler: MonoBehaviour
     {
         baseController.CheckHit();
     }
+
+    private void ExitAttack()
+    {
+        baseController.isAttacking = false;
+    }
 }

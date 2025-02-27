@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 3570008711632133553}
+  isAttacking: 0
   target: {fileID: 0}
   targetLayerMask:
     serializedVersion: 2
@@ -240,7 +241,7 @@ MonoBehaviour:
   speed: 1
   attackPower: 1
   attackSpeed: 1
-  attackDistance: 1
+  attackDistance: 1.7
   target:
     serializedVersion: 2
     m_Bits: 0
