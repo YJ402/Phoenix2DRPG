@@ -4,15 +4,5 @@ using UnityEngine;
 
 public class ClearRewardUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // 라운드 종료시 ClearRewardUI 켜짐
 }

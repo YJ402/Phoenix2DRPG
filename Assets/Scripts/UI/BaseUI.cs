@@ -13,7 +13,7 @@ public abstract class BaseUI : MonoBehaviour // UI 공통 로직, UI는 특정 U
     }
     
     protected abstract UIState GetUIState(); 
-    public void SetActive(UIState state)
+    public virtual void SetActive(UIState state)
     {
         this.gameObject.SetActive(GetUIState() == state);
     }

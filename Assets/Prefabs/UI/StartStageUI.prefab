@@ -143,13 +143,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8095991588715846007}
+  - component: {fileID: 1417615130547379884}
   m_Layer: 5
   m_Name: StartStageUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8095991588715846007
 RectTransform:
   m_ObjectHideFlags: 0
@@ -172,6 +173,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1417615130547379884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7964553647977473159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1325fbbf9474f819bb81b822722578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2210968621523037455
 PrefabInstance:
   m_ObjectHideFlags: 0

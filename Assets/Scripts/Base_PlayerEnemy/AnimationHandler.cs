@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationHandler : MonoBehaviour
 {
-    Animator animator;
+    protected Animator animator;
     private static int IsMoving = Animator.StringToHash("IsMoving");
     private static int IsAttack = Animator.StringToHash("IsAttack");
     private static int IsDamaged = Animator.StringToHash("IsDamaged");
@@ -12,38 +12,20 @@ public class AnimationHandler : MonoBehaviour
     private static int MovingSpeed = Animator.StringToHash("MovingSpeed");
     private static int AttackSpeed = Animator.StringToHash("AttackSpeed");
 
-    private List<int> animParamList;
+    //private List<int> animParamList;
 
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>(true);
 
-        animParamList = new List<int>();
-        foreach (AnimatorControllerParameter para in animator.parameters)
-        {
-            animParamList.Add(para.nameHash);
-        }
-        //Init();
+        //animParamList = new List<int>();
+        //foreach (AnimatorControllerParameter para in animator.parameters)
+        //{
+        //    animParamList.Add(para.nameHash);
+        //}
+        ////Init();
     }
 
-    //public void Init()
-    //{
-    //    for(int i = 0; i < animParamHashSet.Count; i++)
-    //    {
-    //        if (animParamHashSet.Contains(IsMoving))
-    //        {
-
-    //        } 
-
-    //    }
-
-    //IsMoving = Animator.StringToHash("IsMoving");
-    //    IsAttack = Animator.StringToHash("IsAttack");
-    //    IsDamaged = Animator.StringToHash("IsDamaged");
-    //    IsDead = Animator.StringToHash("IsDead");
-    //    MovingSpeed = Animator.StringToHash("MovingSpeed");
-    //    AttackSpeed = Animator.StringToHash("AttackSpeed");
-    //}
 
     public void Move(Vector2 obj)
     {
@@ -52,8 +34,6 @@ public class AnimationHandler : MonoBehaviour
 
     public void ChangeMovingSpeed(float speed)
     {
-        if (!animParamList.Contains(MovingSpeed)) // 이 파라미터를 몬스터에도 적용해도 될까요?
-            return;
         animator.SetFloat(MovingSpeed, speed / 5);
     }
 
@@ -67,7 +47,7 @@ public class AnimationHandler : MonoBehaviour
         animator.SetBool(IsDamaged, false);
     }
 
-    public void Attack(bool isattack) // attack 변수
+    public virtual void Attack(bool isattack) // attack 변수
     {
         animator.SetBool(IsAttack, isattack);
     }
@@ -75,8 +55,6 @@ public class AnimationHandler : MonoBehaviour
 
     public void ChangeAttackSpeed(float speed)
     {
-        if (!animParamList.Contains(MovingSpeed))
-            return;
         animator.SetFloat(AttackSpeed, speed);
     }
 
