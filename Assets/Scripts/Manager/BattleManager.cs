@@ -36,6 +36,7 @@ public class BattleManager : MonoBehaviour
     public void Awake()
     {
         playerController = player.GetComponent<PlayerController>();
+        PlayerTransform = player.transform;
     }
     private void Start()
     {

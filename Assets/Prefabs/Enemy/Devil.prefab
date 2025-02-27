@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 7223181663088380939}
+  isAttacking: 0
   target: {fileID: 0}
   targetLayerMask:
     serializedVersion: 2
@@ -82,18 +83,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOnKnockback: 1
   knockbackPower: 0.1
-  knockbackTime: 0.5
+  knockbackTime: 0.1
   maxHealth: 1000
   speed: 1
-  attackPower: 1
-  attackSpeed: 1
-  attackDistance: 2.92
+  attackPower: 100
+  attackSpeed: 2
+  attackDistance: 8
   target:
     serializedVersion: 2
     m_Bits: 64
   projectileSpawnPosition: {fileID: 185080765082749772}
   bulletIndex: 1
-  bulletSpeed: 1
+  bulletSpeed: 2
   bulletCount: 1
   multipleProjectilesAngel: 5
   spread: 5

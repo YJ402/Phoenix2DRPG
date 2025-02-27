@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -48,7 +49,9 @@ public class EnemyManager : MonoBehaviour
             GameObject newEnemy = Instantiate(stageEnemyPrefabs[curStage][randNum].gameObject, new Vector2(x- map.GetLength(0)/2, y - map.GetLength(0)/3), Quaternion.identity);
             newEnemy.transform.SetParent(transform, false);
             restEnemy.Add(newEnemy.GetComponent<EnemyController>());
-            
+
+            newEnemy.GetComponent<EnemyController>().Init(this);
+
             if (numOfEnemies == 1)
                 Debug.Log("몬스터 생성 완료");
             numOfEnemies--;

@@ -19,7 +19,7 @@ public class EnemyController : BaseController
     public void Init(EnemyManager enemyManager)
     {
         this.enemyManager = enemyManager;
-        this.target = BattleManager.PlayerTransform;
+        target = battleManager.player.transform;
         targetLayerMask = target.gameObject.layer;
     }
 
