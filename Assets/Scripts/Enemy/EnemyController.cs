@@ -20,7 +20,19 @@ public class EnemyController : BaseController
     {
         this.enemyManager = enemyManager;
         this.target = BattleManager.PlayerTransform;
-        targetLayerMask = target.gameObject.layer; 
+        targetLayerMask = target.gameObject.layer;
+    }
+
+    protected override void Update()
+    {
+        if (!isAttacking) // 공격이 끝날때까지 제자리 멈춤.
+            base.Update();
+    }
+
+    protected override void FixedUpdate()
+    {
+        if (!isAttacking)
+            base.FixedUpdate();
     }
 
     protected override void Rotate(Vector2 direction)
@@ -49,7 +61,7 @@ public class EnemyController : BaseController
     }
 
 
-    
+
     protected override void HandleAction()
     {
         base.HandleAction();
@@ -86,17 +98,17 @@ public class EnemyController : BaseController
                 else Debug.Log("길이 막혔습니다. 경로 찾기 로직을 실행합니다.");//movementDirection = FindWayToTarget(); //경로 찾아서 이동 방향으로 대입.
             }
         }
-            Attack(isAttacking); // 애니메이션 실행 메서드로 변경하고, 실제 공격판정은 애니메이션에서 이벤트로 트리거
+        Attack(isAttacking); // 애니메이션 실행 메서드로 변경하고, 실제 공격판정은 애니메이션에서 이벤트로 트리거
     }
 
     private bool AttackAvailable(float distance, Vector2 direction)
     {
-        if(statHandler.AttackRange < distance)
+        if (statHandler.AttackRange < distance)
             return false; // 거리가 공격범위보다 멀면 false
         else
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, statHandler.AttackRange * 1.3f, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
-            if(hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer))
+            if (hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer))
             {
                 return true; // 공격 범위 내에서 enemy 앞에 있는 것이 level이 아니라 플레이어면 true;
             }
@@ -104,12 +116,17 @@ public class EnemyController : BaseController
         }
     }
 
+    private void OnDestroy()
+    {
+        PlayerData.Instance.UpdateEnemyCount(true);
+    }
+
 
 
     //public Vector2 FindWayToTarget()
     //{
     //    //경로찾기
-        
+
     //    //타겟과 나 좌표를 int화.
     //    Vector2 targetOnTarget = new Vector2((int)Math.Round(target.position.x), (int)Math.Round(target.position.y));
     //    Vector2 MeOnTarget = new Vector2((int)Math.Round(transform.position.x), (int)Math.Round(transform.position.y));
