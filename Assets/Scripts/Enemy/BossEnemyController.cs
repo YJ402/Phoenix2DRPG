@@ -79,8 +79,8 @@ public class BossEnemyController : EnemyController
         Debug.Log("2½ÇÇà");
         for (int i = 0; i < skill2Number; i++)
         {
-            //Instantiate(enemyskill, randomSpotInMap(), Quaternion.identity);
-            Instantiate(enemyskill, Vector2.zero, Quaternion.identity);
+            Instantiate(enemyskill, randomSpotInMap(), Quaternion.identity);
+            //Instantiate(enemyskill, Vector2.zero, Quaternion.identity);
         }
     }
 

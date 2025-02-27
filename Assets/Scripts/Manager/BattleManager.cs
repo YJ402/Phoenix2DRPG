@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
-    [SerializeField] EnemyManager enenmyManager;
+    [SerializeField] public EnemyManager enenmyManager;
     PlayerController playerController;
     ResourceController playerResourceController;
     public ObstacleManager obstacleManager;
@@ -14,9 +14,9 @@ public class BattleManager : MonoBehaviour
     public GameObject player;
 
 
-    
-    private int[,] map; public int[,] Map {  get { return map; } set { map = value; } }
-    private int currentStage=0;
+
+    private int[,] map; public int[,] Map { get { return map; } set { map = value; } }
+    private int currentStage = 0;
     public int CurrentStage
     {
         get { return currentStage; }
@@ -49,9 +49,9 @@ public class BattleManager : MonoBehaviour
         // 라운드 전환시에 데이터 저장 클래스에서 정보 받아와서 Player, 스테이지, 라운드 입력해주기.
     }
 
-    private void StartRound() 
+    private void StartRound()
     {
-        
+
         obstacleManager.SettingObstacle();                               //장애물 생성
         LoadPlayerData();
         enenmyManager.Init(Map, CurrentStage);
@@ -59,12 +59,12 @@ public class BattleManager : MonoBehaviour
         restEnemy = enenmyManager.restEnemy;
 
         PlayerData.Instance.RoundStartPlayerSetting();
-                                                       //
-                        //
-        
+        //
+        //
+
         player.transform.position = new Vector3(0.5f, -10f, player.transform.position.z);
         PlayerData.Instance.RoundStartPlayerSetting();
-       
+
 
         PlayerSkill playerskill = player.GetComponent<PlayerSkill>();
         if (playerskill != null && playerskill.activeSkill != null)
@@ -84,21 +84,21 @@ public class BattleManager : MonoBehaviour
             Debug.Log("");
         }
 
-        
-        foreach (EnemyController enemy in restEnemy)
-        {
-            if (enemy is BossEnemyController)
-            {
-                boss = enemy as BossEnemyController;
-                SubscribeBossEvent();
-            }
-        }
+
+        //foreach (EnemyController enemy in restEnemy)
+        //{
+        //    if (enemy is BossEnemyController)
+        //    {
+        //        boss = enemy as BossEnemyController;
+        //        SubscribeBossEvent();
+        //    }
+        //}
     }
 
-    public void SubscribeBossEvent()
-    {
-        boss.bossEvent[1] += enenmyManager.SpawnEnemy; //
-    }
+    //public void SubscribeBossEvent()
+    //{
+    //    boss.bossEvent[1] += enenmyManager.SpawnEnemy; //
+    //}
     public void UpdateEnemyDeath(EnemyController enemy)
     {
         restEnemy.Remove(enemy);
@@ -111,25 +111,33 @@ public class BattleManager : MonoBehaviour
     {
         obstacleManager.BlockRemove();
         Time.timeScale = 0;
-        if(CurrentRound == 10)
+        if (CurrentRound == 10)
         {
             StageClear();
         }
         else
         {
-             //보상 스킬선택 ui 호출
+            //보상 스킬선택 ui 호출
         }
 
         Debug.Log("적을 모두 처치하였습니다.");
     }
     public void StageClear()
     {
-        PlayerData.Instance.PlayerExp += (int)(5 * Mathf.Pow(2,CurrentStage-1));
-                //클리어 ui 호출
+        PlayerData.Instance.PlayerExp += (int)(5 * Mathf.Pow(2, CurrentStage - 1));
+        //클리어 ui 호출
     }
     public void GoNextRound()
     {
         PlayerData.Instance.RoundEndSetting();  //플레이어 체력 저장, 라운드증가
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void AddMonsterToList(List<EnemyController> enemylist)
+    {
+        foreach (EnemyController enemy in enemylist)
+        {
+            restEnemy.Add(enemy);
+        }
     }
 }
