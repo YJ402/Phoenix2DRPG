@@ -39,13 +39,13 @@ public class ObstacleManager : MonoBehaviour
     private void Awake()
     {
         InitializeGrid(); //그리드 초기화
-        SettingObstacle();
+        //SettingObstacle();
     }
     public void SettingObstacle()
     {
         block.gameObject.SetActive(true); //출구 막는 장애물 활성화
-        SpawnObstacle(rock, 1, 1, 3); //돌, 1 x 1 크기, 3개
-        SpawnObstacle(spike, 1, 1, 3); //가시, 1 x 1 크기, 3개
+        SpawnObstacle(rock, 2, 2, 3); //돌, 1 x 1 크기, 3개
+        SpawnObstacle(spike, 2, 2, 3); //가시, 1 x 1 크기, 3개
         SpawnObstacle(water, 6, 2, 2); //물, 6 x 2 크기, 2개
         SpawnObstacle(wall, 5, 2, 2); //벽, 5 x 2 크기, 2개
     }
@@ -97,7 +97,7 @@ public class ObstacleManager : MonoBehaviour
                     instance = instance // 생성된 게임 오브젝트 저장
                 };
                 obstacles.Add(obstacle); //해당 장애물을 obstacles라는 리스트에 추가
-                Debug.Log($"{obstacle.x}, {obstacle.y} 위치에 장애물 생성됨");
+                Debug.Log($"{GridToWorld(gridX + width / 2.0f, gridY + height / 2.0f)} 위치에 장애물 생성됨");
 
                 placedCount++; //배치된 장애물 개수 1 증가
             }
@@ -130,7 +130,7 @@ public class ObstacleManager : MonoBehaviour
         }
         return true; //이외의 경우 true로 반환하여 장애물을 배치할 수 있게 해줌
     }
-
+    //gridX, gridY, width, height, prefab
     private void MarkArea(int objPosX, int objPosY, int width, int height, GameObject prefab) //장애물의 x, y 좌표 및 장애물 크기, 프리팹 타입
     {
         int obstacleValue = (prefab == water) ? 3 : 1; // 물 장애물인 경우 그리드 값을 3으로 설정, 아닌 경우 1로 설정
