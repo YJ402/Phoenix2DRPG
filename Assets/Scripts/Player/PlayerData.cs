@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    private int enemyCount;
+    public int EnemyCount { get { return enemyCount; } set { enemyCount = value; } }
+    private int playerLevel;
+    public int PlayerLevel
+    {
+        get { return playerLevel; }
+        set { playerLevel = value; }
+    }
+    private int skillPoint;
+    public int SkillPoint
+    {
+        get { return skillPoint; }
+        private set { skillPoint = value; }
+    }
+
+    
+    public Transform player;
     private int clearStage = 0;
     public int ClearStage
     {
@@ -11,8 +28,8 @@ public class PlayerData : MonoBehaviour
         set { clearStage = value; }
     }
 
-    private int currentHP;
-    public int CurrentHP
+    private float currentHP;
+    public float CurrentHP
     {
         get { return currentHP; }
         set { currentHP = value; }
@@ -32,11 +49,31 @@ public class PlayerData : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
+    public void UpdateEnemyCount(bool isEnemyDead = false)
+    {
+        EnemyCount = BattleManager.Instance.enemys.transform.childCount - (isEnemyDead ? 1 : 0);
+        if (EnemyCount <= 0)
+        {
+            skillPoint++;
+            //벽제거 함수 호출
+            BattleManager.Instance.RoundClear();
+        }
 
+    }
+
+    public void SatgeStartPlayerSetting()
+    {
+        SkillPoint = PlayerLevel;
+    }
     public void RoundStartPlayerSetting()
     {
         ApplyPassiveSkill();
+        player.GetComponent<ResourceController>().CurrentHealth = CurrentHP;
+    }
 
+    public void RoundEndPlayerSetting()
+    {
+        currentHP = player.GetComponent<ResourceController>().CurrentHealth;
     }
     public void SaveCurrentHP(int currentHP)
     {
@@ -80,5 +117,5 @@ public class PlayerData : MonoBehaviour
             skill.ApplySkill();
         }
     }
-
+   
 }

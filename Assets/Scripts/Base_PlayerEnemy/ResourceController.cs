@@ -10,7 +10,7 @@ public class ResourceController : MonoBehaviour
     private AnimationHandler animationHandler;
     PlayerController playerController;
     private float timeSinceLastChange = float.MaxValue;
-    public float CurrentHealth { get; private set; }
+    public float CurrentHealth { get; set; }
     public float MaxHealth => statHandler.MaxHealth;            //원래 healt는 최대체력 의미하는것이라 MaxHealth로 변경
 
     public AudioClip damageClip;
@@ -40,6 +40,7 @@ public class ResourceController : MonoBehaviour
                 animationHandler.InvincibilityEnd();
             }
         }
+        
         //playerController.UpdateHpSlider(CurrentHealth/MaxHealth);
     }
 
@@ -89,4 +90,11 @@ public class ResourceController : MonoBehaviour
         OnChangeHealth -= action;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+        {
+            ChangeHealth(-50f);
+        }
+    }
 }
