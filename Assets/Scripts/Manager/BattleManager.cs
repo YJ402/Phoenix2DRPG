@@ -110,17 +110,18 @@ public class BattleManager : MonoBehaviour
     public void UpdateEnemyDeath(EnemyController enemy)
     {
         restEnemy.Remove(enemy);
+        uIManager.UpdateEnemyCountInBattleUI(restEnemy.Count);
         if (restEnemy.Count <= 0)
         {
             RoundClear();
         }
-        uIManager.UpdateEnemyCountInBattleUI(restEnemy.Count);
+        
     }
     public void RoundClear()
     {
         obstacleManager.BlockRemove();
         Time.timeScale = 0;
-        if (CurrentRound == 10)
+        if (CurrentRound == 2)
         {
             StageClear();
         }
@@ -132,7 +133,13 @@ public class BattleManager : MonoBehaviour
     }
     public void StageClear()
     {
-        PlayerData.Instance.PlayerExp += (int)(5 * Mathf.Pow(2, CurrentStage - 1));
+        
+        int frontLevel = PlayerData.Instance.PlayerLevel;
+        int plusExp = (int)(5 * Mathf.Pow(2, CurrentStage - 1));
+        PlayerData.Instance.PlayerExp += plusExp;
+        int backLevel = PlayerData.Instance.PlayerLevel;
+        bool isLevelUp = backLevel != frontLevel;
+        uIManager.UpdateStageClearUI(isLevelUp,plusExp,backLevel,PlayerData.Instance.PlayerExp);
         PlayerData.Instance.resetSkillPoint();
         uIManager.ChangeState(UIState.StageClear);
     }

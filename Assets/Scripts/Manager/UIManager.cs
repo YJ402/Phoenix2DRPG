@@ -52,6 +52,10 @@ public class UIManager : MonoBehaviour
         stageClearUI?.SetActive(currentState);
         gameOverUI?.SetActive(currentState);
     }
+    public void UpdateStageClearUI(bool isLevelUp, int plusExp, int currentLevel,int currentExp)
+    {
+        stageClearUI.UpdateStageClearUI(isLevelUp, plusExp, currentLevel,currentExp);
+    }
     public void UpdateEnemyCountInBattleUI(int count)
     {
         battleUI.UpdateEnemyCountText(count);

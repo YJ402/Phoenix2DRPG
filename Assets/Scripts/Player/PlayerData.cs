@@ -30,7 +30,7 @@ public class PlayerData : MonoBehaviour
         get { return playerExp; }
         set
         {
-            if (value >= 5 * PlayerLevel)
+            if (value >= MaxEXP)
             {
                 PlayerLevel++;
                 PlayerExp = value - 5 * (PlayerLevel - 1);
@@ -40,7 +40,7 @@ public class PlayerData : MonoBehaviour
     }
     public int MaxEXP
     {
-        get { return PlayerExp*5; }
+        get { return PlayerLevel*5; }
     }
 
 

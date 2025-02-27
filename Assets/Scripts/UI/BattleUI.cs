@@ -17,6 +17,7 @@ public class BattleUI : BaseUI
     // 초기화 (UIManager에서 호출)
     public override void SetActive(UIState currentState)
     {
+        Time.timeScale = 1.0f;
         gameObject.SetActive(currentState == UIState.Battle);
     }
     public void UpdateEnemyCountText(int count)
