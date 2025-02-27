@@ -16,7 +16,7 @@ public class PlayerData : MonoBehaviour
     public int SkillPoint
     {
         get { return skillPoint; }
-        private set { skillPoint = value; }
+        set { skillPoint = value; }
     }
 
     
@@ -55,7 +55,7 @@ public class PlayerData : MonoBehaviour
         if (EnemyCount <= 0)
         {
             skillPoint++;
-            //º®Á¦°Å ÇÔ¼ö È£Ãâ
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ È£ï¿½ï¿½
             BattleManager.Instance.RoundClear();
         }
 

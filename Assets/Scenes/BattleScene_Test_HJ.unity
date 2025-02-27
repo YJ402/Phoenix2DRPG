@@ -10890,6 +10890,7 @@ MonoBehaviour:
   wall: {fileID: 7121475261018358869, guid: beb9f9676edbae54c936568373cb0a77, type: 3}
   dontOverlapAdj: 1
   AdjPadding: 1
+  block: {fileID: 0}
 --- !u!1001 &959914138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16041,7 +16042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1700061297
 Transform:
   m_ObjectHideFlags: 0
@@ -18969,7 +18970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2024527831
 Transform:
   m_ObjectHideFlags: 0

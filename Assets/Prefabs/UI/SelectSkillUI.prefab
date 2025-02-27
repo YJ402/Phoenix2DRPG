@@ -123,6 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7187827540761793952}
   - component: {fileID: 1029046192967463245}
+  - component: {fileID: 6089015753000514789}
   m_Layer: 5
   m_Name: SelectSkillUI
   m_TagString: Untagged
@@ -165,14 +166,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectSkillUI: {fileID: 8499882827157423605, guid: 3a3ab36e4746c437b9bbc0dfbd136153, type: 3}
   titleText: {fileID: 0}
-  pointText: {fileID: 0}
+  skillPointText: {fileID: 0}
   skillSlots:
-  - skillInfoText: {fileID: 0}
+  - skillNameText: {fileID: 0}
     selectButton: {fileID: 6617742800157918486}
-  - skillInfoText: {fileID: 0}
+  - skillNameText: {fileID: 0}
     selectButton: {fileID: 0}
-  - skillInfoText: {fileID: 0}
+  - skillNameText: {fileID: 0}
     selectButton: {fileID: 0}
+--- !u!114 &6089015753000514789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2445580679890345371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa5475dae2c64e428ed2a9f1c57de25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  everyskill: []
+  player: {fileID: 0}
+  playerSkill: {fileID: 0}
 --- !u!1001 &3539586361589123671
 PrefabInstance:
   m_ObjectHideFlags: 0

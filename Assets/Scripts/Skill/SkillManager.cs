@@ -4,11 +4,27 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+    // 싱글톤 인스턴스 선언
+    public static SkillManager Instance { get; private set; }
+    
+    // Awake에서 인스턴스 초기화
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     // Inspector에 등록된 전체 스킬 목록 (BaseSkill을 상속한 스킬들)
     public List<BaseSkill> everyskill;
 
     // 보상으로 보여줄 3개의 스킬 옵션 (중복 없이, 순서 무작위) //@@ 2 애도가저옴
-    private List<BaseSkill> randomSkill = new List<BaseSkill>();
+    public List<BaseSkill> randomSkill = new List<BaseSkill>();
 
     public GameObject player;
     public PlayerSkill playerSkill;
@@ -27,17 +43,10 @@ public class SkillManager : MonoBehaviour
     
     private PlayerData playerData;
     
-    public void SelectSkillOption(int index, PlayerData playerData)
+    public void SelectSkillOption(int index)
     {
-        if (index < 0 || index >= randomSkill.Count) return;
-        
-        // PlayerData의 ClearStage 값을 복사하여 skillPoints로 사용
-        int skillPoints = PlayerData.Instance.SkillPoint; // 복사
-        
-        // 스킬 포인트가 남아있는지 확인
-        if (skillPoints <= 0)
+        if (index < 0 || index >= randomSkill.Count)
         {
-            Debug.Log("스킬 포인트가 부족합니다!");
             return;
         }
 
@@ -60,7 +69,7 @@ public class SkillManager : MonoBehaviour
 
     private void HandleActiveSkill(ActiveSkill newSkill)
     {
-        currentActiveSkill = newSkill;
+        // currentActiveSkill = newSkill;
 
         if (playerSkill != null)
         {
