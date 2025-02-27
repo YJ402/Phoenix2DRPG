@@ -25,13 +25,11 @@ public class EnemyController : BaseController
 
     protected override void Update()
     {
-        if (!isAttacking) // 공격이 끝날때까지 제자리 멈춤.
             base.Update();
     }
 
     protected override void FixedUpdate()
     {
-        if (!isAttacking)
             base.FixedUpdate();
     }
 
@@ -53,7 +51,7 @@ public class EnemyController : BaseController
     {
         base.HandleAction();
 
-        isAttacking = false;
+        
 
         if (target == null)
         {
@@ -68,27 +66,53 @@ public class EnemyController : BaseController
         {
             lookDirection = direction;
 
-            //룩디렉션, 무브디렉션, 이즈어태킹 설정 로직
-            if (AttackAvailable(distance, direction))
+            bool targetInDiatance = TargetInDiatance(distance, direction);
+            bool targetInSight = TargetInSight(distance, direction);
+
+            if (targetInDiatance)
             {
-                isAttacking = true;
-                movementDirection = Vector2.zero;
+                if (targetInSight)
+                {
+                    isAttacking = true;
+                    movementDirection = Vector2.zero;
+                }
+                else
+                {
+                    Debug.Log("길이 막혔습니다. 경로 찾기 로직을 실행합니다.");
+                }
             }
             else
             {
-                //직선상에 장애물/플레이어가 있는지 체크.             
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance + 0.3f, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
-                if (hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer))
-                {
-                    movementDirection = direction;
-                }
-                else Debug.Log("길이 막혔습니다. 경로 찾기 로직을 실행합니다.");//movementDirection = FindWayToTarget(); //경로 찾아서 이동 방향으로 대입.
+                movementDirection = direction;
             }
+            ////룩디렉션, 무브디렉션, 이즈어태킹 설정 로직
+            //if (TargetInDiatance(distance, direction))
+            //{
+            //    isAttacking = true;
+            //    movementDirection = Vector2.zero;
+            //}
+            //else
+            //{
+            //    //직선상에 장애물/플레이어가 있는지 체크.             
+            //    RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance + 0.3f, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
+            //    if (hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer))
+            //    {
+            //        movementDirection = direction;
+            //    }
+            //    else Debug.Log("길이 막혔습니다. 경로 찾기 로직을 실행합니다.");//movementDirection = FindWayToTarget(); //경로 찾아서 이동 방향으로 대입.
+            //}
         }
         Attack(isAttacking); // 애니메이션 실행 메서드로 변경하고, 실제 공격판정은 애니메이션에서 이벤트로 트리거
     }
 
-    private bool AttackAvailable(float distance, Vector2 direction)
+    private bool TargetInSight(float distance, Vector2 direction)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance + 0.3f, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
+        if (hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer)) // 플레이어면
+            return true;
+        return false;
+    }
+    private bool TargetInDiatance(float distance, Vector2 direction)
     {
         if (statHandler.AttackRange < distance)
             return false; // 거리가 공격범위보다 멀면 false
