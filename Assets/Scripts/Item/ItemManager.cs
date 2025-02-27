@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class ItemManager : MonoBehaviour
 {
     [Header("아이템 프리팹")]
     public GameObject itemPrefab;
@@ -11,23 +11,16 @@ public class Item : MonoBehaviour
     public float spawnChance = 10f; // 기본 20% 확률로 아이템 생성
     public int maxItems = 3; // 최대 아이템 개수 제한
 
-    private ObstacleManager obstacleManager;
+    public ObstacleManager obstacleManager;
     private List<Vector2Int> emptySpaces = new List<Vector2Int>(); //벡터 int 값을 저장할 List
     private List<GameObject> spawnedItems = new List<GameObject>(); //생성된 아이템 보관
 
     void Start()
     {
-        obstacleManager = GetComponent<ObstacleManager>();
-
-        if (obstacleManager == null) //obstacleManager가 안 보이면 가져오기
+        if (obstacleManager == null)
         {
-            obstacleManager = FindObjectOfType<ObstacleManager>();
-            Debug.LogError("ObstacleManager를 찾을 수 없습니다!");
-            return;
+            obstacleManager = GetComponent<ObstacleManager>();
         }
-
-        // 모든 장애물이 배치된 후 아이템 생성 실행
-        Invoke("SpawnItems", 0.1f); // 약간의 지연을 두고 실행. obstacleManager가 생성될 시간 필요
     }
 
     void SpawnItems()

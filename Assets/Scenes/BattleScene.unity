@@ -10395,7 +10395,7 @@ Transform:
   m_GameObject: {fileID: 151284091}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11, y: 4, z: 0}
+  m_LocalPosition: {x: -12, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10651,7 +10651,7 @@ GameObject:
   - component: {fileID: 857702998}
   - component: {fileID: 857702999}
   m_Layer: 0
-  m_Name: Obstacles
+  m_Name: ObstacleManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10707,9 +10707,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6254b0bff68e7a249ab124500e14e710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 3978561617942624, guid: 2cc770c395e133f41bfb0846ee459ea3, type: 3}
-  spawnChance: 1
-  maxItems: 3
 --- !u!1 &1106160138
 GameObject:
   m_ObjectHideFlags: 0
@@ -18495,6 +18492,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139f79c410222c44b83a05b94f2d24a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1970303857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1970303858}
+  - component: {fileID: 1970303859}
+  m_Layer: 0
+  m_Name: ItemManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1970303858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970303857}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.2038784, y: -1.4182858, z: -0.3229755}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1970303859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970303857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddd2bd92ec7d9f4f948d3e3d25daf66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 3978561617942624, guid: 2cc770c395e133f41bfb0846ee459ea3, type: 3}
+  spawnChance: 1
+  maxItems: 3
+  obstacleManager: {fileID: 857702998}
 --- !u!1 &2024527830
 GameObject:
   m_ObjectHideFlags: 0
@@ -18534,6 +18579,7 @@ SceneRoots:
   - {fileID: 1795111816}
   - {fileID: 144908704}
   - {fileID: 412290912}
+  - {fileID: 1970303858}
   - {fileID: 857702997}
   - {fileID: 1700061297}
   - {fileID: 2024527831}
