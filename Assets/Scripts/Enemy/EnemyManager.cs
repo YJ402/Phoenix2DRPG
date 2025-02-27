@@ -23,30 +23,28 @@ public class EnemyManager : MonoBehaviour
         stageEnemyPrefabs = new List<List<EnemyController>>() { stage1EnemyPrefab, stage2EnemyPrefab, stage3EnemyPrefab };
     }
 
-    public List<EnemyController> SpawnEnemiesInMap(int numOfEnemies = 5) //맵 생성 로직
+    public void SpawnEnemiesInMap(int numOfEnemies = 5) //맵 생성 로직
     {
         if (numOfEnemies == 0)
         {
             Debug.Log("SpawnEnemies에 0 이상의 숫자를 입력 해야합니다.");
-            return null;
+            return;
         }
-
-        
-
 
         while (numOfEnemies > 0)
         {
             int x = Random.Range(0, map.GetLength(0));
             int y = Random.Range(0, map.GetLength(1));
 
-            if (map[x, y] != 0)
+            GameObject newEnemy;
+            if (map[x, y] != 0 || map[x, y] != 2)
             {
                 continue;
             }
-            
+
             int randNum = Random.Range(0, stageEnemyPrefabs[curStage].Count);
 
-            GameObject newEnemy = Instantiate(stageEnemyPrefabs[curStage][randNum].gameObject, new Vector2(x- map.GetLength(0)/2, y - map.GetLength(0)/3), Quaternion.identity);
+            newEnemy = Instantiate(stageEnemyPrefabs[curStage][randNum].gameObject, new Vector2(x - map.GetLength(0) / 2, y - map.GetLength(0) / 3), Quaternion.identity);
             newEnemy.transform.SetParent(transform, false);
             restEnemy.Add(newEnemy.GetComponent<EnemyController>());
 
@@ -57,28 +55,33 @@ public class EnemyManager : MonoBehaviour
             numOfEnemies--;
         }
 
-        return restEnemy;
+        return;
     }
 
-    public void SpawnEnemy(int numOfEnemies) // 보스 소환기
-    {
-        int x = Random.Range(0, map.GetLength(0));
-        int y = Random.Range(0, map.GetLength(1));
+    //public void SpawnthingInMap(int numOfthing, List<GameObject> things, Transform _transform) // 보스의 소환 스킬
+    //{
 
-        List<EnemyController> AddedEnemy = new();
-        while (numOfEnemies > 0)
-        {
-            if (map[x, y] != 0)
-            {
-                continue;
-            }
-            int randNum = Random.Range(0, stageEnemyPrefabs[curStage].Count);
-            restEnemy.Add(Instantiate(stageEnemyPrefabs[curStage][randNum].gameObject, new Vector2(x, y), Quaternion.identity).GetComponent<EnemyController>());
-            numOfEnemies--;
-            if (numOfEnemies == 0)
-                Debug.Log("보스의 몬스터 생성 완료");
-        }
-    }
+    //    //List<EnemyController> AddedEnemy = new();
+    //    while (numOfthing > 0)
+    //    {
+    //        int x = Random.Range(0, map.GetLength(0));
+    //        int y = Random.Range(0, map.GetLength(1));
+
+    //        GameObject newEnemy;
+    //        if (map[x, y] != 0 || map[x, y] != 2)
+    //        {
+    //            continue;
+    //        }
+    //        int randNum = Random.Range(0, things.Count);
+
+    //        GameObject i = Instantiate(things[randNum], new Vector2(x, y), Quaternion.identity);
+    //        i.transform.SetParent(_transform, false);
+
+    //        if (numOfthing == 0)
+    //            Debug.Log("보스의 몬스터 생성 완료");
+    //        numOfthing--;
+    //    }
+    //}
 
     //public void markTarget(PlayerController target) 
     //{

@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532e2fd2998eca243998329ff4600c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uIManager: {fileID: 1199542432}
+  uIManager: {fileID: 0}
   enenmyManager: {fileID: 2024527832}
   obstacleManager: {fileID: 806563652}
   player: {fileID: 1700061296}
@@ -1113,7 +1113,7 @@ Transform:
   m_GameObject: {fileID: 435602985}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11, y: 4, z: 0}
+  m_LocalPosition: {x: -14, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6553,7 +6553,7 @@ Transform:
   m_GameObject: {fileID: 700719894}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13, y: -9, z: 0}
+  m_LocalPosition: {x: 15, y: -11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10973,7 +10973,7 @@ MonoBehaviour:
   maxHealth: 1000
   speed: 6
   attackPower: 500
-  attackSpeed: 3
+  attackSpeed: 0
   attackDistance: 8
   target:
     serializedVersion: 2
@@ -11332,7 +11332,7 @@ GameObject:
   - component: {fileID: 1798196228}
   - component: {fileID: 1798196230}
   - component: {fileID: 1798196229}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21582,8 +21582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stage1EnemyPrefab:
-  - {fileID: 1573196141505362192, guid: e9abcf1ecc745d24e88ca3fec090681e, type: 3}
-  - {fileID: 8147609689754165905, guid: e21006c317fb4964aa122326d97d8edb, type: 3}
+  - {fileID: 5002103577350502394, guid: 88dc0c3d1eeea5a4da7b0fe5e141fea9, type: 3}
   stage2EnemyPrefab:
   - {fileID: 1573196141505362192, guid: e9abcf1ecc745d24e88ca3fec090681e, type: 3}
   - {fileID: 8147609689754165905, guid: e21006c317fb4964aa122326d97d8edb, type: 3}
@@ -22702,15 +22701,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f584d640051de48ca9edc0e3ab4ab247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleTxt: {fileID: 506936129}
-  skillPointTxt: {fileID: 716057464}
+  titleTxt: {fileID: 0}
+  skillPointTxt: {fileID: 0}
   skillNameTxt1: []
   skillNameTxt2: []
   skillNameTxt3: []
-  skillButton1: {fileID: 4433195508774800158}
-  skillButton2: {fileID: 3499095948885852722}
-  skillButton3: {fileID: 6052893973547905498}
-  skillManager: {fileID: 1717867630}
+  skillButton1: {fileID: 0}
+  skillButton2: {fileID: 0}
+  skillButton3: {fileID: 0}
+  skillManager: {fileID: 0}
 --- !u!114 &2275476320303629365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22979,9 +22978,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78c5a6ad61574b20a36bdfea3a997b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageText: {fileID: 586555396313181229}
-  roundText: {fileID: 7232298184136301750}
-  enemyCountText: {fileID: 724497670948288119}
+  stageText: {fileID: 0}
+  roundText: {fileID: 0}
+  enemyCountText: {fileID: 0}
 --- !u!224 &3251491945612147896
 RectTransform:
   m_ObjectHideFlags: 0

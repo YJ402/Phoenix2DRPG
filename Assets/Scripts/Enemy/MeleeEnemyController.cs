@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class MeleeEnemyController : EnemyController
 {
@@ -7,16 +8,14 @@ public class MeleeEnemyController : EnemyController
 
     public override void CheckHit()
     {
-        Debug.Log("근접 공격");
-
-
-
-        RaycastHit2D hit = Physics2D.BoxCast(hitBox.position, hitBox.lossyScale, 0, lookDirection.normalized, 0, targetLayerMask);
+        //RaycastHit2D hit = Physics2D.BoxCast(hitBox.position, hitBox.lossyScale, 0, lookDirection.normalized, 0, targetLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, lookDirection, statHandler.AttackRange + 500.2f, targetLayerMask);
+        Debug.DrawRay(transform.position, lookDirection* (statHandler.AttackRange + 0.2f), Color.red);
         if (hit.collider != null)
-            Debug.Log("타격 성공");
+            Debug.Log("근접 공격 성공");
         else
         {
-            Debug.Log("타격 실패");
+            Debug.Log("근접 공격 실패");
         }
 
         //OnDrawGizmos();

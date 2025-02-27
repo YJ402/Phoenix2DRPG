@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     public bool isLevelSkillSelect = true; //스테이지 시작시 레벨보너스로 스킬을찍는것인지 여부
-    private int currentStage = 1; 
+    private int currentStage = 0; 
     public int CurrentStage
     {
         get { return currentStage; }
