@@ -185,6 +185,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5313877937968394680, guid: beb9f9676edbae54c936568373cb0a77, type: 3}
   m_PrefabInstance: {fileID: 36224246}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &36224248 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7121475261018358869, guid: beb9f9676edbae54c936568373cb0a77, type: 3}
+  m_PrefabInstance: {fileID: 36224246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &116567698
 GameObject:
   m_ObjectHideFlags: 0
@@ -10649,7 +10654,6 @@ GameObject:
   m_Component:
   - component: {fileID: 857702997}
   - component: {fileID: 857702998}
-  - component: {fileID: 857702999}
   m_Layer: 0
   m_Name: ObstacleManager
   m_TagString: Untagged
@@ -10687,6 +10691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3b54705e37cab45b50d998fb795ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  block: {fileID: 36224248}
   leftObj: {fileID: 151284091}
   rightObj: {fileID: 1757440976}
   rock: {fileID: 8679844637300723683, guid: f3762a85b2f43294c921489940fc043e, type: 3}
@@ -10695,18 +10700,6 @@ MonoBehaviour:
   wall: {fileID: 7121475261018358869, guid: beb9f9676edbae54c936568373cb0a77, type: 3}
   dontOverlapAdj: 1
   AdjPadding: 1
---- !u!114 &857702999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857702996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6254b0bff68e7a249ab124500e14e710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1106160138
 GameObject:
   m_ObjectHideFlags: 0
