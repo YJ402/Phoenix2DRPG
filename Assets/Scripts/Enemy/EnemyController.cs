@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class EnemyController : BaseController
 {
@@ -50,7 +51,6 @@ public class EnemyController : BaseController
         previsLeft = currentisLeft;
     }
 
-
     public Vector2 DirectionToSomewhere(Vector2 target)
     {
         Vector2 direction = (target - (Vector2)transform.position).normalized;
@@ -63,8 +63,6 @@ public class EnemyController : BaseController
         return distance;
     }
 
-
-
     protected override void HandleAction()
     {
         base.HandleAction();
@@ -76,60 +74,125 @@ public class EnemyController : BaseController
         }
 
         Vector2 direction = DirectionToSomewhere(target.position);
-        float distance = DistanceToTarget(transform.position);
+        //float distance = DistanceToTarget(transform.position);
 
-        
-
+        if (TargetInLine(transform.position, direction) && TargetInDistance(direction))
+        {
+            isAttacking = true;
+        }
+        else
+        {
+            Vector2 nextDirection = BFS(); //노멀라이즈
+            movementDirection = nextDirection;
+        }
         Attack(isAttacking); // 애니메이션 실행 메서드로 변경하고, 실제 공격판정은 애니메이션에서 이벤트로 트리거
     }
 
-    private void FindPathToDestination(Vector2 direction, float distance)
+    private Vector2 BFS()
     {
-        if (followRange > distance) // 추격 범위 내
+        //int[,] map = battleManager.Map;
+        int[,] map = new int[10, 10] // 테스트용
+{
+        { 0, 0, 3, 0, 1, 0, 0, 1, 0, 0 },
+        { 0, 0, 0, 1, 0, 3, 0, 0, 0, 0 },
+        { 0, 1, 0, 0, 0, 0, 1, 0, 0, 0 },
+        { 0, 0, 0, 0, 1, 0, 0, 3, 0, 0 },
+        { 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
+        { 0, 1, 0, 0, 0, 0, 3, 0, 0, 0 },
+        { 3, 0, 0, 0, 0, 1, 0, 0, 0, 0 },
+        { 0, 0, 0, 1, 0, 0, 0, 1, 0, 0 },
+        { 0, 0, 1, 0, 0, 3, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 }
+};
+
+
+        //int MaxNavigation = Mathf.Clamp((int)Math.Pow((followRange*2+1),2),0,200);
+        int MaxNavigation = int.MaxValue;
+
+        Queue<Vector2> spots = new Queue<Vector2>(); // 한장짜리 수색 스팟 순서 목록
+        HashSet<Vector2> isVisited = new HashSet<Vector2>();
+        Stack<Vector2> path = new Stack<Vector2>();
+        Vector2 spot;
+        Vector2[,] infoFrom = new Vector2[map.GetLength(0), map.GetLength(1)]; // 수색 스팟 출신 정보를 기록할 문서다발
+        for (int i = 0; i < map.GetLength(0); i++)
+            for (int j = 0; j < map.GetLength(1); j++)
+                infoFrom[i, j] = new Vector2(-1, -1);
+
+        Vector2[] eightway = new Vector2[]
         {
-            int[,] map = battleManager.Map;
-            int MaxNavigation = 200;
+                                new Vector2(1, 1), new Vector2(1, 0), new Vector2(1, -1),
+                                new Vector2(0, 1),                     new Vector2(0, -1),
+                                new Vector2(-1, 1), new Vector2(-1, 0), new Vector2(-1, -1)
+        };
 
-            Queue<(int, int)> spots = new Queue<(int, int)>();
-            List<(int, int)> isVisited = new List<(int, int)>();
-            (int x, int y) spot;
+        int x1 = Mathf.RoundToInt(target.position.x);
+        int y1 = Mathf.RoundToInt(target.position.y);
+        //Vector2 targetPos = new Vector2(x1, y1) - battleManager.obstacleManager.GridToWorld(0, 0); // 타겟 좌표를 일치화
+        Vector2 targetPos = new Vector2(x1, y1) - new Vector2(-5, -5); // 테스트용
 
-            (int x, int y)[] eightway = new (int x, int y)[]
+        int x2 = Mathf.RoundToInt(transform.position.x);
+        int y2 = Mathf.RoundToInt(transform.position.y);
+        //Vector2 finderPos = new Vector2(x2, y2) - battleManager.obstacleManager.GridToWorld(0, 0); // 현재 몹 좌표를 일치화
+        Vector2 finderPos = new Vector2(x2, y2) - new Vector2(-5, -5); // 테스트용
+
+        spots.Enqueue(finderPos);
+
+        while (spots.Count > 0 && MaxNavigation-- > 0)
+        {
+            //하나 꺼내고
+            spot = spots.Dequeue();
+            //방문 체크
+            //isVisited.Add(spot); // 방문 체크는 추가할때 즉시 해야함
+            //검사: 타겟 위치인지
+            if (spot == targetPos)
             {
-                    (1, 1), (1, 0), (1, -1),
-                    (0, 1),         (0, -1),
-                    (-1, 1), (-1, 0), (-1, -1)
-            };
-
-            int x = Mathf.RoundToInt(transform.position.x);
-            int y = Mathf.RoundToInt(transform.position.y);
-            spots.Enqueue((x, y));
-
-            while (spots.Count > 0 && MaxNavigation > 0)
+                BackTracking(finderPos, spot, infoFrom, path);
+                break;
+            }
+            //8방향 추가 및 출신 기록(방문 안한 곳만 / (0: 빈 공간, 2: 인접 영역)
+            else
             {
-                //하나 꺼내고
-                spot = spots.Dequeue();
-                //방문 체크
-                isVisited.Add(spot);
-                //검사: 직선상인가? 공격 범위 안인가?
-                if (TargetInLine(new Vector2(spot.x, spot.y), direction) && TargetInDiatance(new Vector2(spot.x, spot.y)))// 하나의 함수로 합칠 수 있음.
-                {
-                    movementDirection = DirectionToSomewhere(new Vector2(spot.x, spot.y));
-                    break;
-                }
-
-                //8방향 추가(방문 안한 곳만)
                 foreach (var i in eightway)
                 {
-                    Vector2 s = new Vector2(spot.x + i.x, spot.y + i.y) - battleManager.obstacleManager.GridToWorld(0, 0);
-                    if (!isVisited.Contains((spot.x + i.x, spot.y + i.y)) && (map[(int)s.x, (int)s.y] == 1))
-                        spots.Enqueue((spot.x + i.x, spot.y + i.y));
-                }
+                    Vector2 nextVector = new Vector2(spot.x + i.x, spot.y + i.y);
 
-                MaxNavigation--;
+                    if (!isVisited.Contains(nextVector)
+                            && (spot.x + i.x < map.GetLength(0))
+                            && (spot.y + i.y < map.GetLength(1))
+                            && (spot.x + i.x >= 0)
+                            && (spot.y + i.y >= 0)
+                            && (map[(int)(spot.x + i.x), (int)(spot.y + i.y)] == 0
+                            || map[(int)(spot.x + i.x), (int)(spot.y + i.y)] == 2))
+                    {
+                        spots.Enqueue(nextVector);
+                        isVisited.Add(nextVector); // 방문 처리는 미리 해야함.
+                        infoFrom[(int)(spot.x + i.x), (int)(spot.y + i.y)] = spot;
+                    }
+                }
             }
         }
+
+        if (path.Count != 0)
+        {
+            Debug.Log($"{path.Pop() - (Vector2)transform.position}으로 이동");
+        return path.Pop() - (Vector2)transform.position;
+        }
+        else
+        {
+            Debug.Log("타겟이 너무 멀리 있습니다. 경로 찾기에 실패합니다.");
+            return Vector2.zero;
+        }
     }
+
+    private void BackTracking(Vector2 finder, Vector2 vector, Vector2[,] infoFrom, Stack<Vector2> path)
+    {
+        if (vector == finder) // 기저사례 정하는 거 깜빡했음.
+            return;
+        path.Push(vector);
+        BackTracking(finder, infoFrom[(int)vector.x, (int)vector.y], infoFrom, path);
+    }
+
+
     private bool TargetInLine(Vector2 origin, Vector2 direction)
     {
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, Mathf.Infinity, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
@@ -138,135 +201,10 @@ public class EnemyController : BaseController
         return false;
     }
 
-    private bool TargetInDiatance(Vector2 origin)
+    private bool TargetInDistance(Vector2 origin)
     {
         if (statHandler.AttackRange > DistanceToTarget(origin))
             return true;
         return false;
     }
-
-
-
-
-
-
-
-
-
-
-    //    if (followRange > distance)
-    //    {
-    //        lookDirection = direction;
-
-    //        bool targetInDiatance = TargetInDiatance(distance, direction);
-    //        bool targetInSight = TargetInSight(distance, direction);
-
-    //        if (targetInDiatance)
-    //        {
-    //            if (targetInSight)
-    //            {
-    //                if (delayT < 0)
-    //                {
-    //                    isAttacking = true;
-    //                    delayT = attackDelayT;
-    //                }
-    //                movementDirection = Vector2.zero;
-    //            }
-    //            else
-    //            {
-    //                Debug.Log("길이 막혔습니다. 경로 찾기 로직을 실행합니다.");
-    //            }
-    //        }
-    //        else if (!isAttacking)
-    //        {
-    //            movementDirection = direction;
-    //        }
-    //        ////룩디렉션, 무브디렉션, 이즈어태킹 설정 로직
-    //        //if (TargetInDiatance(distance, direction))
-    //        //{
-    //        //    isAttacking = true;
-    //        //    movementDirection = Vector2.zero;
-    //        //}
-    //        //else
-    //        //{
-    //        //    //직선상에 장애물/플레이어가 있는지 체크.             
-    //        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance + 0.3f, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
-    //        //    if (hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer))
-    //        //    {
-    //        //        movementDirection = direction;
-    //        //    }
-    //        //    else Debug.Log("길이 막혔습니다. 경로 찾기 로직을 실행합니다.");//movementDirection = FindWayToTarget(); //경로 찾아서 이동 방향으로 대입.
-    //        //}
-    //    }
-    //    Attack(isAttacking); // 애니메이션 실행 메서드로 변경하고, 실제 공격판정은 애니메이션에서 이벤트로 트리거
-    //}
-
-    //private bool TargetInSight(float distance, Vector2 direction)
-    //{
-    //    RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance + 0.3f, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
-    //    if (hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer)) // 플레이어면
-    //        return true;
-    //    return false;
-    //}
-    //private bool TargetInDiatance(float distance, Vector2 direction)
-    //{
-    //    if (statHandler.AttackRange < distance)
-    //        return false; // 거리가 공격범위보다 멀면 false
-    //    else
-    //    {
-    //        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, statHandler.AttackRange * 1.3f, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
-    //        if (hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer))
-    //        {
-    //            return true; // 공격 범위 내에서 enemy 앞에 있는 것이 level이 아니라 플레이어면 true;
-    //        }
-    //        return false; // 플레이어가 아니라 level이면 false;
-    //    }
-    //}
-
-    private void OnDestroy()
-    {
-        Debug.Log("몹이 죽었습니다");
-        battleManager.UpdateEnemyDeath(this);
-    }
-
-
-
-    //public Vector2 FindWayToTarget()
-    //{
-    //    //경로찾기
-
-    //    //타겟과 나 좌표를 int화.
-    //    Vector2 targetOnTarget = new Vector2((int)Math.Round(target.position.x), (int)Math.Round(target.position.y));
-    //    Vector2 MeOnTarget = new Vector2((int)Math.Round(transform.position.x), (int)Math.Round(transform.position.y));
-
-    //    //grid 범위 설정.
-    //    Vector2 LTgrid = new Vector2(-13, 6);
-    //    Vector2 RBgrid = new Vector2(-14, -10);
-
-    //    //장애물 위치
-    //    obstaclePosition;
-
-    //    //그래프 생성
-    //    Graph graph = new Graph();
-    //}
-
-    //private void Attack(Player player)
-    //{
-    //    if(weaponHandler)
-    //    if (Targeting(player.transform)) // 공격 가능 판단
-    //    {
-
-    //    }
-
-    //    Chasing(player.transform);
-    //}
-
-    //private bool Targeting(transform playerPosition)
-    //{
-    //    bool attackAvailable = (playerPosition - transform.position).size < weaponHandler.AttackRange; // 공격 가능 판단
-    //    animationHandler.targeting();
-    //    return attackAvailable;
-    //}
-
-    //private void Chasing()
 }
