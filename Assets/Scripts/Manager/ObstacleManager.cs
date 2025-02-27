@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-    public GameObject block;
     public static ObstacleManager Instance { get; private set; }
 
     [Header("범위 오브젝트")]
@@ -26,8 +25,8 @@ public class ObstacleManager : MonoBehaviour
     private int gridWidth, gridHeight; //생성 범위의 가로, 세로 길이
 
     private EnemyManager enemyManager;
-
     private Item item;
+    public GameObject block;
 
     public struct GridObstacle
     {
