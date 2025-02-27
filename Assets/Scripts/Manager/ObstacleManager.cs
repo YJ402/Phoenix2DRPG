@@ -13,7 +13,6 @@ public class ObstacleManager : MonoBehaviour
     public GameObject rock, spike, water, wall;
 
     [Header("인접 영역 설정")]
-    public bool dontOverlapAdj = true; //장애물 주변이 겹치지 않는지 확인
     public int AdjPadding = 1; ////장애물 여백
 
     public int[,] grid; //장애물 생성 가능 범위
@@ -40,10 +39,11 @@ public class ObstacleManager : MonoBehaviour
 
     private void Awake()
     {
+        InitializeGrid(); //그리드 초기화
+        SettingObstacle();
     }
     public void SettingObstacle()
     {
-        InitializeGrid(); //그리드 초기화
         block.gameObject.SetActive(true); //출구 막는 장애물 활성화
         SpawnObstacle(rock, 1, 1, 3); //돌, 1 x 1 크기, 3개
         SpawnObstacle(spike, 1, 1, 3); //가시, 1 x 1 크기, 3개
@@ -111,36 +111,20 @@ public class ObstacleManager : MonoBehaviour
     {
         if (objPosX < 0 || objPosX + width > gridWidth || objPosY < 0 || objPosY + height > gridHeight) return false;
         //그리드 범위를 벗어나게 되면 false를 반환함
-        if (dontOverlapAdj) //겹치지 않았을 경우
-        {
-            int checkObjPosX = Mathf.Max(0, objPosX - AdjPadding);
-            int checkObjPosY = Mathf.Max(0, objPosY - AdjPadding);
-            int checkEndX = Mathf.Min(gridWidth, objPosX + width + AdjPadding);
-            int checkEndY = Mathf.Min(gridHeight, objPosY + height + AdjPadding);
-            //오브젝트의 끝 부분 검사. gridWidth부터 objPosX의 크기에 여백을 더한만큼. 
-            //예시로 gridHeight가 10, objPosY가 4, height가 2, adjPadding이 1이라면 4에서 7까지 검사함. 
+        int checkObjPosX = Mathf.Max(0, objPosX - AdjPadding);
+        int checkObjPosY = Mathf.Max(0, objPosY - AdjPadding);
+        int checkEndX = Mathf.Min(gridWidth, objPosX + width + AdjPadding);
+        int checkEndY = Mathf.Min(gridHeight, objPosY + height + AdjPadding);
+        //오브젝트의 끝 부분 검사. gridWidth부터 objPosX의 크기에 여백을 더한만큼. 
+        //예시로 gridHeight가 10, objPosY가 4, height가 2, adjPadding이 1이라면 4에서 7까지 검사함. 
 
-            for (int x = checkObjPosX; x < checkEndX; x++)
-            {
-                for (int y = checkObjPosY; y < checkEndY; y++)
-                {
-                    if (grid[x, y] != 0) //x, y가 0이 아닐 경우 즉, 장애물 배치 불가 칸이라면
-                    {
-                        return false; //영역에 장애물 배치 불가로 여김
-                    }
-                }
-            }
-        }
-        else
+        for (int x = checkObjPosX; x < checkEndX; x++)
         {
-            for (int x = objPosX; x < objPosX + width; x++)
+            for (int y = checkObjPosY; y < checkEndY; y++)
             {
-                for (int y = objPosY; y < objPosY + height; y++)
+                if (grid[x, y] != 0) //x, y가 0이 아닐 경우 즉, 장애물 배치 불가 칸이라면
                 {
-                    if (grid[x, y] != 0) //x, y가 0이 아닐 경우 즉, 장애물 배치 불가 칸이라면
-                    {
-                        return false;  //영역에 장애물 배치 불가로 여김
-                    }
+                    return false; //영역에 장애물 배치 불가로 여김
                 }
             }
         }
@@ -159,23 +143,20 @@ public class ObstacleManager : MonoBehaviour
             }
         }
 
-        if (dontOverlapAdj)
+        for (int x = objPosX - AdjPadding; x < objPosX + width + AdjPadding; x++)
         {
-            for (int x = objPosX - AdjPadding; x < objPosX + width + AdjPadding; x++)
+            for (int y = objPosY - AdjPadding; y < objPosY + height + AdjPadding; y++)
             {
-                for (int y = objPosY - AdjPadding; y < objPosY + height + AdjPadding; y++)
+                // 장애물 주변으로 인식되는 칸이 그리드 안에 있는지 확인
+                if (x >= 0 && x < gridWidth && y >= 0 && y < gridHeight)
                 {
-                    // 장애물 주변으로 인식되는 칸이 그리드 안에 있는지 확인
-                    if (x >= 0 && x < gridWidth && y >= 0 && y < gridHeight)
-                    {
-                        // 장애물 내부가 아니라면
-                        bool isInsideObstacle = (x >= objPosX && x < objPosX + width &&
-                                               y >= objPosY && y < objPosY + height);
+                    // 장애물 내부가 아니라면
+                    bool isInsideObstacle = (x >= objPosX && x < objPosX + width &&
+                                            y >= objPosY && y < objPosY + height);
 
-                        if (!isInsideObstacle && grid[x, y] == 0)
-                        {
-                            grid[x, y] = 2; //인접 영역은 2로 지정함
-                        }
+                    if (!isInsideObstacle && grid[x, y] == 0)
+                    {
+                        grid[x, y] = 2; //인접 영역은 2로 지정함
                     }
                 }
             }
