@@ -5,6 +5,8 @@ using UnityEngine;
 public class BulletDoubleSkill : ActiveSkill
 {
     public float bulletMultiplier = 2f;
+    public new string skillName = "ÅºÈ¯ 2¹è";
+    
 
     public override void Activate(GameObject user)
     {

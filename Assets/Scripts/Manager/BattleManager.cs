@@ -7,7 +7,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] EnemyManager enenmyManager;
     PlayerController playerController;
     ResourceController playerResourceController;
-    [SerializeField] ObstacleManager obstacleManager;
+    public ObstacleManager obstacleManager;
+    //UI매니저의 커렌트 state 받아오기.
 
 
     public GameObject player;
@@ -28,7 +29,7 @@ public class BattleManager : MonoBehaviour
         private set { currentRound = value; }
     }
     List<EnemyController> restEnemy = new();
-    BossEnemyController boss;
+    //BossEnemyController boss;
 
     public void Awake()
     {

@@ -17,22 +17,18 @@ public class BossEventHandler : MonoBehaviour
 
     private void AttackSpoke1()
     {
-        bossEnemyController.TriggerBossEvent(0);
-        Debug.Log("1실행");
+        bossEnemyController.AttackSkill(1);
     }
 
     private void AttackSpoke2()
     {
-        bossEnemyController.TriggerBossEvent(1);
-        Debug.Log("2실행");
+        bossEnemyController.AttackSkill(2);
 
     }
 
     private void AttackSpoke3()
     {
-        bossEnemyController.TriggerBossEvent(2);
-        Debug.Log("3실행");
-
+        bossEnemyController.AttackSkill(3);
     }
 
     private void ExitAttack()
