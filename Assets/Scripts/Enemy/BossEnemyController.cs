@@ -16,22 +16,12 @@ public class BossEnemyController : EnemyController
     protected override void Awake()
     {
         base.Awake();
-        //bossEvent.Add(() => { });
-        //bossEvent.Add(() => { });
-        //bossEvent.Add(() => { });
-        //bossEvent[0] += Attack1;
-        //bossEvent[1] += Attack2;
-        //bossEvent[2] += Attack3;
         obstacleManager = FindObjectOfType<ObstacleManager>();
         battleManager = FindObjectOfType<BattleManager>();
 
-        //map = battleManager.Map;
+        map = battleManager.Map;
     }
 
-    //public void TriggerBossEvent(int i)
-    //{
-    //    bossEvent[i]?.Invoke();
-    //}
 
     protected override void Update()
     {
