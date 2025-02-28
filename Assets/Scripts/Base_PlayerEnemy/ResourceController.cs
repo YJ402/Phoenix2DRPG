@@ -51,8 +51,8 @@ public class ResourceController : MonoBehaviour
         {
             return false;
         }
-
-        timeSinceLastChange = 0f;
+        if(change<=0)
+            timeSinceLastChange = 0f;
         CurrentHealth += change;
         CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
         CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
