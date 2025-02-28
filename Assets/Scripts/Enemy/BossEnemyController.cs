@@ -65,11 +65,11 @@ public class BossEnemyController : EnemyController
                 break;
         }
     }
-    private void Attack1() // 몹 5마리 소환
+    private void Attack1() // 몹 2마리 소환
     {
         Debug.Log("1실행");
 
-        //enemyManager.SpawnEnemy(5);
+        enemyManager.SpawnEnemiesByBoss(1);
     }
 
 
@@ -126,7 +126,7 @@ public class BossEnemyController : EnemyController
             {
                 for (int j = y; j < map.GetLength(1); j++)
                 {
-                    if (map[i, j] == 0)
+                    if (map[i, j] == 0 || map[i, j] == 2)
                     {
                         return obstacleManager.GridToWorld(x, y);
                     }
@@ -134,4 +134,28 @@ public class BossEnemyController : EnemyController
             }
         }
     }
+    //public void SpawnthingInMap(int numOfthing, List<GameObject> things, Transform _transform) // 보스의 소환 스킬
+    //{
+
+    //    //List<EnemyController> AddedEnemy = new();
+    //    while (numOfthing > 0)
+    //    {
+    //        int x = Random.Range(0, map.GetLength(0));
+    //        int y = Random.Range(0, map.GetLength(1));
+
+    //        GameObject newEnemy;
+    //        if (map[x, y] != 0 || map[x, y] != 2)
+    //        {
+    //            continue;
+    //        }
+    //        int randNum = Random.Range(0, things.Count);
+
+    //        GameObject i = Instantiate(things[randNum], new Vector2(x, y), Quaternion.identity);
+    //        i.transform.SetParent(_transform, false);
+
+    //        if (numOfthing == 0)
+    //            Debug.Log("보스의 몬스터 생성 완료");
+    //        numOfthing--;
+    //    }
+    //}
 }

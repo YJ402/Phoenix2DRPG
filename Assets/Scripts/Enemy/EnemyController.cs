@@ -3,13 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.Rendering;
 
 public class EnemyController : BaseController
 {
-    
-    EnemyManager enemyManager;
+    public EnemyManager enemyManager;
     [SerializeField] Transform target; // 디버깅용으로 시리얼필드로 만듦. 나중에 배틀매니저에서 enemyController.Init하면 자동으로 할당됨.
 
     [SerializeField] protected LayerMask targetLayerMask; // 디버깅용으로 시리얼필드로 만듦. 나중에 배틀매니저에서 enemyController.Init하면 자동으로 할당됨.
@@ -81,7 +79,7 @@ public class EnemyController : BaseController
         {
             lookDirection = direction;
 
-            if (TargetInLine(transform.position, direction) && TargetInDistance(direction))
+            if (TargetInLine(transform.position, direction) && TargetInDistance(transform.position))
             {
                 isAttacking = true;
             }
@@ -96,7 +94,7 @@ public class EnemyController : BaseController
 
     private Vector2 BFS()
     {
-        Debug.Log($"플레이어 위치: {target.position}");
+        //Debug.Log($"플레이어 위치: {target.position}");
         int[,] map = battleManager.Map;
         //        int[,] map = new int[10, 10] // 테스트용
         //{
@@ -181,10 +179,11 @@ public class EnemyController : BaseController
 
         if (path.Count != 0)
         {
-            Vector2 destination = battleManager.obstacleManager.GridToWorld(path.Pop().x, path.Pop().y);
+            Vector2 temp = path.Pop();
+            Vector2 destination = battleManager.obstacleManager.GridToWorld(temp.x, temp.y);
             //Vector2 destination = path.Pop() + new Vector2(-5, -5);
-            Debug.Log($"{destination}으로 이동");
-            Debug.Log($"플레이어 위치: {target.position}");
+            //Debug.Log($"{destination}으로 이동");
+            //Debug.Log($"플레이어 위치: {target.position}");
 
             return destination - (Vector2)transform.position;
         }
@@ -206,9 +205,13 @@ public class EnemyController : BaseController
 
     private bool TargetInLine(Vector2 origin, Vector2 direction)
     {
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, Mathf.Infinity, targetLayerMask | (1 << LayerMask.NameToLayer("Level")));
-        if (hit.collider != null && targetLayerMask == (1 << hit.collider.gameObject.layer)) // 플레이어면
-            return true;
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, Mathf.Infinity, (1 << LayerMask.NameToLayer("Player")) | (1 << LayerMask.NameToLayer("Level")) | (1 << LayerMask.NameToLayer("Obstacle")));
+        if (hit.collider != null)
+            if (targetLayerMask == hit.collider.gameObject.layer) // 플레이어면
+                return true;
+            else Debug.Log($"hit.layer가 {hit.collider.gameObject.layer}입니다.");
+        else Debug.Log("hit.collider가 null입니다. ");
+
         return false;
     }
 
@@ -222,7 +225,6 @@ private void OnDestroy()
     {
         Debug.Log("몹이 죽었습니다");
         battleManager.UpdateEnemyDeath(this);
-        
     }
 }
 
@@ -267,4 +269,4 @@ private void OnDestroy()
     //}
 
     //private void Chasing()
-//    }
+

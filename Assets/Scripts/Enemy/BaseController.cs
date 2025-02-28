@@ -27,7 +27,7 @@ public class BaseController : MonoBehaviour
 
     [HideInInspector] public bool isAttacking;
 
-    private float timeSinceLastAttack = float.MaxValue;
+    //private float timeSinceLastAttack = float.MaxValue;
 
     protected bool currentisLeft;
     protected bool previsLeft;
