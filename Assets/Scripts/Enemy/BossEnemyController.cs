@@ -65,11 +65,11 @@ public class BossEnemyController : EnemyController
                 break;
         }
     }
-    private void Attack1() // 各 5付府 家券
+    private void Attack1() // 各 2付府 家券
     {
         Debug.Log("1角青");
 
-        enemyManager.SpawnEnemiesInMap(5);
+        enemyManager.SpawnEnemiesByBoss(1);
     }
 
 
