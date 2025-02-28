@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
 
     public void SpawnEnemiesInMap(int numOfEnemies = 5) //光 社発 稽送
     {
-        if (curRound == 3)
+        if (curRound == 5)
             numOfEnemies = 1;
         if (numOfEnemies == 0)
         {
@@ -53,7 +53,7 @@ public class EnemyManager : MonoBehaviour
 
             int randNum = Random.Range(0, stageEnemyPrefabs[curStage - 1].Count);
 
-            if (curRound != 3)
+            if (curRound != 5)
             {
                 newEnemy = Instantiate(stageEnemyPrefabs[curStage - 1][randNum].gameObject, new Vector2(x - map.GetLength(0) / 2, y - map.GetLength(0) / 3), Quaternion.identity);
             }

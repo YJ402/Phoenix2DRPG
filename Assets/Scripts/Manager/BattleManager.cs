@@ -121,7 +121,7 @@ public class BattleManager : MonoBehaviour
     {
         obstacleManager.BlockRemove();
         Time.timeScale = 0;
-        if (CurrentRound == 3)
+        if (CurrentRound == 5)
         {
             StageClear();
         }
