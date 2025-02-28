@@ -202,12 +202,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0749ea9f741f84ea72729d9ee1079c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 3978561617942624, guid: 2cc770c395e133f41bfb0846ee459ea3, type: 3}
-  percentDropItem: 10
+  itemPrefab: {fileID: 4729255150518502604, guid: bef1b3a6093b25e418ebe388a4165834, type: 3}
+  percentDropItem: 20
   characterRenderer: {fileID: 3570008711632133553}
   isAttacking: 0
-  itemPrefab: {fileID: 3978561617942624, guid: 2cc770c395e133f41bfb0846ee459ea3, type: 3}
-  percentDropItem: 10
   target: {fileID: 0}
   targetLayerMask:
     serializedVersion: 2

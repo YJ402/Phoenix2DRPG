@@ -698,6 +698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLevelSkillSelect: 1
+  playerLevel: 1
   player: {fileID: 0}
 --- !u!1 &219774370
 GameObject:
@@ -11405,6 +11406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a0de7545299794784a5c5f5857f312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 0}
+  percentDropItem: 0
   characterRenderer: {fileID: 1738535977}
   isAttacking: 0
   rangeCircle: {fileID: 923577550}
