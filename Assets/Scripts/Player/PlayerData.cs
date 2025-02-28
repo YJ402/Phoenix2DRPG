@@ -11,7 +11,7 @@ public class PlayerData : MonoBehaviour
         get { return currentStage; }
         set { currentStage = value; }
     }
-    private int currentRound = 3;
+    private int currentRound = 1;
     public int CurrentRound
     {
         get { return currentRound; }
