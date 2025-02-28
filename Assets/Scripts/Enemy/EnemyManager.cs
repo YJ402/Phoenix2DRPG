@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
 
     public void SpawnEnemiesInMap(int numOfEnemies = 5) //光 社発 稽送
     {
-        if (curRound == 5)
+        if (curRound == 3)
             numOfEnemies = 1;
         if (numOfEnemies == 0)
         {
@@ -51,17 +51,17 @@ public class EnemyManager : MonoBehaviour
                 continue;
             }
 
-            int randNum = Random.Range(0, stageEnemyPrefabs[curStage].Count);
+            int randNum = Random.Range(0, stageEnemyPrefabs[curStage - 1].Count);
 
-            if(curRound != 3)
+            if (curRound != 3)
             {
-            newEnemy = Instantiate(stageEnemyPrefabs[curStage-1][randNum].gameObject, new Vector2(x - map.GetLength(0) / 2, y - map.GetLength(0) / 3), Quaternion.identity);
+                newEnemy = Instantiate(stageEnemyPrefabs[curStage - 1][randNum].gameObject, new Vector2(x - map.GetLength(0) / 2, y - map.GetLength(0) / 3), Quaternion.identity);
             }
             else
             {
-            newEnemy = Instantiate(BossesPrefab[curStage-1].gameObject, new Vector2(x - map.GetLength(0) / 2, y - map.GetLength(0) / 3), Quaternion.identity);
+                newEnemy = Instantiate(BossesPrefab[curStage - 1].gameObject, new Vector2(x - map.GetLength(0) / 2, y - map.GetLength(0) / 3), Quaternion.identity);
             }
-            
+
             newEnemy.transform.SetParent(transform, false);
             restEnemy.Add(newEnemy.GetComponent<EnemyController>());
 
@@ -94,9 +94,9 @@ public class EnemyManager : MonoBehaviour
                 continue;
             }
 
-            int randNum = Random.Range(0, stageEnemyPrefabs[curStage].Count);
+            int randNum = Random.Range(0, stageEnemyPrefabs[curStage - 1].Count);
 
-            newEnemy = Instantiate(stageEnemyPrefabs[curStage][randNum].gameObject, new Vector2(x - map.GetLength(0) / 2, y - map.GetLength(0) / 3), Quaternion.identity);
+            newEnemy = Instantiate(stageEnemyPrefabs[curStage - 1][randNum].gameObject, new Vector2(x - map.GetLength(0) / 2, y - map.GetLength(0) / 3), Quaternion.identity);
             newEnemy.transform.SetParent(transform, false);
             restEnemy.Add(newEnemy.GetComponent<EnemyController>());
 
