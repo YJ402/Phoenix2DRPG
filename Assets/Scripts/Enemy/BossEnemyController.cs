@@ -32,6 +32,7 @@ public class BossEnemyController : EnemyController
     protected override void Attack(bool isAttack)
     {
         base.Attack(isAttack); // Attack 애니메이션 트리거 // 추가 로직 작성 안할거면 지워도 무방.
+        isAttacking = false;
     }
 
     public void AttackSkill(int i)

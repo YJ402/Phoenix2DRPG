@@ -79,9 +79,10 @@ public class EnemyController : BaseController
         {
             lookDirection = direction;
 
-            if (TargetInLine(transform.position, direction) && TargetInDistance(transform.position))
+            if (TargetInLine(transform.position, direction) && TargetInDistance(transform.position) && delayT <= 0) 
             {
                 isAttacking = true;
+                delayT = attackDelayT;
             }
             else
             {
