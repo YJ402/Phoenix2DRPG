@@ -10,8 +10,8 @@ public class ResourceController : MonoBehaviour
     private AnimationHandler animationHandler;
     PlayerController playerController;
     private float timeSinceLastChange = float.MaxValue;
-    public float CurrentHealth { get; set; }
-    public float MaxHealth => statHandler.MaxHealth;            //원래 healt는 최대체력 의미하는것이라 MaxHealth로 변경
+    public int CurrentHealth { get; set; }
+    public int MaxHealth => statHandler.MaxHealth;            //원래 healt는 최대체력 의미하는것이라 MaxHealth로 변경
 
     public AudioClip damageClip;
 
@@ -23,11 +23,11 @@ public class ResourceController : MonoBehaviour
         statHandler = GetComponent<StatHandler>();
         animationHandler = GetComponent<AnimationHandler>();
         baseController = GetComponent<BaseController>();
+        CurrentHealth = MaxHealth;
     }
 
     private void Start()
     {
-        CurrentHealth = statHandler.MaxHealth;              //원래 healt는 최대체력 의미하는것이라 MaxHealth로 변경
     }
 
     private void Update()
@@ -44,7 +44,7 @@ public class ResourceController : MonoBehaviour
         //playerController.UpdateHpSlider(CurrentHealth/MaxHealth);
     }
 
-    public bool ChangeHealth(float change)
+    public bool ChangeHealth(int change)
     {
         if (change == 0 || timeSinceLastChange < healthChangeDelay)
         {
@@ -57,7 +57,7 @@ public class ResourceController : MonoBehaviour
         CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
 
         OnChangeHealth?.Invoke(CurrentHealth, MaxHealth);
-        playerController?.UpdateHpSlider(CurrentHealth / MaxHealth);
+        playerController?.UpdateHpSlider((float)CurrentHealth / MaxHealth);
 
         if (change < 0)
         {
@@ -94,7 +94,7 @@ public class ResourceController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
-            ChangeHealth(-50f);
+            ChangeHealth(-50);
         }
     }
 }

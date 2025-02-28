@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    public bool isLevelSkillSelect = true; //스테이지 시작시 레벨보너스로 스킬을찍는것인지 여부
     private int currentStage = 1; 
     public int CurrentStage
     {
         get { return currentStage; }
-        private set { currentStage = value; }
+        set { currentStage = value; }
     }
     private int currentRound = 1;
     public int CurrentRound
@@ -17,11 +18,11 @@ public class PlayerData : MonoBehaviour
         private set { currentRound = value; }
     }
 
-    private int playerLevel;
+    private int playerLevel=1;
     public int PlayerLevel
     {
         get { return playerLevel; }
-        set { playerLevel = value; }
+        private set { playerLevel = value; }
     }
     private int playerExp;
     public int PlayerExp
@@ -29,7 +30,7 @@ public class PlayerData : MonoBehaviour
         get { return playerExp; }
         set
         {
-            if (value >= 5 * PlayerLevel)
+            if (value >= MaxEXP)
             {
                 PlayerLevel++;
                 PlayerExp = value - 5 * (PlayerLevel - 1);
@@ -39,8 +40,10 @@ public class PlayerData : MonoBehaviour
     }
     public int MaxEXP
     {
-        get { return PlayerExp*5; }
+        get { return PlayerLevel*5; }
     }
+
+
     public Transform player;
     private int clearStage = 0;
     public int ClearStage
@@ -48,9 +51,15 @@ public class PlayerData : MonoBehaviour
         get { return clearStage; }
         set { clearStage = value; }
     }
+    private int skillPoint=1;
+    public int SkillPoint
+    {
+        get { return skillPoint; }
+        set {  skillPoint = value; }
+    }
 
-    private float currentHP;
-    public float CurrentHP
+    private int currentHP=1000;
+    public int CurrentHP
     {
         get { return currentHP; }
         set { currentHP = value; }
@@ -69,20 +78,29 @@ public class PlayerData : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+        
     }
-    
-
+    public void resetSkillPoint()
+    {
+        SkillPoint = PlayerLevel;
+    }
     public void RoundStartPlayerSetting()
     {
+        player = FindAnyObjectByType<PlayerController>().transform;
         ApplyPassiveSkill();
         player.GetComponent<ResourceController>().CurrentHealth = CurrentHP;
+        player.GetComponent<PlayerController>().UpdateHpSlider((float)CurrentHP / player.GetComponent<StatHandler>().MaxHealth);
         player.transform.position = new Vector3(0.5f, -10f, player.transform.position.z);
     }
 
-    public void RoundEndSetting()
+    public void GoNextRoundSetting()
     {
         currentHP = player.GetComponent<ResourceController>().CurrentHealth;
         CurrentRound++;
+    }
+    public void StageEndSetting()
+    {
+        CurrentHP = 1000;
     }
     public void SaveCurrentHP(int currentHP)
     {

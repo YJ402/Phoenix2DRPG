@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            resourceController.ChangeHealth(20f);
+            resourceController.ChangeHealth(20);
         }
         itemManager.spawnedItems.Remove(this.gameObject);
         Debug.Log($"{this.gameObject} removed");

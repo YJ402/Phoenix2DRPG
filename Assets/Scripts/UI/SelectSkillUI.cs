@@ -2,37 +2,56 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 
 public class SelectSkillUI : BaseUI
 {
-    [Header("Skill Slots")]
-    [SerializeField] private SkillSlotUI[] skillSlots; // Slot0, Slot1, Slot2를 Inspector에서 연결
-    [SerializeField] private TextMeshProUGUI[] skillNameTxt;
-
+    int skillPoint;
+    [SerializeField] TextMeshProUGUI titleTxt;
+    [SerializeField] TextMeshProUGUI skillPointTxt;
+    [SerializeField] private TextMeshProUGUI[] skillNameTxt1;
+    [SerializeField] private TextMeshProUGUI[] skillNameTxt2;
+    [SerializeField] private TextMeshProUGUI[] skillNameTxt3;
+    [SerializeField] Button skillButton1;
+    [SerializeField] Button skillButton2;
+    [SerializeField] Button skillButton3;
     // SkillManager 참조
-    private SkillManager skillManager;
+    [SerializeField] SkillManager skillManager;
 
     protected override UIState GetUIState()
     {
         return UIState.SelectSkill;
     }
-    private void Awake()
-    {
-        // 씬 내 SkillManager를 찾음 (또는 Inspector 연결)
-        skillManager = FindObjectOfType<SkillManager>();
-    }
 
     private void OnEnable()
     {
-        // UI가 활성화될 때, 스킬 목록 생성 & 슬롯 업데이트
-        RefreshSkillSlots();
+        Time.timeScale = 0f;
+        skillPoint = PlayerData.Instance.SkillPoint;
+        if (PlayerData.Instance.isLevelSkillSelect)
+            titleTxt.text = "Start Skill Select";
+        else
+            titleTxt.text = "Round Clear";
+        UpdateSkillSelectUI();
     }
-
-    // SkillManager의 MakeSkillOptions() -> GetRandomSkillOptions()를 사용해 슬롯 갱신
-    private void RefreshSkillSlots()
+    public override void Init(UIManager uiManager)
     {
-        if (skillManager == null) return;
+        base.Init(uiManager);
 
+        // 각 버튼의 클릭 이벤트 연결
+        if (skillButton1 != null)
+            skillButton1.onClick.AddListener(() => OnSelectSkill(1));
+
+        if (skillButton2 != null)
+            skillButton2.onClick.AddListener(() => OnSelectSkill(2));
+
+        if (skillButton3 != null)
+            skillButton3.onClick.AddListener(() => OnSelectSkill(3));
+    }
+    // SkillManager의 MakeSkillOptions() -> GetRandomSkillOptions()를 사용해 슬롯 갱신
+    private void UpdateSkillSelectUI()
+    {
+        skillPointTxt.text = skillPoint.ToString();
+        if (skillManager == null) return;
         // 1) 스킬 옵션 생성
         skillManager.MakeSkillOptions();
 
@@ -40,29 +59,26 @@ public class SelectSkillUI : BaseUI
         List<BaseSkill> randomSkills = skillManager.GetRandomSkillOptions();
 
         // 슬롯 갯수와 리스트 갯수를 맞춰 세팅
-        for (int i = 0; i < skillSlots.Length; i++)
-        {
-            if (randomSkills[i] != null)
-            {
-                BaseSkill skill = randomSkills[i];
-                skillNameTxt[i].text = randomSkills[i].skillName;
-            }
-            // else
-            // {
-            //     // 슬롯을 비움
-            //     skillSlots[i].ClearSlot();
-            // }
-        }
+        
     }
 
     // 슬롯 선택 시 호출되는 메서드
     private void OnSelectSkill(int slotIndex)
     {
-        Debug.Log($"Skill Slot {slotIndex} selected.");
-        // SkillManager에 선택된 슬롯 인덱스를 전달
-        //skillManager.SelectSkillOption(slotIndex);
+        Debug.Log($"Skill Slot selected.");
+        //선택 스킬 추가
 
-        // 스킬 선택 후 UI 닫기 등
-        gameObject.SetActive(false);
+        skillPoint--;
+        if (skillPoint <= 0)
+        {
+            Time.timeScale = 1f;
+            PlayerData.Instance.isLevelSkillSelect = false;
+            uiManager.ChangeState(UIState.Battle);
+        }
+        else
+        {
+            UpdateSkillSelectUI();
+        }
+
     }
 }

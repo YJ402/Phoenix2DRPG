@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 
 public class BossEnemyController : EnemyController
 {
-    BattleManager battleManager;
     ObstacleManager obstacleManager;
     [SerializeField] Enemyskill enemyskill;
     //public List<Action> bossEvent = new();
@@ -70,7 +69,7 @@ public class BossEnemyController : EnemyController
     {
         Debug.Log("1½ÇÇà");
 
-        battleManager.enenmyManager.SpawnEnemy(5);
+        enemyManager.SpawnEnemy(5);
     }
 
 
