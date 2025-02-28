@@ -8,13 +8,11 @@ public class BattleManager : MonoBehaviour
     PlayerController playerController;
     ResourceController playerResourceController;
     public ObstacleManager obstacleManager;
-    //UI¸Å´ÏÀúÀÇ Ä¿·»Æ® state ¹Þ¾Æ¿À±â.
-
-
     public GameObject player;
-
-
-
+    
+    public bool IsBossCleared { get; private set; }
+    
+    
     private int[,] map; public int[,] Map { get { return map; } set { map = value; } }
     private int currentStage = 0;
     public int CurrentStage
@@ -46,16 +44,16 @@ public class BattleManager : MonoBehaviour
         Map = obstacleManager.Grid;
         CurrentStage = PlayerData.Instance.CurrentStage;
         CurrentRound = PlayerData.Instance.CurrentRound;
-        // ¶ó¿îµå ÀüÈ¯½Ã¿¡ µ¥ÀÌÅÍ ÀúÀå Å¬·¡½º¿¡¼­ Á¤º¸ ¹Þ¾Æ¿Í¼­ Player, ½ºÅ×ÀÌÁö, ¶ó¿îµå ÀÔ·ÂÇØÁÖ±â.
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Í¼ï¿½ Player, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö±ï¿½.
     }
 
     private void StartRound()
     {
 
-        obstacleManager.SettingObstacle();                               //Àå¾Ö¹° »ý¼º
+        obstacleManager.SettingObstacle();                               //ï¿½ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½
         LoadPlayerData();
         enenmyManager.Init(Map, CurrentStage);
-        enenmyManager.SpawnEnemiesInMap(5);                              //Àû »ý¼º
+        enenmyManager.SpawnEnemiesInMap(5);                              //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         restEnemy = enenmyManager.restEnemy;
 
         PlayerData.Instance.RoundStartPlayerSetting();
@@ -117,19 +115,19 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            //º¸»ó ½ºÅ³¼±ÅÃ ui È£Ãâ
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ ui È£ï¿½ï¿½
         }
 
-        Debug.Log("ÀûÀ» ¸ðµÎ Ã³Ä¡ÇÏ¿´½À´Ï´Ù.");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³Ä¡ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
     }
     public void StageClear()
     {
         PlayerData.Instance.PlayerExp += (int)(5 * Mathf.Pow(2, CurrentStage - 1));
-        //Å¬¸®¾î ui È£Ãâ
+        //Å¬ï¿½ï¿½ï¿½ï¿½ ui È£ï¿½ï¿½
     }
     public void GoNextRound()
     {
-        PlayerData.Instance.RoundEndSetting();  //ÇÃ·¹ÀÌ¾î Ã¼·Â ÀúÀå, ¶ó¿îµåÁõ°¡
+        PlayerData.Instance.RoundEndSetting();  //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

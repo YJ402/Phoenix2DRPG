@@ -115,7 +115,7 @@ public class BattleUI : BaseUI
     // 게임 승리시 stageClearUI 켜기
     public void ShowStageClearUI()
     {
-        if (stageClearUI != null) // 보스클리어조건 넣어야함
+        if (stageClearUI != null && PlayerData.Instance.CurrentHP <= 0 ) // 보스클리어조건 넣어야함 
         {
             stageClearUI.SetActive(true);
             PauseBattle();
