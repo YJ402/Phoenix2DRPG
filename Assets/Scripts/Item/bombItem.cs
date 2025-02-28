@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class bombItem : MonoBehaviour
 {
     public ItemManager itemManager;
     private void Awake()
@@ -14,11 +13,11 @@ public class Item : MonoBehaviour
     {
         if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            collider.GetComponent<ResourceController>().ChangeHealth(100);
+            collider.GetComponent<RangeStatHandler>().BulletIndex=2;
             itemManager?.spawnedItems.Remove(this.gameObject);
             Debug.Log($"{this.gameObject} removed");
             Destroy(this.gameObject);
         }
-        
+
     }
 }

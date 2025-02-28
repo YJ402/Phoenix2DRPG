@@ -52,6 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 7223181663088380939}
   isAttacking: 0
+  itemPrefab: {fileID: 3978561617942624, guid: 2cc770c395e133f41bfb0846ee459ea3, type: 3}
+  percentDropItem: 50
   target: {fileID: 0}
   targetLayerMask:
     serializedVersion: 2
@@ -111,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d33d48cb16ed1458b855e75cd3996d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trapDamage: 50
   healthChangeDelay: 0.5
   damageClip: {fileID: 0}
 --- !u!50 &1354103858783096769

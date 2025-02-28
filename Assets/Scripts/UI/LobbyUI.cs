@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LobbyUI : BaseUI
 {
@@ -14,7 +15,12 @@ public class LobbyUI : BaseUI
     [SerializeField] private Button stageButton1;
     [SerializeField] private Button stageButton2;
     [SerializeField] private Button stageButton3;
-    
+    [SerializeField] TextMeshProUGUI LevelText;
+
+    private void OnEnable()
+    {
+        LevelText.text = PlayerData.Instance.PlayerLevel.ToString();
+    }
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
@@ -34,7 +40,6 @@ public class LobbyUI : BaseUI
     private void OnSelectStage(int stage)
     {
         PlayerData.Instance.CurrentStage = stage;
-        Debug.Log("Stage selected. Transition to battle scene...");
         SceneManager.LoadScene("BattleScene_Test");
     }
     

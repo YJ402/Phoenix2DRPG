@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ResourceController : MonoBehaviour
 {
+    [SerializeField] int trapDamage=50;
     [SerializeField] private float healthChangeDelay = .5f;
 
     private BaseController baseController;
@@ -94,7 +95,7 @@ public class ResourceController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
-            ChangeHealth(-50);
+            ChangeHealth(-trapDamage);
         }
     }
 }
