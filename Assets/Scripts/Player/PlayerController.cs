@@ -29,15 +29,6 @@ public class PlayerController : BaseController
         base.Start();
         rangeCircle.transform.localScale = new Vector3(2* rangeStatHandler.AttackRange, 2* rangeStatHandler.AttackRange); // 임시로 생성한 사정거리 원 크기
     }
-
-    protected override void Update()
-    {
-        base.Update();
-    }
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
     protected override void Movment(Vector2 direction)
     {
         base.Movment(direction);
