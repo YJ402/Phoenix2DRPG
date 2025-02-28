@@ -63,7 +63,7 @@ public class BattleManager : MonoBehaviour
         obstacleManager.SettingObstacle();                               //厘局拱 积己
         LoadPlayerData();
         enenmyManager.Init(Map, CurrentStage);
-        enenmyManager.SpawnEnemiesInMap(5);                              //利 积己
+        enenmyManager.SpawnEnemiesInMap(10*currentStage + 3*currentRound);                              //利 积己
         restEnemy = enenmyManager.restEnemy;
         UpdateUIStart();
         PlayerData.Instance.RoundStartPlayerSetting();

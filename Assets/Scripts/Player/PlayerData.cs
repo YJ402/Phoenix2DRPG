@@ -18,7 +18,7 @@ public class PlayerData : MonoBehaviour
         private set { currentRound = value; }
     }
 
-    private int playerLevel=1;
+    [SerializeField] private int playerLevel=1;
     public int PlayerLevel
     {
         get { return playerLevel; }

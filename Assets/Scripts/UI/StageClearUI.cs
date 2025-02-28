@@ -16,6 +16,11 @@ public class StageClearUI : BaseUI
     {
         return UIState.StageClear;
     }
+
+    private void OnEnable()
+    {
+        Time.timeScale = 0f;
+    }
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);

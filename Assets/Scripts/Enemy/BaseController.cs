@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
+    [SerializeField] GameObject itemPrefab;
+    [SerializeField] float percentDropItem;
+
     protected BattleManager battleManager;
     protected Rigidbody2D _rigidbody;
 
@@ -134,8 +137,18 @@ public class BaseController : MonoBehaviour
         {
             component.enabled = false;
         }
+        Invoke("DropItem", 2f);
+        
 
         Destroy(gameObject, 2f);
+    }
+    void DropItem()
+    {
+        System.Random random = new System.Random();
+        if ((float)random.NextDouble() * 100 < percentDropItem)
+        {
+            Instantiate(itemPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     public void Fire()
