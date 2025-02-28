@@ -11507,7 +11507,7 @@ MonoBehaviour:
   maxHealth: 1000
   speed: 6
   attackPower: 500
-  attackSpeed: 0
+  attackSpeed: 5
   attackDistance: 8
   target:
     serializedVersion: 2
