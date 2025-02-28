@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc253528bad4f614388ce6a4aac965e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: PlusBullet
   level: 1
-  name: PlusBulletSkill
   bulletincrease: 1

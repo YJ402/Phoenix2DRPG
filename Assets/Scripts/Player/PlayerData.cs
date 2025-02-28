@@ -5,7 +5,42 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     public bool isLevelSkillSelect = true; //스테이지 시작시 레벨보너스로 스킬을찍는것인지 여부
-    private int currentStage = 1; 
+    private int currentStage = 1;
+
+    private List<System.Type> acquiredPassiveSkillTypes = new List<System.Type>();
+
+    // 패시브 스킬을 획득할 때 호출
+    public void ApplyPassiveSkill()
+    {
+        if (player != null)
+        {
+            // 플레이어 GameObject에 붙은 모든 PassiveSkill 컴포넌트를 가져옵니다.
+            PassiveSkill[] skills = player.GetComponents<PassiveSkill>();
+            foreach (PassiveSkill skill in skills)
+            {
+                skill.ApplySkill();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("PlayerData: player 참조가 없습니다!");
+        }
+    }
+
+
+    public void ReapplyPassiveSkills(GameObject newPlayer)
+    {
+        foreach (var type in acquiredPassiveSkillTypes)
+        {
+            // 이미 해당 타입의 컴포넌트가 없으면 추가
+            if (newPlayer.GetComponent(type) == null)
+            {
+                newPlayer.AddComponent(type);
+                Debug.Log($"패시브 스킬 {type.Name} 재적용됨");
+            }
+        }
+    }
+
     public int CurrentStage
     {
         get { return currentStage; }
@@ -139,12 +174,6 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    public void ApplyPassiveSkill()
-    {
-        foreach(PassiveSkill skill in transform)
-        {
-            skill.ApplySkill();
-        }
-    }
+
    
 }

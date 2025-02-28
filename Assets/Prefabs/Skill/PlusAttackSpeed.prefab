@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc62c102e089a4042ab93486d83b7762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: PlusAttackSpeed
   level: 1
-  name: PlusAttackSpeedSkill
-  attckSpeedIncrease: 0.5
+  attckSpeedIncrease: 1

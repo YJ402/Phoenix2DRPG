@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142e45101e3148e4981fcd6226ced6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: BulletDouble
   level: 1
   coolDown: 60
   duration: 10

@@ -15,7 +15,7 @@ public class PlusSpeedSkill : PassiveSkill
     public override void ApplySkill()
     {
         statHandler = GetComponent<StatHandler>();
-        if (statHandler != null && bonusApplied)
+        if (statHandler != null && !bonusApplied)
         {
             statHandler.Speed += speedIncrease*level;
             bonusApplied &= true;

@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb2ad4cfe6ad0b4bb0213a9d37e17eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  level: 1
   skillName: PlusAttack
-  attackIncrease: 1
+  level: 1
+  attackIncrease: 200

@@ -15,7 +15,7 @@ public class PlusAttackSpeedSkill : PassiveSkill
     public override void ApplySkill()
     {
         statHandler = GetComponent<StatHandler>();
-        if (statHandler != null && bonusApplied)
+        if (statHandler != null && !bonusApplied)  // !bonusApplied 로 변경하여 한 번만 적용
         {
             statHandler.AttackSpeed += attckSpeedIncrease * level;
             bonusApplied = true;

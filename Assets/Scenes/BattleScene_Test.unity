@@ -11604,6 +11604,7 @@ GameObject:
   - component: {fileID: 1700061305}
   - component: {fileID: 1700061303}
   - component: {fileID: 1700061302}
+  - component: {fileID: 1700061306}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -11756,8 +11757,8 @@ MonoBehaviour:
   knockbackPower: 5
   knockbackTime: 0.5
   maxHealth: 1000
-  speed: 6
-  attackPower: 1000
+  speed: 5
+  attackPower: 500
   attackSpeed: 5
   attackDistance: 8
   target:
@@ -11766,9 +11767,22 @@ MonoBehaviour:
   projectileSpawnPosition: {fileID: 1194605790}
   bulletIndex: 0
   bulletSpeed: 10
-  bulletCount: 2
+  bulletCount: 1
   multipleProjectilesAngel: 2
   spread: 2
+--- !u!114 &1700061306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700061296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2049862021ad0f14c893926efc5db40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeSkill: {fileID: 0}
 --- !u!1 &1712900593
 GameObject:
   m_ObjectHideFlags: 0
@@ -11885,7 +11899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   everyskill:
-  - {fileID: 4325216891519433653, guid: 6a1eadfdd64497d4bafe1db3734f23c1, type: 3}
+  - {fileID: 0}
   - {fileID: 7176640693216902263, guid: 001b8c46f318a704890d9f023b4c4f4e, type: 3}
   - {fileID: 1158471393002996449, guid: 84f7a8cc955702e4a8b22ebf6bc3890c, type: 3}
   - {fileID: 3526691895264979975, guid: 92b5ae39f284218438158db38f984edd, type: 3}
@@ -11895,7 +11909,7 @@ MonoBehaviour:
   - {fileID: 6500122792249220136, guid: 5b7dd388b80e51a46a4e6a3282b34e87, type: 3}
   - {fileID: 622186897103143010, guid: 522377d6c33cde9409de86b19bf5e76f, type: 3}
   player: {fileID: 1700061296}
-  playerSkill: {fileID: 0}
+  playerSkill: {fileID: 1700061306}
 --- !u!1 &1738535974
 GameObject:
   m_ObjectHideFlags: 0
@@ -23494,13 +23508,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleTxt: {fileID: 506936129}
   skillPointTxt: {fileID: 716057464}
-  skillNameTxt1: []
-  skillNameTxt2: []
-  skillNameTxt3: []
+  skillNameTxt1:
+  - {fileID: 6522916061545774264}
+  skillNameTxt2:
+  - {fileID: 6308588096801256852}
+  skillNameTxt3:
+  - {fileID: 3676028788995376764}
   skillButton1: {fileID: 4433195508774800158}
   skillButton2: {fileID: 3499095948885852722}
   skillButton3: {fileID: 6052893973547905498}
-  skillManager: {fileID: 0}
+  skillManager: {fileID: 1717867630}
 --- !u!114 &2275476320303629365
 MonoBehaviour:
   m_ObjectHideFlags: 0

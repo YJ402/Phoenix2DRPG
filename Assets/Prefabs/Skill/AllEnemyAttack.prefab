@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5808349325182005760}
-  - component: {fileID: 4325216891519433653}
+  - component: {fileID: 6957318683694530122}
   m_Layer: 0
   m_Name: AllEnemyAttack
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4325216891519433653
+--- !u!114 &6957318683694530122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,12 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1471374417037401273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b931119f524213429c0847dd5de10e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bda4b96fdf6ce942a7ab4dd2c7b0cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: AllEnemyAttack
   level: 1
   coolDown: 60
   duration: 10
-  baseAttackMultiplier: 2
-  attackMultiplierPerLevel: 0.5
+  damage: 1000
+  skillNmae: "\uC804\uCCB4\uACF5\uACA9"

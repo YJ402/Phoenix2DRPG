@@ -15,7 +15,7 @@ public class PlusBulletSkill : PassiveSkill
     public override void ApplySkill()
     {
         rangeStatHandler = GetComponent<RangeStatHandler>();
-        if (rangeStatHandler != null && bonusApplied)
+        if (rangeStatHandler != null && !bonusApplied)
         {
             rangeStatHandler.BulletCount += bulletincrease * level;
             bonusApplied = true;

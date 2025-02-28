@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e018817e44f72b34d9376f06af5b2895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: BombArrow
   level: 1
   coolDown: 60
   duration: 10

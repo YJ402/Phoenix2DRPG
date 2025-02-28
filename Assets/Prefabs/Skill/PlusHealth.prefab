@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febc6a6677a16a948af2fba72ad57023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: PlusHealth
   level: 1
-  name: PlusHealthSkill
   healthIncrease: 100

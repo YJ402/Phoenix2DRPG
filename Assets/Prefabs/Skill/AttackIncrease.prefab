@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b931119f524213429c0847dd5de10e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: AttackIncrease
   level: 1
   coolDown: 60
   duration: 10
   baseAttackMultiplier: 2
-  attackMultiplierPerLevel: 0.5

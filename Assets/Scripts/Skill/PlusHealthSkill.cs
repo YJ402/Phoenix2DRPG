@@ -15,7 +15,7 @@ public class PlusHealthSkill : PassiveSkill
     public override void ApplySkill()
     {
         statHandler = GetComponent<StatHandler>();
-        if (statHandler != null && bonusApplied)
+        if (statHandler != null && !bonusApplied)
         {
             statHandler.MaxHealth += healthIncrease *level;
             bonusApplied = true;
